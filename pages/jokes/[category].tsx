@@ -23,7 +23,6 @@ import loudMamaJokes from '@/jokes/loud';
 import entitledMamaJokes from '@/jokes/entitled';
 import otherMamaJokes from '@/jokes/other';
 import { Category } from '@/types';
-import AdSenseAd from '@/components/AdSenseAd';
 import {
   FAT_MAMA_JOKE_CATEGORY,
   SCARY_MAMA_JOKE_CATEGORY,

@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head'; // Import Head for metadata
-import AdSenseAd from '@/components/AdSenseAd';
 import getDailyRandomJokes from '@/services/dailyJokesPicker';
 import JokeCard from '@/components/JokeCard';
 import Link from 'next/link';
