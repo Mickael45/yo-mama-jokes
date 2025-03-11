@@ -17,13 +17,13 @@ const HomePage: React.FC<HomePageProps> = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <Head>
-        <title>Yo Mama Jokes - Hilarious Jokes for Everyone</title>
+        <title>Yo Mama Jokes Central - Hilarious Jokes for Everyone</title>
         <meta name="description" content="The funniest Yo Mama Jokes online! Get your daily dose of hilarious insults and witty comebacks. Browse categories or enjoy our featured jokes of the day." />
       </Head>
       <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
       <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome To Yo Mama Jokes</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome To Yo Mama Jokes Central</h1>
         <p className="text-lg text-gray-700 mb-6 leading-relaxed">
           Get ready to laugh with the funniest Yo Mama Jokes online!  Enjoy our daily selection of 5 hilarious jokes, or browse hundreds more in our categories.  Find the perfect joke to share with friends!
         </p>

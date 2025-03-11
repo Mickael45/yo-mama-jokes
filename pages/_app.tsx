@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <header className="bg-neutral-100 border-b border-neutral-200 py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-xl font-bold text-primary-600">
-          Yo Mama Jokes
+          Yo Mama Jokes Central
         </Link>
         <nav className="space-x-6">
           <Link href="/" className="text-gray-700 hover:text-gray-900">

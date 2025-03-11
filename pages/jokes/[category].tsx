@@ -92,7 +92,7 @@ type PageData = {
 const categoryToMetadataMap: Record<Category, PageData> = {
   [FAT_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Fat Yo Mama Jokes - Hilarious & Insulting | Your Brand Name",
+      title: "Fat Yo Mama Jokes - Hilarious & Insulting | Yo Mama Jokes Central",
       description: "Get ready for the funniest Fat Yo Mama Jokes online!  Tons of hilarious insults about weight and size. Browse our collection and share the laughs!"
     },
     page: {
@@ -102,7 +102,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [SCARY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Scary Yo Mama Jokes - Spooky & Funny | Your Brand Name",
+      title: "Scary Yo Mama Jokes - Spooky & Funny | Yo Mama Jokes Central",
       description: "Dare to laugh with Scary Yo Mama Jokes!  Dark humor and spooky insults that are guaranteed to get a reaction. Browse our collection and share the scares (and laughs)!"
     },
     page: {
@@ -112,7 +112,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [NASTY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Nasty Yo Mama Jokes -  Rude & Hilarious | Your Brand Name",
+      title: "Nasty Yo Mama Jokes -  Rude & Hilarious | Yo Mama Jokes Central",
       description: "Warning: Nasty Yo Mama Jokes inside!  For those who like their humor extra spicy and over-the-top. Browse our collection of truly outrageous insults - if you dare!"
     },
     page: {
@@ -122,7 +122,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [UGLY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Ugly Yo Mama Jokes - Hilariously Insulting | Your Brand Name",
+      title: "Ugly Yo Mama Jokes - Hilariously Insulting | Yo Mama Jokes Central",
       description: "Laugh at Ugly Yo Mama Jokes!  Our collection of jokes about appearance and less-than-flattering looks.  Browse and share these funny (but maybe a little mean) insults!"
     },
     page: {
@@ -132,7 +132,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [DUMB_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Dumb Yo Mama Jokes - Silly & Hilarious | Your Brand Name",
+      title: "Dumb Yo Mama Jokes - Silly & Hilarious | Yo Mama Jokes Central",
       description: "Laugh at Dumb Yo Mama Jokes!  Our collection of silly, nonsensical, and hilariously stupid insults.  Browse and share these jokes for some lighthearted fun!"
     },
     page: {
@@ -142,7 +142,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [AWFUL_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Awful Yo Mama Jokes -  Terribly Funny | Your Brand Name",
+      title: "Awful Yo Mama Jokes -  Terribly Funny | Yo Mama Jokes Central",
       description: "Awful Yo Mama Jokes - so bad they're good!  Explore our collection of intentionally terrible and hilariously cringe-worthy insults. Browse now and share the awfulness!"
     },
     page: {
@@ -152,7 +152,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [DIRTY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Dirty Yo Mama Jokes -  Adult & Hilarious (Warning!) | Your Brand Name",
+      title: "Dirty Yo Mama Jokes -  Adult & Hilarious (Warning!) | Yo Mama Jokes Central",
       description: "Warning: Dirty Yo Mama Jokes - for adults only!  Explore our collection of risqué, suggestive, and hilariously inappropriate insults. Browse with caution (and a sense of humor)!"
     },
     page: {
@@ -162,7 +162,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [TALL_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Tall Yo Mama Jokes - Jokes About Height | Your Brand Name",
+      title: "Tall Yo Mama Jokes - Jokes About Height | Yo Mama Jokes Central",
       description: "Laugh at Tall Yo Mama Jokes!  Our collection of jokes that poke fun at extreme height. Browse and share these funny jokes about very tall \"Yo Mamas\"!"
     },
     page: {
@@ -172,7 +172,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [SHORT_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Short Yo Mama Jokes - Jokes About Being Small | Your Brand Name",
+      title: "Short Yo Mama Jokes - Jokes About Being Small | Yo Mama Jokes Central",
       description: "Funny Short Yo Mama Jokes!  Our collection of jokes that poke fun at being vertically challenged. Browse and share these hilarious jokes about short \"Yo Mamas\"!"
     },
     page: {
@@ -182,7 +182,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [HAIRY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Hairy Yo Mama Jokes - Jokes About Hairiness | Your Brand Name",
+      title: "Hairy Yo Mama Jokes - Jokes About Hairiness | Yo Mama Jokes Central",
       description: "Hairy Yo Mama Jokes - for hairy situations!  Our collection of jokes that poke fun at excessive hairiness. Browse and share these funny and furry insults!"
     },
     page: {
@@ -192,7 +192,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [BALD_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Bald Yo Mama Jokes - Jokes About Being Bald | Your Brand Name",
+      title: "Bald Yo Mama Jokes - Jokes About Being Bald | Yo Mama Jokes Central",
       description: "Bald Yo Mama Jokes - hair today, gone tomorrow!  Our collection of jokes that poke fun at baldness. Browse and share these funny and follicle-challenged insults!"
     },
     page: {
@@ -202,7 +202,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [OLD_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Old Yo Mama Jokes - Jokes About Age | Your Brand Name",
+      title: "Old Yo Mama Jokes - Jokes About Age | Yo Mama Jokes Central",
       description: "Old Yo Mama Jokes - classic insults for the ages!  Our collection of jokes that poke fun at old age. Browse and share these funny jokes about \"Yo Mama's\" senior status!"
     },
     page: {
@@ -212,7 +212,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [POOR_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Poor Yo Mama Jokes - Jokes About Poverty | Your Brand Name",
+      title: "Poor Yo Mama Jokes - Jokes About Poverty | Yo Mama Jokes Central",
       description: "Poor Yo Mama Jokes - hilariously broke!  Our collection of jokes that poke fun at poverty and lack of resources. Browse and share these funny (but maybe a little insensitive) insults!"
     },
     page: {
@@ -222,7 +222,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [SKINNY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Skinny Yo Mama Jokes - Jokes About Being Thin | Your Brand Name",
+      title: "Skinny Yo Mama Jokes - Jokes About Being Thin | Yo Mama Jokes Central",
       description: "Skinny Yo Mama Jokes - hilariously thin!  Our collection of jokes that poke fun at being underweight. Browse and share these funny jokes about skinny \"Yo Mamas\"!"
     },
     page: {
@@ -232,7 +232,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [CLUMSY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Clumsy Yo Mama Jokes - Jokes About Clumsiness | Your Brand Name",
+      title: "Clumsy Yo Mama Jokes - Jokes About Clumsiness | Yo Mama Jokes Central",
       description: "Clumsy Yo Mama Jokes - hilariously awkward!  Our collection of jokes that poke fun at clumsiness and lack of coordination. Browse and share these funny and fumble-filled insults!"
     },
     page: {
@@ -242,7 +242,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [EVIL_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Evil Yo Mama Jokes - Jokes About Being Wicked | Your Brand Name",
+      title: "Evil Yo Mama Jokes - Jokes About Being Wicked | Yo Mama Jokes Central",
       description: "Evil Yo Mama Jokes - wickedly funny!  Our collection of jokes that poke fun at evil and villainy. Browse and share these dark and devilishly hilarious insults!"
     },
     page: {
@@ -252,7 +252,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [GREEDY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Greedy Yo Mama Jokes - Jokes About Greed | Your Brand Name",
+      title: "Greedy Yo Mama Jokes - Jokes About Greed | Yo Mama Jokes Central",
       description: "Greedy Yo Mama Jokes - hilariously money-hungry!  Our collection of jokes that poke fun at greed and excessive desire for wealth. Browse and share these funny and financially-focused insults!"
     },
     page: {
@@ -262,7 +262,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [LAZY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Lazy Yo Mama Jokes - Jokes About Laziness | Your Brand Name",
+      title: "Lazy Yo Mama Jokes - Jokes About Laziness | Yo Mama Jokes Central",
       description: "Lazy Yo Mama Jokes - hilariously unmotivated!  Our collection of jokes that poke fun at laziness and lack of energy. Browse and share these funny and lethargic insults!"
     },
     page: {
@@ -272,7 +272,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [LOUD_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Loud Yo Mama Jokes - Jokes About Being Noisy | Your Brand Name",
+      title: "Loud Yo Mama Jokes - Jokes About Being Noisy | Yo Mama Jokes Central",
       description: "Loud Yo Mama Jokes - hilariously noisy!  Our collection of jokes that poke fun at being loud and disruptive. Browse and share these funny and ear-splitting insults!"
     },
     page: {
@@ -282,7 +282,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [ENTITLED_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Entitled Yo Mama Jokes - Jokes About Entitlement | Your Brand Name",
+      title: "Entitled Yo Mama Jokes - Jokes About Entitlement | Yo Mama Jokes Central",
       description: "Entitled Yo Mama Jokes - hilariously demanding!  Our collection of jokes that poke fun at entitlement and demanding behavior. Browse and share these funny and self-important insults!"
     },
     page: {
@@ -292,7 +292,7 @@ const categoryToMetadataMap: Record<Category, PageData> = {
   },
   [OTHER_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Other Yo Mama Jokes -  Funny & Miscellaneous | Your Brand Name",
+      title: "Other Yo Mama Jokes -  Funny & Miscellaneous | Yo Mama Jokes Central",
       description: "Other Yo Mama Jokes - for everything else!  Explore our miscellaneous collection of jokes that don't fit neatly into other categories. Browse and share these funny and varied insults!"
     },
     page: {
@@ -317,7 +317,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category, jokes }) => {
       <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
       <div className="max-w-5xl mx-auto text-center"> {/* Optional: Constrain content width for readability */}
-        <h1 className="text-3xl font-bold text-gray-900 mb-6 capitalize">{pageTitle}</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-6 capitalize">{pageTitle} | Yo Mama Jokes Central</h1>
         <p className="text-lg mb-6 text-gray-700 leading-relaxed">
           {pageDescription}
         </p>

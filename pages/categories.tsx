@@ -31,8 +31,8 @@ export const categories: { name: string, slug: Category }[] = [ // Define your c
 
 const Categories = () => <div className="container mx-auto px-4 py-8">
     <Head>
-        <title>Joke Categories - Yo Mama Jokes</title>
-        <meta name="description" content="Explore all Yo Mama Joke categories! Find fat jokes, dumb jokes, ugly jokes, and many more. Browse our extensive collection and get ready to laugh." />
+        <title>Joke Categories | Yo Mama Jokes Central</title>
+        <meta name="description" content="Explore all Yo Mama Joke Central categories! Find fat jokes, dumb jokes, ugly jokes, and many more. Browse our extensive collection and get ready to laugh." />
     </Head>
     <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
