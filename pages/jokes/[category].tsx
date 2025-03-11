@@ -321,15 +321,12 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category, jokes }) => {
           {pageDescription}
         </p>
 
-        <AdSenseAd slot="your_category_page_top_ad_slot" className="mb-8" /> {/* Top Ad - increased margin */}
-
         <div className="space-y-6"> {/* Vertical spacing between JokeCards */}
           {jokes.map((joke) => (
             <JokeCard key={joke} jokeText={joke} categorySlug={category} />
           ))}
         </div>
 
-      <AdSenseAd slot="your_category_page_bottom_ad_slot" className="mt-6" /> {/* Bottom Ad */}
       </div>
     </div>
   );

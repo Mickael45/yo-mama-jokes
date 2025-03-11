@@ -27,7 +27,6 @@ const HomePage: React.FC<HomePageProps> = () => {
           Get ready to laugh with the funniest Yo Mama Jokes online!  Enjoy our daily selection of 5 hilarious jokes, or browse hundreds more in our categories.  Find the perfect joke to share with friends!
         </p>
 
-        <AdSenseAd slot="your_homepage_top_ad_slot" className="mb-6" />
 
         <div className="space-y-6">
           {featuredJokes.map(({ category, joke }) => (
@@ -39,7 +38,6 @@ const HomePage: React.FC<HomePageProps> = () => {
           See More Jokes
         </Link>
 
-        <AdSenseAd slot="your_homepage_carousel_bottom_ad_slot" className="mt-6 mb-8" />
 
       </div>
     </div>
