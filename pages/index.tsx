@@ -3,6 +3,7 @@ import Head from 'next/head'; // Import Head for metadata
 import getDailyRandomJokes from '@/services/dailyJokesPicker';
 import JokeCard from '@/components/JokeCard';
 import Link from 'next/link';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 
 interface HomePageProps {
@@ -19,6 +20,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         <title>Yo Mama Jokes - Hilarious Jokes for Everyone</title>
         <meta name="description" content="The funniest Yo Mama Jokes online! Get your daily dose of hilarious insults and witty comebacks. Browse categories or enjoy our featured jokes of the day." />
       </Head>
+      <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome To Yo Mama Jokes</h1>

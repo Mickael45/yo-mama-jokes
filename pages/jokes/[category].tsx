@@ -46,6 +46,7 @@ import {
   ENTITLED_MAMA_JOKE_CATEGORY,
   OTHER_MAMA_JOKE_CATEGORY
 } from '@/constants';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 interface CategoryPageProps {
   category: string; // Category slug from URL param
@@ -313,6 +314,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category, jokes }) => {
         <meta name="description" content={description} />
         {/* Add more metadata as needed */}
       </Head>
+      <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
       <div className="max-w-5xl mx-auto text-center"> {/* Optional: Constrain content width for readability */}
         <h1 className="text-3xl font-bold text-gray-900 mb-6 capitalize">{pageTitle}</h1>
