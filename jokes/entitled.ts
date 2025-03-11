@@ -1,0 +1,18 @@
+export default [
+    "Yo mama's such a Karen, she demands to speak to your dad’s manager when they fight.",
+    "Yo mama's such a Karen, she brings her own “customer satisfaction survey” to family dinners.",
+    "Yo mama's such a Karen, she files a complaint with Netflix if the movie doesn't match the trailer.",
+    "Yo mama's so spoiled, she thinks “self-service” means someone will do things for her.",
+    "Yo mama's so spoiled, she hates using the same towel twice.",
+    "Yo mama's demanding, she expects the sun to revolve around her.",
+    "Yo mama's bossy, she tells the universe how to expand.",
+    "Yo mama's controlling, she dictates the weather forecast for the next century.",
+    "Yo mama's arrogant, she thinks humility is a weakness.",
+    "Yo mama's conceited, she believes mirrors are constantly taking selfies of her.",
+    "Yo mama's egotistical, she thinks the Earth is flat so she won't have to share it.",
+    "Yo mama's vain, she believes compliments are her life support.",
+    "Yo mama's self-absorbed, she thinks the universe is just her personal reality show.",
+    "Yo mama's narcissistic, she thinks her reflection is trying to steal her identity."
+  ];
+  
+  

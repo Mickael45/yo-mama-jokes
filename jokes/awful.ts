@@ -1,0 +1,19 @@
+export default [
+    "Yo mama's so dreadful, she makes Mondays feel like a vacation.",
+    "Yo mama's so terrible, she could ruin a surprise party.",
+    "Yo mama's so awful, she's the reason they invented earplugs.",
+    "Yo mama's so objectionable, she's offensive to dish soap.",
+    "Yo mama's so gruesome, she makes zombie movies look like romantic comedies.",
+    "Yo mama's so hideous, she walks into a library and they lower the late fees.",
+    "Yo mama's so grotesque, she makes trolls on the internet seem charming.",
+    "Yo mama's so monstrous, she's got Bigfoot hiding under her bed.",
+    "Yo mama's so ghastly, vampires ask her for sunblock tips.",
+    "Yo mama's so repugnant, she makes gym socks smell like lavender.",
+    "Yo mama's so disgusting, she makes public restrooms seem sanitary.",
+    "Yo mama's so foul, she's the reason air freshener was invented.",
+    "Yo mama's so rank, she makes landfills smell like roses.",
+    "Yo mama's so putrid, she makes week-old roadkill smell appetizing.",
+    "Yo mama's so revolting, she makes spoiled leftovers look gourmet.",
+    "Yo mama's so vile, she makes toxic waste seem eco-friendly.",
+  ];
+  

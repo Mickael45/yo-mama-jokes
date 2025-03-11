@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #b9e0fa;
+  --color-primary-300: #87c9f2;
+  --color-primary-400: #56b2ea;
+  --color-primary-500: #259be2; /* Primary Accent Color - Playful Blue */
+  --color-primary-600: #0b88d8;
+  --color-primary-700: #076db0;
+  --color-primary-800: #055288;
+  --color-primary-900: #043d60;
+
+  --color-secondary-50: #fefce8;
+  --color-secondary-100: #fef9c3;
+  --color-secondary-200: #fef08a;
+  --color-secondary-300: #fde047;
+  --color-secondary-400: #fcd34d;
+  --color-secondary-500: #fbbf24; /* Secondary Accent Color - Playful Yellow/Orange */
+  --color-secondary-600: #f59e0b;
+  --color-secondary-700: #d97706;
+  --color-secondary-800: #b45309;
+  --color-secondary-900: #92400e;
+
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+
+  --font-sans: 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    background-color: var(--color-neutral-50); /* Light background */
+    color: #1a202c; /* Dark text */
+    font-family: 'Inter', sans-serif; /* Or your chosen font */
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Example: Style links globally if needed */
+  a {
+    color: var(--color-primary-500);
+    transition: color 200ms;
+
+    &:hover {
+      color: var(--color-primary-700);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* You can define custom components here if needed, but Tailwind utilities are often sufficient */
+}
+
+.social-icon-button {
+  @apply inline-flex items-center justify-center rounded-full p-2 transition-colors duration-200 focus:outline-none; /* Base button styles remain */
+  background-color: rgba(240, 242, 245, 0.5); /* Washed-out light gray background - adjust opacity as needed */
+  border-radius: 50%; /* Ensure perfect circle */
+  width: 40px; /* Fixed width and height for circle shape */
+  height: 40px;
+}
+
+.social-icon-button:hover {
+  background-color: rgba(224, 224, 224, 0.7); /* Slightly darker washed-out background on hover */
+}
+
+.twitter-button {
+  @apply text-black; /* TikTok icon color - Black */
+  background-color: rgba(0, 0, 0, 0.05); 
+}
+
+.twitter-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker washed-out black on hover */
+}
+
+
+.facebook-button {
+  @apply text-blue-700; /* Facebook icon color - Tailwind's blue */
+  background-color: rgba(59, 89, 152, 0.15); /* Washed-out Facebook blue background */
+}
+
+.facebook-button:hover {
+  background-color: rgba(59, 89, 152, 0.3); /* Slightly darker washed-out Facebook blue on hover */
+}
+
+.instagram-button {
+  @apply text-pink-500 hover:text-pink-700; /* Instagram icon color - Tailwind's pink and hover effect */
+  background-color: rgba(253, 224, 69, 0.15); /* Washed-out yellow/orange background - keep for now, adjust if needed */
+}
+
+.instagram-button:hover {
+  background-color: rgba(253, 224, 69, 0.3); /* Slightly darker washed-out background on hover - keep for now, adjust if needed */
+}
+
+
+.tiktok-button {
+  @apply text-black; /* TikTok icon color - Black */
+  background-color: rgba(0, 0, 0, 0.05); /* Very subtle washed-out black background for TikTok */
+}
+
+.tiktok-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker washed-out black on hover */
+}
+
+.joke-card-title-link h2 a { /* Targeting the <a> inside the <h2> title */
+  text-decoration: none; /* Remove default underline */
+  cursor: pointer; /* Set cursor to pointer on hover */
+}
+
+.joke-card-title-link h2 a:hover {
+  text-decoration: underline; /* Add underline on hover */
+  /* Optional: You can adjust the text color change on hover if desired */
+  color: #0097a7; /* Example: Use brand-dark color on hover - adjust if needed */
 }
