@@ -7,10 +7,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return <div className="flex flex-col min-h-screen">
     <header className="bg-neutral-100 border-b border-neutral-200 py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-primary-600">
-          Yo Mama Jokes Central
-        </Link>
-        <nav className="space-x-6">
+        <span className="flex items-center space-x-2">
+          <img src="/favicon.ico" alt="Yo Mama Jokes Central" className="w-[70px] h-[70px]" />
+          <Link href="/" className="text-xl font-bold text-primary-600">
+            <span>Yo Mama Jokes Central</span>
+          </Link>
+        </span>        <nav className="space-x-6">
           <Link href="/" className="text-gray-700 hover:text-gray-900">
             Home
           </Link>
