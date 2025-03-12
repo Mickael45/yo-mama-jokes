@@ -43,18 +43,18 @@
 
 @layer base {
   body {
-    background-color: var(--color-neutral-50); /* Light background */
-    color: #1a202c; /* Dark text */
+    background-color: #f9f7f3; /* Light background */
+    color: #333333; /* Dark text */
     font-family: 'Inter', sans-serif; /* Or your chosen font */
   }
 
   /* Example: Style links globally if needed */
   a {
-    color: var(--color-primary-500);
+    color: #e2746d;
     transition: color 200ms;
 
     &:hover {
-      color: var(--color-primary-700);
+      color: #f2ca5e;
     }
   }
 }
@@ -111,15 +111,4 @@
 
 .tiktok-button:hover {
   background-color: rgba(0, 0, 0, 0.1); /* Slightly darker washed-out black on hover */
-}
-
-.joke-card-title-link h2 a { /* Targeting the <a> inside the <h2> title */
-  text-decoration: none; /* Remove default underline */
-  cursor: pointer; /* Set cursor to pointer on hover */
-}
-
-.joke-card-title-link h2 a:hover {
-  text-decoration: underline; /* Add underline on hover */
-  /* Optional: You can adjust the text color change on hover if desired */
-  color: #0097a7; /* Example: Use brand-dark color on hover - adjust if needed */
 }

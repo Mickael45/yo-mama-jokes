@@ -47,7 +47,7 @@ const Categories = () => <div className="container mx-auto px-4 py-8">
                     key={category.slug}
                     className="block bg-white rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200 border border-neutral-200 text-center" // More compact category links
                 >
-                    <h3 className="text-lg font-semibold text-primary-600 capitalize">{category.name}</h3> {/* Smaller heading */}
+                    <h3 className="text-lg font-semibold text-[#e2746d] capitalize">{category.name}</h3> {/* Smaller heading */}
                 </Link>
             ))}
         </div>

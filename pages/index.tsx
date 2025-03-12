@@ -35,7 +35,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           ))}
         </div>
 
-        <Link href="/categories" className="bg-blue-400 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-DEFAULT focus:ring-opacity-50 transition-colors duration-200">
+        <Link href="/categories" className="bg-[#e2746d] text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-DEFAULT focus:ring-opacity-50 transition-colors duration-200">
           See More Jokes
         </Link>
 
