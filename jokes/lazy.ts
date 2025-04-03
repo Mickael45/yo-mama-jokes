@@ -1,13 +1,13 @@
 export default [
-    "Yo momma's so slow when she crossed the street she got a parking ticket.",
-    "Yo mama so lazy, she’s got a remote control just to operate her remote.",
-    "Yo mama so lazy that she came in last place in a recent snail marathon.",
-    "Yo mama's lazy, she makes couch potatoes look energetic.",
-    "Yo mama's idle, she makes statues look like they have a busy schedule.",
-    "Yo mama's lethargic, she makes snails look like they are competing in NASCAR.",
-    "Yo mama's slow, she makes molasses in January seem like it's in a hurry.",
-    "Yo mama's sluggish, she makes turtles look like they are training for the Olympics.",
-    "Yo mama's inefficient, she couldn't run a microwave, let alone a marathon.",
-    "Yo mama's unproductive, she makes sloths look like workaholics.",
-    "Yo mama so lazy she has a remote for the TV remote."
-  ]
+  "Yo mama so lazy she has a remote for the TV remote.",
+  "Yo mama's lazy, she makes couch potatoes look energetic.",
+  "Yo mama's unproductive, she makes sloths look like workaholics.",
+  "Yo mama's idle, she makes statues look like they have a busy schedule.",
+  "Yo mama so lazy, she’s got a remote control just to operate her remote.",
+  "Yo mama so lazy that she came in last place in a recent snail marathon.",
+  "Yo momma's so slow when she crossed the street she got a parking ticket.",
+  "Yo mama's slow, she makes molasses in January seem like it's in a hurry.",
+  "Yo mama's inefficient, she couldn't run a microwave, let alone a marathon.",
+  "Yo mama's lethargic, she makes snails look like they are competing in NASCAR.",
+  "Yo mama's sluggish, she makes turtles look like they are training for the Olympics.",
+];
