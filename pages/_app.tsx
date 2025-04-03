@@ -41,7 +41,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <footer className="bg-[#f9f7f3] py-8 mt-16 text-center text-gray-500">
         <p>
-          &copy; {new Date().getFullYear()} Yo Mama Jokes. All rights reserved.
+          &copy; {new Date().getFullYear()} Yo Mama Jokes Central. All rights
+          reserved.
         </p>
       </footer>
     </div>
