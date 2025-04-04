@@ -31,4 +31,5 @@ export default [
   "Yo mama is so dirty that when she tried to take a bath, the water jumped out and said « I'll wait ».",
   "Yo momma's so smelly, an old blind geezer walking by asked her « Yo, how much for the shrimp platter »?",
   "Yo momma has so much dandruff when she scratches her head people are like « Dang, is it winter already »?",
+  "Yo mama's so filthy, she uses sandpaper as a washcloth.",
 ];

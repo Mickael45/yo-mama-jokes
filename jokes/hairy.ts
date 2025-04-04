@@ -46,4 +46,5 @@ export default [
   "Yo mama so hairy Bigfoot is offended.",
   "Yo mama's armpit is so hairy it looks like she has Bigfoot in a headlock.",
   "Yo momma so hairy Bigfoot took a picture of HER!",
+  "Yo mama's so hairy, she needs a lawnmower for a razor.",
 ];

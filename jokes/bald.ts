@@ -20,4 +20,5 @@ export default [
   "Yo mama's so bald, when she goes to bed, her head slips off the pillow.",
   "Yo momma is so bald that when it's cloudy out at night, you still see a full moon.",
   "Yo mama's so bald that when she put on a sweater, folks thought she was a roll on deodorant.",
+  "Yo mama's so bald, she uses a marker to color her scalp.",
 ];

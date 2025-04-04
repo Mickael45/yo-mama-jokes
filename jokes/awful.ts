@@ -15,4 +15,5 @@ export default [
   "Yo mama's so grotesque, she makes trolls on the internet seem charming.",
   "Yo mama's so gruesome, she makes zombie movies look like romantic comedies.",
   "Yo mama's so hideous, she walks into a library and they lower the late fees.",
+  "Yo mama's so revolting, even the flies want nothing to do with her.",
 ];

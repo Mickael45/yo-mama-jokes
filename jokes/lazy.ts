@@ -10,4 +10,5 @@ export default [
   "Yo mama's inefficient, she couldn't run a microwave, let alone a marathon.",
   "Yo mama's lethargic, she makes snails look like they are competing in NASCAR.",
   "Yo mama's sluggish, she makes turtles look like they are training for the Olympics.",
+  "Yo mama's so lazy, she can't even be bothered to finish this joke.",
 ];

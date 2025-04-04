@@ -40,4 +40,5 @@ export default [
   "Yo mama is so greasy that she sweats butter and syrup and has a full time job at Denny's wiping pancakes across her forehead.",
   "Yo mama is so nasty that she has a sign by her crotch that says: « Warning: May cause irritation, drowsiness, and a rash or breakouts ».",
   "Yo momma is so nasty she made Right Guard turn left!",
+  "Yo mama's so nasty, even her shoes are afraid of her feet.",
 ];

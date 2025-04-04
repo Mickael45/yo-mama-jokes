@@ -5,4 +5,5 @@ export default [
   "Yo mama so clumsy, she tripped over a wireless network.",
   "Yo mama is so stupid, she tripped over a wireless network.",
   "Yo mama's clumsy, she apologizes to furniture after bumping into it.",
+  "Yo mama's so clumsy, she tried to jump rope and tripped over air.",
 ];

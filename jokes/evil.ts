@@ -28,4 +28,5 @@ export default [
   "Yo mama's detested, the universe is actively trying to phase her out of existence.",
   "Yo mama's pessimistic, she sees the glass as half-empty, leaking, and probably poisoned.",
   "Yo mama is so mean that when she went into a haunted house, she came out with a job application.",
+  "Yo mama's so evil, even Voldemort wouldn't invite her to a party.",
 ];

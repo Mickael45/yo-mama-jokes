@@ -212,4 +212,5 @@ export default [
   "Yo momma so dumb, she tried to eat a power mac because she thought it was better than a big mac.",
   "Yo mamma so stupid, she put a quarter in the parking meter and waited for a gumball to come out.",
   "Yo momma is so stupid that when thieves broke in and stole the tv, she ran outside and yelled to them « Hey, you forgot the remote ! »",
+  "Yo mama's so dumb, she thought a quarterback was a tax return.",
 ];
