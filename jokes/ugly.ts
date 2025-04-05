@@ -156,4 +156,5 @@ export default [
   "Yo momma’s so ugly, when they took her to the beautician it took 12 hours – for a quote!",
   "Yo mamma is so ugly when she tried to join an ugly contest they said « Sorry, no professionals ».",
   "Yo mama is so ugly that just after she was born, her mother said 'What a treasure!' and her father said 'Yes, let's go bury it.'",
+  "Yo mama's so ugly, even a blind man wouldn't date her.",
 ];

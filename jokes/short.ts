@@ -34,4 +34,5 @@ export default [
   "Yo mama is so short, you can make a life size sculpture of her using one can of Play-Doh.",
   "Yo mama house so small that when she orders a large pizza, she has to go outside to eat it.",
   "Yo momma is so short, you can see her feet on her driver's license.",
+  "Yo mama's so short, she can hang glide on a Dorito.",
 ];

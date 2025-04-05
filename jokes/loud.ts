@@ -4,4 +4,5 @@ export default [
   "Yo mama's noisy, she could shatter eardrums with a polite cough.",
   "Yo mama's loud, she narrates her own life in public.",
   "Yo mama's so loud, her yawn sounds like a rock concert.",
+  "Yo mama's so loud, even soundproof walls need earplugs.",
 ];

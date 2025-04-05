@@ -88,4 +88,5 @@ export default [
   "Yo mamma so poor, when I saw her walking down the street with one shoe on, I stopped and said « You lost a shoe »! and she said « No, I found a shoe »!",
   "Yo mama is so poor that we were on a road trip and she stopped by a dumpster and got out. I said « what are you doing » and she said I'm « booking a hotel »!",
   "Yo mama's so poor, the ducks throw bread at her.",
+  "Yo mama's so poor, she can't even afford to pay attention.",
 ];

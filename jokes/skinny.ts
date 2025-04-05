@@ -32,4 +32,5 @@ export default [
   "Yo mama is so skinny that when she takes a bath and lets the water out, her toes get caught in the drain.",
   "Yo mama's so skinny, she can see out the peephole with both eyes.",
   "Yo mama is so skinny that she has to run around in the shower to get wet.",
+  "Yo mama's so skinny, she can hide behind a toothpick.",
 ];
