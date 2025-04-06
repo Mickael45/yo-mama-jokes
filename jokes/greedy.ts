@@ -7,4 +7,5 @@ export default [
   "Yo mama’s so hungry, when she went to KFC and the cashier asked what size bucket she wanted, she said, « The one on the roof! »",
   "Yo mama's so greedy, she steals change from the wishing well.",
   "Yo mama's so greedy, she took candy from a baby and sold it for a profit.",
+  "Yo mama's so greedy, she charges interest on borrowed gum.",
 ];

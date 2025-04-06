@@ -345,4 +345,5 @@ export default [
   "Yo momma is so fat when she went to KFC the cashier asked « What size bucket »? and yo momma said « The one on the roof ».",
   "Yo mama's so fat, her driver's license says 'Wide Load.'",
   "Yo mama's so fat, when she goes to the gym, they charge her for two memberships.",
+  "Yo mama's so fat, GPS reroutes around her.",
 ];

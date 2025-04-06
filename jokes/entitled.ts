@@ -13,4 +13,5 @@ export default [
   "Yo mama's so spoiled, she thinks “self-service” means someone will do things for her.",
   "Yo mama's such a Karen, she brings her own “customer satisfaction survey” to family dinners.",
   "Yo mama's such a Karen, she files a complaint with Netflix if the movie doesn't match the trailer.",
+  "Yo mama's so entitled, she tried to return a used candle because it melted.",
 ];

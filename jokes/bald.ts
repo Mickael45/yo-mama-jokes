@@ -22,4 +22,5 @@ export default [
   "Yo mama's so bald that when she put on a sweater, folks thought she was a roll on deodorant.",
   "Yo mama's so bald, she uses a marker to color her scalp.",
   "Yo mama's so bald, she gave the moon competition in the shine department.",
+  "Yo mama's so bald, her forehead has no end in sight.",
 ];

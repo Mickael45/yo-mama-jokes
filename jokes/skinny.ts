@@ -33,4 +33,5 @@ export default [
   "Yo mama's so skinny, she can see out the peephole with both eyes.",
   "Yo mama is so skinny that she has to run around in the shower to get wet.",
   "Yo mama's so skinny, she can hide behind a toothpick.",
+  "Yo mama's so skinny, her hug is just a breeze.",
 ];

@@ -89,4 +89,5 @@ export default [
   "Yo mama is so poor that we were on a road trip and she stopped by a dumpster and got out. I said « what are you doing » and she said I'm « booking a hotel »!",
   "Yo mama's so poor, the ducks throw bread at her.",
   "Yo mama's so poor, she can't even afford to pay attention.",
+  "Yo mama's so poor, pigeons drop crumbs for her.",
 ];

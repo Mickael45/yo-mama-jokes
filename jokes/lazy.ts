@@ -12,4 +12,5 @@ export default [
   "Yo mama's sluggish, she makes turtles look like they are training for the Olympics.",
   "Yo mama's so lazy, she can't even be bothered to finish this joke.",
   "Yo mama's so lazy, she sets her alarm just to ignore it.",
+  "Yo mama's so lazy, her spirit animal is a parked car.",
 ];

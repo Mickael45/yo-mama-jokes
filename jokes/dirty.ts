@@ -33,4 +33,5 @@ export default [
   "Yo momma has so much dandruff when she scratches her head people are like « Dang, is it winter already »?",
   "Yo mama's so filthy, she uses sandpaper as a washcloth.",
   "Yo mama's so dirty, she showers in mud.",
+  "Yo mama's so dirty, raccoons leave her trash alone.",
 ];

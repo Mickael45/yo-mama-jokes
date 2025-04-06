@@ -8,4 +8,5 @@ export default [
   "Yo mama so scary, you thought the monsters in your closet were friends.",
   "Yo mama’s so scary that when she went to the zoo, the lions and tigers hid from her.",
   "Yo mama's so scary, even Freddy Krueger sleeps with the lights on.",
+  "Yo mama's so scary, jack-o’-lanterns scream back.",
 ];

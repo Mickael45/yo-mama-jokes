@@ -13,4 +13,5 @@ export default [
   "Yo mama is so tall that if she did a back-flip she'd kick Jesus in the mouth.",
   "Yo mama's so tall, she has to take out the driver's seat of her car and sit in the back to operate the vehicle.",
   "Yo mama's so tall, she can play basketball with clouds.",
+  "Yo mama's so tall, her hugs come with altitude sickness.",
 ];

@@ -42,4 +42,5 @@ export default [
   "Yo momma is so nasty she made Right Guard turn left!",
   "Yo mama's so nasty, even her shoes are afraid of her feet.",
   "Yo mama's so nasty, she makes public restrooms look pristine.",
+  "Yo mama's so nasty, her burps cause plant death.",
 ];
