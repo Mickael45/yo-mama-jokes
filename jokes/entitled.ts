@@ -14,4 +14,5 @@ export default [
   "Yo mama's such a Karen, she brings her own “customer satisfaction survey” to family dinners.",
   "Yo mama's such a Karen, she files a complaint with Netflix if the movie doesn't match the trailer.",
   "Yo mama's so entitled, she tried to return a used candle because it melted.",
-];
+
+  "Yo mama's so entitled, she asks for a refund on air because it got used up!",];

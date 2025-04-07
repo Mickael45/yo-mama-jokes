@@ -6,4 +6,4 @@ export default [
   "Yo mama's so loud, her yawn sounds like a rock concert.",
   "Yo mama's so loud, even soundproof walls need earplugs.",
   "Yo mama's so loud, her whispers start avalanches.",
-Yo mama's so loud, she can clear traffic jams with her sneezes!];
+];

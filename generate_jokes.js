@@ -69,115 +69,209 @@ function getExistingJokes(category) {
     }
 }
 
+/**
+ * Calculates the cosine similarity between two vectors (embeddings).
+ * @param {number[]} vecA - The first vector.
+ * @param {number[]} vecB - The second vector.
+ * @returns {number} The cosine similarity score (between -1 and 1).
+ */
+function calculateCosineSimilarity(vecA, vecB) {
+    if (!vecA || !vecB || vecA.length === 0 || vecA.length !== vecB.length) {
+        // Return 0 if vectors are invalid or incompatible
+        // console.error("Invalid vectors for cosine similarity.", vecA, vecB);
+        return 0;
+    }
+
+    let dotProduct = 0;
+    let magA = 0;
+    let magB = 0;
+
+    for (let i = 0; i < vecA.length; i++) {
+        dotProduct += vecA[i] * vecB[i];
+        magA += vecA[i] * vecA[i];
+        magB += vecB[i] * vecB[i];
+    }
+
+    magA = Math.sqrt(magA);
+    magB = Math.sqrt(magB);
+
+    if (magA === 0 || magB === 0) {
+        // Handle case of zero vectors to avoid division by zero
+        return 0;
+    }
+
+    // Similarity is dot product divided by the product of magnitudes
+    const similarity = dotProduct / (magA * magB);
+
+    // Clamp the value between -1 and 1 due to potential floating point inaccuracies
+    return Math.max(-1, Math.min(1, similarity));
+}
 
 async function generateUniqueJokeLLM(category, existingJokes) {
-      // --- Configuration ---
-      const OLLAMA_MODEL = 'mistral:7b'; // Use environment variable or default (e.g., 'mistral:7b')
-      const MAX_RETRIES = 3; // Max attempts to get a unique joke
-  
-      console.log(`\t-> Calling Ollama (${OLLAMA_MODEL}) for category: ${category}...`);
-  
-      // Select a small sample of existing jokes to provide context
-      const existingJokesSample = existingJokes
-          .map(j => `- ${j}`) // Format as a list
-          .join('\n');
-  
-      // Construct the prompt for the LLM
-      const prompt = `Generate one short, funny, and truly original yo mama joke.
-The joke must be directly inspired by the category: "${category}".
+    const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'mistral:7b';
+    const OLLAMA_EMBEDDING_MODEL = process.env.OLLAMA_EMBEDDING_MODEL || 'mxbai-embed-large';
+    const MAX_RETRIES = 40;
+    const SIMILARITY_THRESHOLD = 0.8;
 
-Allowed starting phrases include "Yo mama", "Your mom", "Yo mama is so", "Yo mama's so", or similar common variations naturally fitting the joke's structure.
+    console.log(`\t-> Calling Ollama (${OLLAMA_MODEL} / ${OLLAMA_EMBEDDING_MODEL}) for category: ${category}...`);
 
-Maintain a classic yo mama joke vibe - witty and humorous. The joke should be concise, typically 1-2 sentences.
+    const existingJokesSample = existingJokes.map(j => `- ${j}`).join('\n');
 
-Most importantly, ensure the joke is unique and significantly different from these existing examples provided for context:
+    // ***** REVISED PROMPT LOGIC *****
+    // Base prompt emphasizing the category
+    const basePrompt = `Generate one short, funny, and truly original yo mama joke.
+The joke's main theme MUST be directly inspired by and related to the specific category: "${category}".
+
+Allowed starting phrases include "Yo mama", "Your mom", "Yo mama is so", "Yo mama's so", or similar common variations naturally fitting the joke's structure and the category "${category}".
+
+Maintain a classic yo mama joke vibe - witty and humorous. The joke should be concise (1-2 sentences).
+
+Ensure the joke is unique and significantly different from these existing examples provided for context:
 ${existingJokesSample || "(No existing examples provided for this category yet)"}
 
-CRITICAL OUTPUT INSTRUCTION: Generate *only* the final joke text itself. Do *not* include:
-- Any surrounding quotation marks ("").
-- Any introduction like "Here's a joke:".
-- Any labels or list numbers (like "1.").
-- Any explanations or commentary about the joke.
-Just the raw joke text.`;
-  
-  let attempts = 0;
-  let newJoke = '';
-  let unique = false;
+CRITICAL OUTPUT INSTRUCTION: Generate *only* the final joke text itself. Do *not* include surrounding quotes, introductions, labels, numbers, or explanations. Just the raw joke text.`;
 
-  while (attempts < MAX_RETRIES && !unique) {
-      attempts++;
-      if (attempts > 1) {
-          console.log(`\t   Attempt ${attempts}: Regenerating due to non-uniqueness or error...`);
-          // Add a small delay before retrying
-          await new Promise(resolve => setTimeout(resolve, 200 * attempts));
-      }
+    let attempts = 0;
+    let generatedJokeText = '';
+    let unique = false;
+    let latestSimilarityScore = 0;
+    let existingVectors = []; // Hold embeddings for existing jokes
 
-      try {
-          // --- Use ollama.generate from the package ---
-          const response = await ollama.generate({ // **** KEY CHANGE: Use the package method ****
-              model: OLLAMA_MODEL,
-              prompt: attempts > 1 ? `${prompt}\n\nAvoid generating a joke similar to: "${newJoke}"` : prompt,
-              stream: false, // Get the full response object at once
-               options: { // Pass options here
-                  temperature: 0.8, // Adjust creativity
-                  num_predict: 60,   // Limit response length
-                  stop: ["\n", "\""] // Attempt to stop extraneous output
-              }
-          });
-          // --- Package call finished ---
+    // Pre-calculate existing joke embeddings (as before)
+    if (existingJokes.length > 0) {
+        console.log(`\t   Generating embeddings for ${existingJokes.length} existing jokes...`);
+        try {
+            const responses = await Promise.all(existingJokes.map(joke => ollama.embeddings({ model: OLLAMA_EMBEDDING_MODEL, prompt: joke })));
+            existingVectors = responses.map(e => e.embedding);
+            console.log(`\t   Existing embeddings generated.`);
+        } catch (embedError) {
+            console.error(`\t   ERROR generating existing embeddings:`, embedError.message);
+            existingVectors = [];
+        }
+    }
 
-          // Extract the joke from the package's response structure
-          if (response && response.response) { // **** Package typically returns { response: 'text', ... } ****
-               newJoke = response.response
-                            .trim() // Remove leading/trailing whitespace
-                            .replace(/^"|"$/g, '') // Remove surrounding quotes if added
-                            // .replace(/^Joke: /i, ''); // Remove potential prefixes if needed
+    while (attempts < MAX_RETRIES && !unique) {
+        attempts++;
+        latestSimilarityScore = 0;
 
-              // Basic uniqueness check (exact match)
-               if (!existingJokes.includes(newJoke) && newJoke.toLowerCase().includes(category)) { // Also check if category seems present
-                  unique = true;
-              } else {
-                   if (existingJokes.includes(newJoke)) {
-                      console.warn(`\t   Duplicate detected (Attempt ${attempts}): "${newJoke}"`);
-                   } else {
-                      // Optional: Warn if the category doesn't seem present in the response
-                      console.warn(`\t   Generated joke might not relate well to category "${category}" (Attempt ${attempts}): "${newJoke}"`);
-                       // Decide if you accept it anyway if it's unique
-                       if (!existingJokes.includes(newJoke)) unique = true; // Accept if unique, even if maybe off-topic
-                   }
-              }
-          } else {
-               console.error(`\t   Ollama package response format unexpected (Attempt ${attempts}):`, response);
-               newJoke = ''; // Reset joke on format error
-          }
+        // Construct the prompt for this attempt
+        let currentPrompt = basePrompt;
+        if (attempts > 1) {
+            console.log(`\t   Attempt ${attempts} (Retrying - Last similarity: ${(latestSimilarityScore * 100).toFixed(1)}%)...`);
+            await new Promise(resolve => setTimeout(resolve, 300 * attempts));
 
-      } catch (error) {
-          console.error(`\t   Error using ollama package (Attempt ${attempts}):`, error.message);
-           // Check for common errors from the package
-          if (error.message && error.message.includes('ECONNREFUSED')) {
-               console.error(`\t   >>> Is the Ollama server running? The 'ollama' package could not connect.`);
-               // Stop retrying if connection is refused
-               break;
-           }
-          if (error.message && error.message.includes('model not found')) {
-               console.error(`\t   >>> Model "${OLLAMA_MODEL}" not found. Make sure you have run 'ollama pull ${OLLAMA_MODEL}'.`);
-               // Stop retrying if model is missing
-               break;
-           }
-          newJoke = ''; // Reset joke on other errors
-      }
-  } // End while loop
+            // ** Explicitly reinforce category AND uniqueness in retry prompt **
+            currentPrompt = `${basePrompt}\n\n---
+ATTEMPT ${attempts}: The previous attempt was too similar (score ${(latestSimilarityScore * 100).toFixed(1)}%) or failed validation: "${generatedJokeText}"
+Your new joke MUST still be about the category "${category}", but also significantly different from the previous attempt AND the examples provided earlier. Follow all output format rules strictly.
+---`;
+        }
 
-  if (!unique || !newJoke) {
-      console.error(`\t<- Failed to generate a unique joke for ${category} after ${MAX_RETRIES} attempts.`);
-      // Return a fallback or throw an error - returning placeholder for now
-      return `ERROR Yo mama so ${category}, the LLM couldn't think of a joke! (${Math.random().toString(36).substring(7)})`;
+        try {
+            // --- 1. Generate Candidate Joke ---
+            // ** Cap temperature increase to avoid excessive randomness **
+            const temperature = Math.min(1.0, 0.8 + ((attempts -1) * 0.05)); // Cap at 1.0
+
+            const generateResponse = await ollama.generate({
+                model: OLLAMA_MODEL,
+                prompt: currentPrompt, // Use the potentially modified prompt
+                stream: false,
+                options: { temperature: temperature, num_predict: 60, stop: ["\n", "\"", "."] }
+            });
+
+            if (!generateResponse || !generateResponse.response) { /* ... handle empty ... */ continue; }
+
+            // Clean generated text (as before)
+            generatedJokeText = generateResponse.response.trim().replace(/^["'\-\*\d\.]+\s*/, '').replace(/["']$/, '');
+            generatedJokeText = generatedJokeText.split('\n')[0].trim();
+
+            if (!generatedJokeText) { /* ... handle empty after clean ... */ continue; }
+
+             // ***** ADDED: Basic category keyword check (optional but helpful) *****
+             // Simple check if the category word (or a related term) appears. Case-insensitive.
+             // This is a heuristic and might not work for all categories/jokes.
+             const categoryPattern = new RegExp(category.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'i'); // Escape category for regex
+             if (!categoryPattern.test(generatedJokeText)) {
+                 // Also check common variations if applicable (e.g., 'fat' -> 'heavy', 'dumb' -> 'stupid') - Add more if needed
+                 let relatedMatch = false;
+                 if (category === 'fat' && /heavy|large|big|weight/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'dumb' && /stupid|idiot|brainless|clueless/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'old' && /ancient|aged|senior/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'skinny' && /thin|slim|slender/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'tall' && /height|towering|giant/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'short' && /tiny|small|petite/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'ugly' && /unattractive|hideous|repulsive/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'lazy' && /slothful|idle|inactive/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'greedy' && /selfish|avaricious|grasping/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'bald' && /hairless|hairfree|smooth/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'clumsy' && /awkward|uncoordinated|graceless/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'dirty' && /filthy|unclean|grimy/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'nasty' && /gross|disgusting|repulsive|greasy/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'scary' && /frightening|terrifying|spooky/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'entitled' && /privileged|self-important|arrogant/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'evil' && /wicked|malevolent|sinister/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'loud' && /noisy|boisterous|clamorous/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'poor' && /broke|destitute|impoverished/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'hairy' && /furry|hair|shaggy|unshorn/i.test(generatedJokeText)) relatedMatch = true;
+                 if (category === 'awful' && /terrible|horrible|dreadful/i.test(generatedJokeText)) relatedMatch = true;
+                 // Add more category-specific checks here...
+
+                 if (!relatedMatch) {
+                    console.warn(`\t   WARN (Attempt ${attempts}): Joke might not be relevant to category "${category}". Text: "${generatedJokeText}"`);
+                    // Decide whether to retry based on this warning. For now, let's proceed to similarity check,
+                    // but this warning indicates a potential issue. You could 'continue' here to force a retry.
+                 }
+             }
+             // *********************************************************************
+
+
+            // --- 2. Check for Exact Duplicates ---
+            if (existingJokes.includes(generatedJokeText)) { /* ... handle exact duplicate ... */ continue; }
+
+            // --- 3. Semantic Similarity Check ---
+            if (existingVectors.length === 0) { /* ... skip check ... */ unique = true; }
+            else {
+                // console.log(`\t   Checking similarity for: "${generatedJokeText}"`); // Maybe reduce logging verbosity
+                const newJokeEmbeddingResponse = await ollama.embeddings({ model: OLLAMA_EMBEDDING_MODEL, prompt: generatedJokeText });
+                const newJokeVector = newJokeEmbeddingResponse?.embedding;
+
+                if (!newJokeVector) { /* ... handle embedding failure ... */ unique = true; }
+                else {
+                    let maxSimilarity = 0;
+                    for (const existingVec of existingVectors) {
+                        const similarity = calculateCosineSimilarity(newJokeVector, existingVec);
+                        maxSimilarity = Math.max(maxSimilarity, similarity);
+                    }
+                    latestSimilarityScore = maxSimilarity;
+
+                    // console.log(`\t   Max similarity score: ${(maxSimilarity * 100).toFixed(1)}% ...`); // Reduce logging
+
+                    if (maxSimilarity < SIMILARITY_THRESHOLD) {
+                        unique = true; // Joke accepted!
+                    } else {
+                        console.warn(`\t   Joke rejected: Too similar (Score: ${(maxSimilarity * 100).toFixed(1)}% >= ${SIMILARITY_THRESHOLD * 100}%).`);
+                        // Loop continues
+                    }
+                }
+            } // End similarity check
+
+        } catch (error) {
+            console.error(`\t   Error during attempt ${attempts}:`, error.message);
+            if (error.cause?.code === 'ECONNREFUSED' || error.message?.includes('model not found')) { /* ... handle critical ... */ break; }
+        }
+    } // End while loop
+
+    // --- 4. Final Outcome ---
+     if (!unique || !generatedJokeText) {
+        console.error(`\t<- Failed to generate a unique/relevant joke for ${category} after ${MAX_RETRIES} attempts.`);
+        return `Yo mama so ${category}, the LLM failed uniqueness/relevance checks! (${Math.random().toString(36).substring(7)})`; // Fallback
+    }
+
+    console.log(`\t<- Ollama generated unique joke for ${category}: "${generatedJokeText}"`);
+    // Final sanitization for TS file insertion
+    return generatedJokeText.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/"/g, '\\"');
   }
 
-  console.log(`\t<- Ollama (${OLLAMA_MODEL}) generated via package for ${category}: "${newJoke}"`);
-  // Basic sanitization: escape backticks and double quotes for file writing
-  return newJoke.replace(/`/g, '\\`').replace(/"/g, '\\"');
-}
 
 
 /**
@@ -188,18 +282,25 @@ function updateJokeFile(category, newJoke) {
     console.log(`Updating file: ${filePath}`);
     try {
         let content = fs.readFileSync(filePath, 'utf-8');
-        // Find the last closing bracket ']' of the array
+
+        // Find the index of the last closing square bracket ']'
         const lastBracketIndex = content.lastIndexOf(']');
         if (lastBracketIndex === -1) {
+            // This shouldn't happen if the file structure is always correct, but good to check.
             console.error(`Could not find closing array bracket ']' in ${filePath}. Cannot add joke.`);
-            return false; // Indicate failure
+            return false;
         }
 
-        content = content.slice(0, lastBracketIndex) + newJoke + content.slice(lastBracketIndex);
+        const jokeToAdd = `\n  "${newJoke}",`; // Ensure proper indentation and trailing comma
 
+        // Insert the formatted joke string right before the last closing bracket
+        content = content.slice(0, lastBracketIndex) + jokeToAdd + content.slice(lastBracketIndex);
+
+        // Write the updated content back to the file
         fs.writeFileSync(filePath, content, 'utf-8');
         console.log(`Successfully added joke to ${category}.ts`);
         return true; // Indicate success
+
     } catch (error) {
         console.error(`Error updating file ${filePath}:`, error);
         return false; // Indicate failure

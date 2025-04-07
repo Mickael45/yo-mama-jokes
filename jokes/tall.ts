@@ -14,4 +14,5 @@ export default [
   "Yo mama's so tall, she has to take out the driver's seat of her car and sit in the back to operate the vehicle.",
   "Yo mama's so tall, she can play basketball with clouds.",
   "Yo mama's so tall, her hugs come with altitude sickness.",
-];
+
+  "Yo mama's so tall, she has to ask the Empire State Building for directions",];

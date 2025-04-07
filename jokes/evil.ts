@@ -31,4 +31,5 @@ export default [
   "Yo mama's so evil, even Voldemort wouldn't invite her to a party.",
   "Yo mama's so evil, even Satan files a restraining order.",
   "Yo mama's so evil, her tears cure nothing.",
-];
+
+  "Yo mama's so evil, she makes serial killers apply for a background check!",];
