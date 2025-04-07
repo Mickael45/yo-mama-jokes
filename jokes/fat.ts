@@ -346,4 +346,4 @@ export default [
   "Yo mama's so fat, her driver's license says 'Wide Load.'",
   "Yo mama's so fat, when she goes to the gym, they charge her for two memberships.",
   "Yo mama's so fat, GPS reroutes around her.",
-];
+Yo mama is so fat, when she went to the beach a whale swam up and sang “We are family, even though you’re fatter than me”.];

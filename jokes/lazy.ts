@@ -13,5 +13,5 @@ export default [
   "Yo mama's so lazy, she can't even be bothered to finish this joke.",
   "Yo mama's so lazy, she sets her alarm just to ignore it.",
   "Yo mama's so lazy, her spirit animal is a parked car.",
-,
-  "Yo mama's so lazy, she takes a siesta during her coffee breaks."];
+  "Yo mama's so lazy, she takes a siesta during her coffee breaks.",
+Yo mama's so lazy, she's on bed rest for her upcoming couch marathon.];

@@ -171,7 +171,7 @@ Just the raw joke text.`;
   if (!unique || !newJoke) {
       console.error(`\t<- Failed to generate a unique joke for ${category} after ${MAX_RETRIES} attempts.`);
       // Return a fallback or throw an error - returning placeholder for now
-      return `Yo mama so ${category}, the LLM couldn't think of a joke! (${Math.random().toString(36).substring(7)})`;
+      return `ERROR Yo mama so ${category}, the LLM couldn't think of a joke! (${Math.random().toString(36).substring(7)})`;
   }
 
   console.log(`\t<- Ollama (${OLLAMA_MODEL}) generated via package for ${category}: "${newJoke}"`);
@@ -195,15 +195,7 @@ function updateJokeFile(category, newJoke) {
             return false; // Indicate failure
         }
 
-        // Find the character before the last bracket to check if array is empty
-        const charBeforeBracket = content.substring(0, lastBracketIndex).trim().slice(-1);
-        const isEmptyArray = charBeforeBracket === '[';
-
-        // Format the new joke string for insertion (ensure comma if needed)
-        const jokeToAdd = `${isEmptyArray ? '' : ','}\n  "${newJoke}"`; // Add comma and newline + indentation
-
-        // Insert the new joke before the last closing bracket
-        content = content.slice(0, lastBracketIndex) + jokeToAdd + content.slice(lastBracketIndex);
+        content = content.slice(0, lastBracketIndex) + newJoke + content.slice(lastBracketIndex);
 
         fs.writeFileSync(filePath, content, 'utf-8');
         console.log(`Successfully added joke to ${category}.ts`);
@@ -305,32 +297,30 @@ async function main() {
         rl.close();
         return;
     }
+    const numJokes = selectedCategories.length; // Store number of jokes for easy access
 
     const generatedJokes = {}; // Store as { category: joke }
 
-    // 2. Generate initial jokes
-    console.log(`\nGenerating initial ${selectedCategories.length} jokes (using Ollama package)...`);
-    // Use Promise.all for potentially faster initial generation
+    // 2. Generate initial jokes (using Promise.all for potential speed)
+    console.log(`\nGenerating initial ${numJokes} jokes (using Ollama package)...`);
     await Promise.all(selectedCategories.map(async (category) => {
         const existing = getExistingJokes(category);
         generatedJokes[category] = await generateUniqueJokeLLM(category, existing);
     }));
     console.log("Initial generation complete.");
 
-
     // 3. Interaction Loop (Refresh/Confirm)
     let confirmed = false;
     while (!confirmed) {
         console.log("\n--- Generated Jokes ---");
         selectedCategories.forEach((category, index) => {
-            // Ensure joke exists before trying to display (handles potential generation failures)
             const jokeText = generatedJokes[category] || "[Failed to generate]";
             console.log(`${index + 1}. [${category.padEnd(10)}] ${jokeText}`);
         });
         console.log("----------------------");
 
         // ***** Updated Prompt *****
-        const answer = await rl.question(`Enter 'c' to confirm, 'r<number>' to refresh one (e.g., r2), 'ra' to refresh all, or 'a' to abort: `);
+        const answer = await rl.question(`Enter 'c' to confirm, 'r<numbers>' to refresh (e.g., r1,3,4), 'ra' to refresh all, or 'a' to abort: `);
         const command = answer.trim().toLowerCase();
 
         if (command === 'c') {
@@ -339,33 +329,73 @@ async function main() {
             console.log("Aborting operation. No files changed.");
             rl.close();
             return;
-        } else if (command.startsWith('r') && command !== 'ra') { // Handle r<number>
-            const indexStr = command.substring(1);
-            const index = parseInt(indexStr, 10) - 1; // User enters 1-based index
+        // ***** Updated 'r' command handling for single or multiple indices *****
+        } else if (command.startsWith('r') && command !== 'ra') {
+            const indexInputString = command.substring(1); // Get the part after 'r'
+            if (!indexInputString) {
+                 console.log("Invalid format. Please specify indices after 'r' (e.g., r1 or r1,3,4).");
+                 continue; // Skip to next loop iteration
+            }
 
-            if (!isNaN(index) && index >= 0 && index < selectedCategories.length) {
-                const categoryToRefresh = selectedCategories[index];
-                console.log(`\nRefreshing joke for category: ${categoryToRefresh}...`);
-                const existing = getExistingJokes(categoryToRefresh);
-                // Pass existing from file + the current generated one to avoid immediate repetition
-                generatedJokes[categoryToRefresh] = await generateUniqueJokeLLM(categoryToRefresh, existing.concat(generatedJokes[categoryToRefresh] || []));
-            } else {
-                console.log(`Invalid index '${indexStr}'. Please enter a number between 1 and ${selectedCategories.length}.`);
+            const indexStrings = indexInputString.split(',');
+            const indicesToRefresh = new Set(); // Use a Set to automatically handle duplicates like r1,1,3
+            let parseError = false;
+
+            for (const str of indexStrings) {
+                const trimmedStr = str.trim();
+                if (trimmedStr === '') continue; // Allow for trailing commas like r1,3,
+
+                const index = parseInt(trimmedStr, 10);
+                // Validate: is it a number, and is it within the 1-based range?
+                if (isNaN(index) || index < 1 || index > numJokes) {
+                    console.log(`Invalid index: '${trimmedStr}'. Please enter numbers between 1 and ${numJokes}.`);
+                    parseError = true;
+                    break; // Stop parsing on first error
+                }
+                indicesToRefresh.add(index - 1); // Add the 0-based index to the Set
             }
-        // ***** New 'ra' command handling *****
+
+            if (!parseError && indicesToRefresh.size > 0) {
+                const uniqueIndices = Array.from(indicesToRefresh); // Convert Set back to array
+                console.log(`\nRefreshing joke(s) at index/indices: ${uniqueIndices.map(i => i + 1).join(', ')}...`);
+
+                try {
+                    // Use Promise.all to run LLM calls concurrently
+                    await Promise.all(uniqueIndices.map(async (idx) => {
+                        const categoryToRefresh = selectedCategories[idx];
+                        console.log(` -> Refreshing: ${idx + 1}. ${categoryToRefresh}`);
+                        const existing = getExistingJokes(categoryToRefresh);
+                        // Pass existing from file + the current generated one to avoid immediate repetition
+                        const newJoke = await generateUniqueJokeLLM(categoryToRefresh, existing.concat(generatedJokes[categoryToRefresh] || []));
+                        generatedJokes[categoryToRefresh] = newJoke; // Update the joke in our main object
+                    }));
+                    console.log("Selected joke(s) refreshed.");
+                } catch (err) {
+                     // Although generateUniqueJokeLLM has internal error handling, catch potential issues from Promise.all
+                     console.error("\nAn error occurred during the parallel refresh:", err);
+                }
+
+            } else if (!parseError && indicesToRefresh.size === 0) {
+                 console.log("No valid indices provided to refresh.");
+            }
+            // If parseError is true, the error message was already shown.
+        // ****************************************************************
         } else if (command === 'ra') {
-            console.log(`\nRefreshing jokes for all ${selectedCategories.length} categories...`);
-            // Sequentially refresh each joke to see progress easily
-            for (const category of selectedCategories) {
-                 console.log(` -> Refreshing: ${category}`);
-                 const existing = getExistingJokes(category);
-                 // Pass existing from file + the current generated one to avoid immediate repetition
-                 generatedJokes[category] = await generateUniqueJokeLLM(category, existing.concat(generatedJokes[category] || []));
+            console.log(`\nRefreshing jokes for all ${numJokes} categories...`);
+            try {
+                 // Use Promise.all for potentially faster refresh-all as well
+                 await Promise.all(selectedCategories.map(async (category, idx) => {
+                     console.log(` -> Refreshing: ${idx + 1}. ${category}`);
+                     const existing = getExistingJokes(category);
+                     const newJoke = await generateUniqueJokeLLM(category, existing.concat(generatedJokes[category] || []));
+                     generatedJokes[category] = newJoke;
+                 }));
+                 console.log("All jokes refreshed.");
+            } catch (err) {
+                 console.error("\nAn error occurred during the 'refresh all' operation:", err);
             }
-            console.log("All jokes refreshed.");
-        // *************************************
         } else {
-            console.log("Invalid command. Please use 'c', 'r<number>', 'ra', or 'a'.");
+            console.log("Invalid command. Please use 'c', 'r<numbers>', 'ra', or 'a'.");
         }
     } // End while loop
 
@@ -373,29 +403,25 @@ async function main() {
 
     // 4. Update files, sitemap, and run git commands (only if confirmed)
     console.log("\nConfirmation received. Processing updates...");
-
+    // ... (The rest of the update/save/git logic remains the same) ...
     const successfullyUpdatedCategories = [];
     let anyFailed = false;
     for (const category of selectedCategories) {
-         // Check if a joke was actually generated before trying to save
-         if (generatedJokes[category] && !generatedJokes[category].startsWith('Yo mama so')) { // Basic check for placeholder
+         if (generatedJokes[category] && !generatedJokes[category].startsWith('ERROR Yo mama so')) { // Basic check for placeholder
             const success = updateJokeFile(category, generatedJokes[category]);
             if (success) {
                 successfullyUpdatedCategories.push(category);
             } else {
-                 anyFailed = true; // Mark if any file update failed
+                 anyFailed = true;
             }
          } else {
              console.warn(`Skipping file update for category '${category}' due to generation failure or placeholder content.`);
-             anyFailed = true; // Consider generation failure as a reason not to proceed with git push maybe?
+             anyFailed = true;
          }
-
     }
-
-    // Only proceed with sitemap and git if there were successful updates and no critical failures
     if (successfullyUpdatedCategories.length > 0) {
          updateSitemap(successfullyUpdatedCategories);
-         if (!anyFailed) { // Optional: Only commit/push if everything succeeded
+         if (!anyFailed) {
              runGitCommands();
          } else {
              console.warn("\nSkipping Git commands because one or more jokes failed to generate or save correctly.");
@@ -403,8 +429,6 @@ async function main() {
     } else {
          console.log("\nNo jokes were successfully updated. Skipping sitemap and Git commands.");
     }
-
-
     console.log("\n--- Process Complete ---");
 }
 

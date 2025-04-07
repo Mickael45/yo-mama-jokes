@@ -49,5 +49,5 @@ export default [
   "Yo mama's so hairy, she needs a lawnmower for a razor.",
   "Yo mama's so hairy, she got mistaken for a bear on a camping trip.",
   "Yo mama's so hairy, her shampoo comes in gallon drums.",
-,
-  "Yo mama is so hairy, she could start her own wildlife preserve!"];
+  "Yo mama is so hairy, she could start her own wildlife preserve!",
+];

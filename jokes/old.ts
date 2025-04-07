@@ -89,4 +89,4 @@ export default [
   "Yo mama's so old, she has an autographed scroll from Cleopatra.",
   "Yo mama's so old, she used to run errands for dinosaurs.",
   "Yo mama's so old, her first selfie was a cave painting.",
-];
+Yo mamma's so old, she knew Burger King while he was still a prince.];
