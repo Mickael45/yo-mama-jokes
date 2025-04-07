@@ -36,4 +36,5 @@ export default [
   "Yo momma is so short, you can see her feet on her driver's license.",
   "Yo mama's so short, she can hang glide on a Dorito.",
   "Yo mama's so short, her shoes double as booster seats.",
-];
+,
+  "Yo mama is so short, she can climb stairs on a skateboard!"];
