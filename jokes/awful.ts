@@ -18,4 +18,5 @@ export default [
   "Yo mama's so revolting, even the flies want nothing to do with her.",
   "Yo mama's so vile, even the grim reaper refuses to take her soul.",
   "Yo mama's so awful, tornadoes change direction when they see her.",
-];
+
+  "Yo mama's so awful, even the garbage truck operators ask her to step out before emptying the bin",];

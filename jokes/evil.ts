@@ -32,4 +32,5 @@ export default [
   "Yo mama's so evil, even Satan files a restraining order.",
   "Yo mama's so evil, her tears cure nothing.",
 
-  "Yo mama's so evil, she makes serial killers apply for a background check!",];
+  "Yo mama's so evil, she makes serial killers apply for a background check!",
+  "Yo mama's so evil, even Scrooge refuses to borrow money from her!",];

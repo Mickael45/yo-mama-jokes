@@ -8,4 +8,5 @@ export default [
   "Yo mama's so greedy, she steals change from the wishing well.",
   "Yo mama's so greedy, she took candy from a baby and sold it for a profit.",
   "Yo mama's so greedy, she charges interest on borrowed gum.",
-];
+
+  "Yo mama's so greedy, she'd sell the Alphabet to Zebras for a dollar, just to save one cent on vowels!",];
