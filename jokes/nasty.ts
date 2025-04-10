@@ -45,4 +45,5 @@ export default [
   "Yo mama's so nasty, her burps cause plant death.",
   "Yo mama is so nasty, she can make a dumpster look like a five-star hotel!",
 
-  "Yo mama is so nasty, she's the only person who can make a garbage truck driver hold their breath!",];
+  "Yo mama is so nasty, she's the only person who can make a garbage truck driver hold their breath!",
+  "Yo mama's so nasty, her scent alone violates the Geneva Convention",];

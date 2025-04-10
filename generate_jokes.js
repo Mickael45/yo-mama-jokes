@@ -108,7 +108,7 @@ function calculateCosineSimilarity(vecA, vecB) {
 }
 
 async function generateUniqueJokeLLM(category, existingJokes) {
-    const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'mistral:7b';
+    const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'gemma3:12b';
     const OLLAMA_EMBEDDING_MODEL = process.env.OLLAMA_EMBEDDING_MODEL || 'mxbai-embed-large';
     const MAX_RETRIES = 40;
     const SIMILARITY_THRESHOLD = 0.8;
