@@ -15,4 +15,5 @@ export default [
   "Yo mama's so lazy, her spirit animal is a parked car.",
   "Yo mama's so lazy, she takes a siesta during her coffee breaks.",
 
-  "Yo mama's so lazy, she's training to be a professional binge-watcher",];
+  "Yo mama's so lazy, she's training to be a professional binge-watcher",
+  "Yo mama's so lazy, she outsourced her blinking",];

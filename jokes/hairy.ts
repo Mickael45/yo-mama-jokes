@@ -52,4 +52,5 @@ export default [
   "Yo mama is so hairy, she could start her own wildlife preserve!",
 
   "Yo mama's hair is so thick, it's a full-time job for three lumberjacks to maintain!",
-  "Yo mamma's so hairy, she's got a unibrow that connects to her knee!",];
+  "Yo mamma's so hairy, she's got a unibrow that connects to her knee!",
+  "Yo mama's hair is so dense, she uses a metal detector to find her earrings",];

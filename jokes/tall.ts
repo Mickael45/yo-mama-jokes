@@ -16,4 +16,5 @@ export default [
   "Yo mama's so tall, her hugs come with altitude sickness.",
 
   "Yo mama's so tall, she has to ask the Empire State Building for directions",
-  "Yo mama's so tall, she gets her Wi-Fi from satellites",];
+  "Yo mama's so tall, she gets her Wi-Fi from satellites",
+  "Yo mama's so tall, she has to file a 1099 form for every sunset she blocks",];

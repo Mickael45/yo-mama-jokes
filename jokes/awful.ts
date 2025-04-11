@@ -20,4 +20,5 @@ export default [
   "Yo mama's so awful, tornadoes change direction when they see her.",
 
   "Yo mama's so awful, even the garbage truck operators ask her to step out before emptying the bin",
-  "Yo mama's so awful, her online reviews are just a series of error messages",];
+  "Yo mama's so awful, her online reviews are just a series of error messages",
+  "Yo mama's so awful, her Google search history is flagged as a security threat",];

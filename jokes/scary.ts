@@ -9,4 +9,5 @@ export default [
   "Yo mama’s so scary that when she went to the zoo, the lions and tigers hid from her.",
   "Yo mama's so scary, even Freddy Krueger sleeps with the lights on.",
   "Yo mama's so scary, jack-o’-lanterns scream back.",
-];
+
+  "Yo mama’s so scary, haunted houses charge *her* for the experience",];
