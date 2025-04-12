@@ -10,4 +10,5 @@ export default [
   "Yo mama's so greedy, she charges interest on borrowed gum.",
 
   "Yo mama's so greedy, she'd sell the Alphabet to Zebras for a dollar, just to save one cent on vowels!",
-  "Yo mama’s so greedy, she tried to copyright the color gold",];
+  "Yo mama’s so greedy, she tried to copyright the color gold",
+  "Yo mama’s so greedy, she tried to negotiate a finder's fee for her own lost dentures",];
