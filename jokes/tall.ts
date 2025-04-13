@@ -18,4 +18,5 @@ export default [
   "Yo mama's so tall, she has to ask the Empire State Building for directions",
   "Yo mama's so tall, she gets her Wi-Fi from satellites",
   "Yo mama's so tall, she has to file a 1099 form for every sunset she blocks",
-  "Yo mama's so tall, she needs a weather report before she bends over to pick up a penny",];
+  "Yo mama's so tall, she needs a weather report before she bends over to pick up a penny",
+  "Yo mama's so tall, she gets her shoe size in area codes",];

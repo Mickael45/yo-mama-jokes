@@ -38,4 +38,5 @@ export default [
   "Yo mama's so short, her shoes double as booster seats.",
   "Yo mama is so short, she can climb stairs on a skateboard!",
 
-  "Yo mama's so short, her shadow disappears in a snowdrift",];
+  "Yo mama's so short, her shadow disappears in a snowdrift",
+  "Yo mama’s so short, she uses a toothpick for a selfie stick",];

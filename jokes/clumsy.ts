@@ -8,4 +8,5 @@ export default [
   "Yo mama's so clumsy, she tried to jump rope and tripped over air.",
   "Yo mama's so clumsy, she tried to swim in a pool, but tripped over the water.",
   "Yo mama's so clumsy, her shadow avoids her.",
-];
+
+  "Yo mama's so clumsy, she tried to gracefully exit a room and accidentally invented a new Olympic sport: controlled face-planting",];
