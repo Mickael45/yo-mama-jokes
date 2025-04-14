@@ -16,4 +16,5 @@ export default [
   "Yo mama's so lazy, she takes a siesta during her coffee breaks.",
 
   "Yo mama's so lazy, she's training to be a professional binge-watcher",
-  "Yo mama's so lazy, she outsourced her blinking",];
+  "Yo mama's so lazy, she outsourced her blinking",
+  "Yo mama's so lazy, she hired a personal trainer to teach her how to nap more efficiently",];

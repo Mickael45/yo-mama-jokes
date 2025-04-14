@@ -35,4 +35,5 @@ export default [
   "Yo mama's so evil, she makes serial killers apply for a background check!",
   "Yo mama's so evil, even Scrooge refuses to borrow money from her!",
   "Yo mama’s so evil, she writes passive-aggressive thank you notes to her therapist",
-  "Yo mama’s so evil, she negotiates with ransomware",];
+  "Yo mama’s so evil, she negotiates with ransomware",
+  "Yo mama’s so evil, she collects lost causes just to dismantle them",];

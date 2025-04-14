@@ -15,4 +15,5 @@ export default [
   "Yo mama's such a Karen, she files a complaint with Netflix if the movie doesn't match the trailer.",
   "Yo mama's so entitled, she tried to return a used candle because it melted.",
 
-  "Yo mama's so entitled, she asks for a refund on air because it got used up!",];
+  "Yo mama's so entitled, she asks for a refund on air because it got used up!",
+  "Yo mama’s so entitled, she filed a formal request for the moon to dim so she could get a better Instagram filter",];

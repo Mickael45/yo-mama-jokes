@@ -24,4 +24,5 @@ export default [
   "Yo mama's so bald, she gave the moon competition in the shine department.",
   "Yo mama's so bald, her forehead has no end in sight.",
   "Yo mama is so bald, she's thinking about getting a combover from the library.",
-];
+
+  "Yo mama’s so bald, she pays a team of squirrels to keep her head shaded",];
