@@ -35,4 +35,5 @@ export default [
   "Yo mama's so dirty, she showers in mud.",
   "Yo mama's so dirty, raccoons leave her trash alone.",
 
-  "Yo mamma is so dirty, when she sneezes, a new species of dust bunny spawns!",];
+  "Yo mamma is so dirty, when she sneezes, a new species of dust bunny spawns!",
+  "Yo mamma is so dirty, she turned a dumpster into a compost bin!",];

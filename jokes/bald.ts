@@ -26,4 +26,5 @@ export default [
   "Yo mama is so bald, she's thinking about getting a combover from the library.",
 
   "Yo mama’s so bald, she pays a team of squirrels to keep her head shaded",
-  "Yo mamma is so bald, she donates to wig companies anonymously",];
+  "Yo mamma is so bald, she donates to wig companies anonymously",
+  "Yo mamma is so bald, even an empty nest feels overcrowded!",];

@@ -9,4 +9,5 @@ export default [
 
   "Yo mama’s so loud, she accidentally started a mosh pit at a library book sale",
   "Yo mama’s so loud, her karaoke night caused a nearby seismograph to register a minor earthquake",
-  "Yo mamma's so loud, even her silent films come with subtitles!",];
+  "Yo mamma's so loud, even her silent films come with subtitles!",
+  "Yo mama's so loud, they named a freight train after her",];
