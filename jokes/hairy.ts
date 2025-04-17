@@ -54,4 +54,5 @@ export default [
   "Yo mama's hair is so thick, it's a full-time job for three lumberjacks to maintain!",
   "Yo mamma's so hairy, she's got a unibrow that connects to her knee!",
   "Yo mama's hair is so dense, she uses a metal detector to find her earrings",
-  "Yo mamma's so hairy, she could make a wig for the whole Slytherin House!",];
+  "Yo mamma's so hairy, she could make a wig for the whole Slytherin House!",
+  "Yo mama's hair is so thick, they need a crane to lift it when she gets a perm!",];
