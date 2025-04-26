@@ -47,4 +47,5 @@ export default [
 
   "Yo mama is so nasty, she's the only person who can make a garbage truck driver hold their breath!",
   "Yo mama's so nasty, her scent alone violates the Geneva Convention",
-  "Yo mama's so nasty, sanitation workers file for hazard pay just to clean up after her",];
+  "Yo mama's so nasty, sanitation workers file for hazard pay just to clean up after her",
+  "Yo mama is so nasty, she has her own line at the DMV for unsanitary license photos!",];
