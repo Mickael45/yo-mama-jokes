@@ -17,4 +17,5 @@ export default [
 
   "Yo mama's so lazy, she's training to be a professional binge-watcher",
   "Yo mama's so lazy, she outsourced her blinking",
-  "Yo mama's so lazy, she hired a personal trainer to teach her how to nap more efficiently",];
+  "Yo mama's so lazy, she hired a personal trainer to teach her how to nap more efficiently",
+  "Yo mama's so lazy she's trying to get a cat to do her laundry for her, but it keeps just sitting on the pile and judging her instead",];
