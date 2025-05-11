@@ -49,4 +49,5 @@ export default [
   "Yo mama's so nasty, her scent alone violates the Geneva Convention",
   "Yo mama's so nasty, sanitation workers file for hazard pay just to clean up after her",
   "Yo mama is so nasty, she has her own line at the DMV for unsanitary license photos!",
-  "Yo mama's so nasty, even seagulls fly backwards at the sight of her!",];
+  "Yo mama's so nasty, even seagulls fly backwards at the sight of her!",
+  "Yo mama's so nasty, even Google Maps warns users to avoid her vicinity due to extreme biohazard risk",];
