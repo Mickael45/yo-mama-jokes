@@ -50,4 +50,5 @@ export default [
   "Yo mama's so nasty, sanitation workers file for hazard pay just to clean up after her",
   "Yo mama is so nasty, she has her own line at the DMV for unsanitary license photos!",
   "Yo mama's so nasty, even seagulls fly backwards at the sight of her!",
-  "Yo mama's so nasty, even Google Maps warns users to avoid her vicinity due to extreme biohazard risk",];
+  "Yo mama's so nasty, even Google Maps warns users to avoid her vicinity due to extreme biohazard risk",
+  "Yo mama's so nasty she has to wear a Hazmat suit to her own birthday party and still nobody wants to attend",];
