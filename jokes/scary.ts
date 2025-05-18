@@ -10,4 +10,5 @@ export default [
   "Yo mama's so scary, even Freddy Krueger sleeps with the lights on.",
   "Yo mama's so scary, jack-o’-lanterns scream back.",
 
-  "Yo mama’s so scary, haunted houses charge *her* for the experience",];
+  "Yo mama’s so scary, haunted houses charge *her* for the experience",
+  "Your mom is so scary, she makes zombies reapply for health insurance",];
