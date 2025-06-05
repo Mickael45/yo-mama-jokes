@@ -18,4 +18,5 @@ export default [
   "Yo mama's so entitled, she asks for a refund on air because it got used up!",
   "Yo mama’s so entitled, she filed a formal request for the moon to dim so she could get a better Instagram filter",
   "Yo mama's so entitled, she sued the universe for not providing unlimited wishes!",
-  "Yo mama's so entitled, she sent her therapist a demand for a refund on their entire therapy session because she didn't get to pick the couch color",];
+  "Yo mama's so entitled, she sent her therapist a demand for a refund on their entire therapy session because she didn't get to pick the couch color",
+  "Yo mama's so entitled, she sent her Uber driver a demand for a refund on the ride because she didn't get to pick the playlist!",];
