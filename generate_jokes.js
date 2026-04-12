@@ -102,25 +102,37 @@ async function main() {
       });
       const candidateVector = candidateEmbeddingResp.embedding;
 
-      let maxSimilarity = 0;
-      let closestJoke = "";
+      let conflictingJokes = [];
+
+      // Gather all jokes that pass the threshold
       for (let i = 0; i < existingVectors.length; i++) {
         const similarity = calculateCosineSimilarity(candidateVector, existingVectors[i]);
-        if (similarity > maxSimilarity) {
-          maxSimilarity = similarity;
-          closestJoke = existingJokes[i];
+        if (similarity >= SIMILARITY_THRESHOLD) {
+          conflictingJokes.push({
+            text: existingJokes[i],
+            score: (similarity * 100).toFixed(1)
+          });
         }
       }
 
-      const similarityPercentage = (maxSimilarity * 100).toFixed(1);
+      if (conflictingJokes.length > 0) {
+        // Sort the conflicts from highest similarity to lowest
+        conflictingJokes.sort((a, b) => b.score - a.score);
 
-      if (maxSimilarity >= SIMILARITY_THRESHOLD) {
-        console.log(`\n❌ REJECTED! Too similar to an existing joke (${similarityPercentage}% match).`);
-        console.log(`   Closest Match: "${closestJoke}"`);
-        console.log("   Tell the Gem: 'Too similar, try again.'\n");
-        continue;
+        console.log(`\n⚠️  WARNING: Found ${conflictingJokes.length} similar joke(s) in the database!`);
+        conflictingJokes.forEach((match, index) => {
+          console.log(`   ${index + 1}. [${match.score}% match] - "${match.text}"`);
+        });
+
+        const override = await rl.question("\nDo you want to override the warning and approve this joke anyway? (y/n): ");
+        if (override.toLowerCase() !== 'y') {
+          console.log("\n❌ REJECTED! Tell the Gem: 'Too similar, try again.'\n");
+          continue; // Go back to the start of the while loop
+        } else {
+          console.log(`\n✅ OVERRIDDEN! Manual approval granted.`);
+        }
       } else {
-        console.log(`\n✅ APPROVED! Highly unique (${similarityPercentage}% max similarity).`);
+        console.log(`\n✅ APPROVED! Highly unique.`);
       }
     } else {
         console.log(`\n✅ APPROVED! First joke in the [${category}] category!`);
