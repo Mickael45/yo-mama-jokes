@@ -1,5 +1,6 @@
 export default [
   "Yo mama so dumb she tried to ring Taco Bell.",
+  "Yo mama is so dumb, she put her phone in airplane mode and waited at the gate for it to take off.",
   "Yo mama's so stupid, she tried to eat Eminem.",
   "Yo momma is so stupid she ate her food stamps.",
   "Yo momma so dumb, she studied for a urine test.",
