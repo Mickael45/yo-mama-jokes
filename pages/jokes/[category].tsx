@@ -308,7 +308,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category, jokes }) => {
   const { title: pageTitle, description: pageDescription } = page;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="site-page container mx-auto px-4 py-8">
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -316,13 +316,13 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category, jokes }) => {
       </Head>
       <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
-      <div className="max-w-5xl mx-auto text-center"> {/* Optional: Constrain content width for readability */}
-        <h1 className="text-3xl font-bold text-gray-900 mb-6 capitalize">{pageTitle} | Yo Mama Jokes Central</h1>
-        <p className="text-lg mb-6 text-gray-700 leading-relaxed">
+      <div className="site-inner site-inner--center">
+        <h1 className="site-title site-title--compact capitalize">{pageTitle} | Yo Mama Jokes Central</h1>
+        <p className="site-lede">
           {pageDescription}
         </p>
 
-        <div className="space-y-6"> {/* Vertical spacing between JokeCards */}
+        <div className="site-feed">
           {jokes.map((joke) => (
             <JokeCard key={joke} jokeText={joke} categorySlug={category} />
           ))}

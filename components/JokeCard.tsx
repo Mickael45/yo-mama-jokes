@@ -13,16 +13,16 @@ const JokeCard: React.FC<JokeCardProps> = ({ jokeText, categorySlug, categoryNam
   const displayCategoryName = categoryName || categorySlug.replace(/-/g, ' ').toUpperCase(); // Fallback to slug if name not provided
 
   return (
-    <div className="bg-white rounded-xl shadow-lg mb-8 overflow-hidden"> {/* Rounded corners, shadow, overflow hidden for visual appeal */}
-      <div className="px-6 py-5"> {/* Padding inside the card content area */}
-        <h2 className="font-bold text-xl text-brand-DEFAULT mb-3 hover:text-brand-dark transition-colors duration-200"> {/* Category Link Title */}
+    <div className="joke-card">
+      <div className="joke-card__body">
+        <h2 className="joke-card__title">
           <Link href={`/jokes/${categorySlug}`}>
             {displayCategoryName}
           </Link>
         </h2>
-        <p className="text-gray-800 text-lg leading-relaxed mb-5">{jokeText}</p> {/* Joke Text */}
+        <p className="joke-card__text">{jokeText}</p>
       </div>
-      <div className="bg-neutral-100 px-6 py-4 border-t border-neutral-200 flex"> {/* Footer with Share Buttons */}
+      <div className="joke-card__footer">
         <SocialShareButtons jokeText={jokeText} jokeUrl={jokeUrl} />
       </div>
     </div>

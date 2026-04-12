@@ -15,31 +15,28 @@ const featuredJokes = getDailyRandomJokes()
 
 const HomePage: React.FC<HomePageProps> = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="site-page container mx-auto px-4 py-8">
       <Head>
         <title>Yo Mama Jokes Central - Hilarious Jokes for Everyone</title>
         <meta name="description" content="The funniest Yo Mama Jokes online! Get your daily dose of hilarious insults and witty comebacks. Browse categories or enjoy our featured jokes of the day." />
       </Head>
       <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
-      <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome To Yo Mama Jokes Central</h1>
-        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+      <div className="site-inner site-inner--center">
+        <h1 className="site-title">Welcome To Yo Mama Jokes Central</h1>
+        <p className="site-lede">
           Get ready to laugh with the funniest Yo Mama Jokes online!  Enjoy our daily selection of 5 hilarious jokes, or browse hundreds more in our categories.  Find the perfect joke to share with friends!
         </p>
 
-
-        <div className="space-y-6">
+        <div className="site-feed">
           {featuredJokes.map(({ category, joke }) => (
             <JokeCard key={joke} jokeText={joke} categorySlug={category} />
           ))}
         </div>
 
-        <Link href="/categories" className="bg-[#e2746d] text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-DEFAULT focus:ring-opacity-50 transition-colors duration-200">
+        <Link href="/categories" className="site-primary-btn">
           See More Jokes
         </Link>
-
-
       </div>
     </div>
   );

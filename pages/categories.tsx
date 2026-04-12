@@ -29,25 +29,25 @@ export const categories: { name: string, slug: Category }[] = [ // Define your c
     { name: 'Other', slug: OTHER_MAMA_JOKE_CATEGORY },
 ];
 
-const Categories = () => <div className="container mx-auto px-4 py-8">
+const Categories = () => <div className="site-page container mx-auto px-4 py-8">
     <Head>
         <title>Joke Categories | Yo Mama Jokes Central</title>
         <meta name="description" content="Explore all Yo Mama Joke Central categories! Find fat jokes, dumb jokes, ugly jokes, and many more. Browse our extensive collection and get ready to laugh." />
     </Head>
     <GoogleAnalytics gaId="G-L8P7J1TJSY" />
 
-    <div className="max-w-5xl mx-auto text-center">
+    <div className="site-inner site-inner--center">
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Yo Mama Joke Categories</h1>
-        <p className="text-lg text-gray-700 mb-6 leading-relaxed">Explore our wide range of Yo Mama Joke categories!  From classic insults to specific joke types, find the perfect category to start laughing. Browse all categories below:</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto "> {/* Category Grid - more compact */}
+        <h1 className="site-title">Yo Mama Joke Categories</h1>
+        <p className="site-lede">Explore our wide range of Yo Mama Joke categories!  From classic insults to specific joke types, find the perfect category to start laughing. Browse all categories below:</p>
+        <div className="site-category-grid">
             {categories.map((category) => (
                 <Link
                     href={`/jokes/${category.slug}`}
                     key={category.slug}
-                    className="block bg-white rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200 border border-neutral-200 text-center" // More compact category links
+                    className="site-category-link"
                 >
-                    <h3 className="text-lg font-semibold text-[#e2746d] capitalize">{category.name}</h3> {/* Smaller heading */}
+                    <h3 className="site-category-link__title capitalize">{category.name}</h3>
                 </Link>
             ))}
         </div>
