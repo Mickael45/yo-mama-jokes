@@ -12,4 +12,5 @@ export default [
   "Yo mama's so greedy, she'd sell the Alphabet to Zebras for a dollar, just to save one cent on vowels!",
   "Yo mama’s so greedy, she tried to copyright the color gold",
   "Yo mama’s so greedy, she tried to negotiate a finder's fee for her own lost dentures",
-  "Yo mama's so greedy, she tries to sell sunsets for a profit, saying they're just untapped real estate!",];
+  "Yo mama's so greedy, she tries to sell sunsets for a profit, saying they're just untapped real estate!",
+  "Yo mama is so greedy, she tried to claim her The Sims family as dependents on her taxes.",];
