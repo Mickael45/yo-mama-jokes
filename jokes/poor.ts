@@ -91,4 +91,5 @@ export default [
   "Yo mama's so poor, she can't even afford to pay attention.",
   "Yo mama's so poor, pigeons drop crumbs for her.",
 
-  "Yo mama so poor, she tried to pawn a screenshot of an NFT just to afford a real-life banana.",];
+  "Yo mama so poor, she tried to pawn a screenshot of an NFT just to afford a real-life banana.",
+  "Yo mama so poor, she waits for the Google Street View car to drive by just so she can update her family portrait.",];
