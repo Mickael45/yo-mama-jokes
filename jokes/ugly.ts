@@ -158,4 +158,5 @@ export default [
   "Yo mama is so ugly that just after she was born, her mother said 'What a treasure!' and her father said 'Yes, let's go bury it.'",
   "Yo mama's so ugly, even a blind man wouldn't date her.",
   "Yo mama's so ugly, she gets trick-or-treaters in July.",
-];
+
+  "Yo mama so ugly, her smartphone's Face ID requires a CAPTCHA just to prove it's looking at a human.",];
