@@ -35,4 +35,5 @@ export default [
   "Yo mama's so skinny, she can hide behind a toothpick.",
   "Yo mama's so skinny, her hug is just a breeze.",
 
-  "Yo mama's so skinny, when she steps on a bathroom scale it's like someone forgot to put batteries in it",];
+  "Yo mama's so skinny, when she steps on a bathroom scale it's like someone forgot to put batteries in it",
+  "Yo mama so skinny, she used a Cheeto as a yoga bolster and the structural integrity of the snack remained completely uncompromised.",];
