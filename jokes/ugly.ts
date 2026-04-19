@@ -159,4 +159,5 @@ export default [
   "Yo mama's so ugly, even a blind man wouldn't date her.",
   "Yo mama's so ugly, she gets trick-or-treaters in July.",
 
-  "Yo mama so ugly, her smartphone's Face ID requires a CAPTCHA just to prove it's looking at a human.",];
+  "Yo mama so ugly, her smartphone's Face ID requires a CAPTCHA just to prove it's looking at a human.",
+  "Yo mama so ugly, even Face ID shuts its eyes and asks for the passcode.",];
