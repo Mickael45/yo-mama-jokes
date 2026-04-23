@@ -21,13 +21,16 @@ const categoryEmbeddingCache = {};
 // --- Helper Functions ---
 function getExistingJokes(category) {
   const filePath = path.join(JOKES_DIR, `${category.toLowerCase()}.ts`);
+  console.log(`   Loading existing jokes from ${filePath}...`)
   try {
     const content = fs.readFileSync(filePath, "utf-8");
     const match = content.match(/export default\s*(\[[\s\S]*?\]);?/);
+    console.log(`   Found ${match ? (match[1].match(/,/g) || []).length + 1 : 0} existing jokes in the [${category}] category.`);
     if (match && match[1]) {
       return new Function(`return ${match[1]};`)().map(String);
     }
   } catch (error) {
+    console.error(`   - Error loading jokes for category [${category}]: ${error.message}`);
     // If file doesn't exist or fails, return empty array
   }
   return [];
@@ -53,7 +56,7 @@ async function embedInChunks(texts, model, chunkSize = 20) {
     );
     responses.forEach(r => embeddings.push(r ? r.embedding : null));
   }
-  return embeddings.filter(e => e !== null);
+  return embeddings;
 }
 
 // --- Main Gatekeeper Loop ---
@@ -87,7 +90,8 @@ async function main() {
     if (!categoryEmbeddingCache[category] && existingJokes.length > 0) {
       process.stdout.write(`   Caching ${existingJokes.length} existing embeddings... `);
       categoryEmbeddingCache[category] = await embedInChunks(existingJokes, OLLAMA_EMBEDDING_MODEL);
-      console.log("Done.");
+      const validEmbeddingCount = categoryEmbeddingCache[category].filter(Boolean).length;
+      console.log(`Done. (${validEmbeddingCount}/${existingJokes.length} succeeded)`);
     } else if (!categoryEmbeddingCache[category]) {
       categoryEmbeddingCache[category] = [];
     }
@@ -95,17 +99,38 @@ async function main() {
     const existingVectors = categoryEmbeddingCache[category];
 
     // Check similarity if database isn't empty
-    if (existingVectors.length > 0) {
-      const candidateEmbeddingResp = await ollama.embeddings({
-        model: OLLAMA_EMBEDDING_MODEL,
-        prompt: jokeText,
-      });
-      const candidateVector = candidateEmbeddingResp.embedding;
+    if (existingJokes.length > 0) {
+      let candidateVector = null;
+      try {
+        const candidateEmbeddingResp = await ollama.embeddings({
+          model: OLLAMA_EMBEDDING_MODEL,
+          prompt: jokeText,
+        });
+        candidateVector = candidateEmbeddingResp.embedding;
+      } catch (error) {
+        console.log(`\n⚠️  Could not embed candidate joke: ${error.message}`);
+      }
+
+      if (!candidateVector) {
+        const override = await rl.question("Embedding check unavailable. Approve this joke manually? (y/n): ");
+        if (override.toLowerCase() !== "y") {
+          console.log("\n❌ REJECTED! Tell the Gem: 'Embedding check failed, try again.'\n");
+          continue;
+        }
+        console.log("\n✅ OVERRIDDEN! Manual approval granted.");
+        finalCategory = category;
+        finalJoke = jokeText;
+        validJokeFound = true;
+        continue;
+      }
 
       let conflictingJokes = [];
+      let comparableCount = 0;
 
       // Gather all jokes that pass the threshold
-      for (let i = 0; i < existingVectors.length; i++) {
+      for (let i = 0; i < existingJokes.length; i++) {
+        if (!existingVectors[i]) continue;
+        comparableCount++;
         const similarity = calculateCosineSimilarity(candidateVector, existingVectors[i]);
         if (similarity >= SIMILARITY_THRESHOLD) {
           conflictingJokes.push({
@@ -115,7 +140,14 @@ async function main() {
         }
       }
 
-      if (conflictingJokes.length > 0) {
+      if (comparableCount === 0) {
+        const override = await rl.question("No existing embeddings available for comparison. Approve this joke manually? (y/n): ");
+        if (override.toLowerCase() !== "y") {
+          console.log("\n❌ REJECTED! Tell the Gem: 'Embedding cache unavailable, try again.'\n");
+          continue;
+        }
+        console.log("\n✅ OVERRIDDEN! Manual approval granted.");
+      } else if (conflictingJokes.length > 0) {
         // Sort the conflicts from highest similarity to lowest
         conflictingJokes.sort((a, b) => b.score - a.score);
 
@@ -132,7 +164,7 @@ async function main() {
           console.log(`\n✅ OVERRIDDEN! Manual approval granted.`);
         }
       } else {
-        console.log(`\n✅ APPROVED! Highly unique.`);
+        console.log(`\n✅ APPROVED! Highly unique (compared against ${comparableCount} existing jokes).`);
       }
     } else {
         console.log(`\n✅ APPROVED! First joke in the [${category}] category!`);

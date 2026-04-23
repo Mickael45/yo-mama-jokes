@@ -11,4 +11,5 @@ export default [
 
   "Yo mama's so clumsy, she tried to gracefully exit a room and accidentally invented a new Olympic sport: controlled face-planting",
   "Yo mama's so clumsy, she knocked over the Jenga tower before it was even built",
-  "Yo mama is so clumsy, she's been trying to breakdance since 1985 and finally perfected the art of flailing while standing still",];
+  "Yo mama is so clumsy, she's been trying to breakdance since 1985 and finally perfected the art of flailing while standing still",
+  "Yo mama so clumsy, she tripped over a painted line in a grocery store parking lot.",];
