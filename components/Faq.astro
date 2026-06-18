@@ -1,0 +1,25 @@
+---
+import type { FaqItem } from "@/lib/jsonld";
+
+interface Props {
+  heading?: string;
+  items: FaqItem[];
+}
+
+const { heading = "Frequently Asked Questions", items } = Astro.props;
+---
+
+{/* Accessible, AI-extractable FAQ. Matching FAQPage JSON-LD is emitted via <Seo>. */}
+<section class="site-faq" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="site-faq__heading">{heading}</h2>
+  <div class="site-faq__list">
+    {
+      items.map((item) => (
+        <details class="site-faq__item">
+          <summary class="site-faq__question">{item.question}</summary>
+          <p class="site-faq__answer">{item.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>

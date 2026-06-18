@@ -10,7 +10,6 @@ const ollama = new Ollama({ host: "http://127.0.0.1:11434" });
 
 // --- Configuration ---
 const JOKES_DIR = path.join("./jokes");
-const SITEMAP_PATH = path.join("./public", "sitemap.xml");
 const GIT_COMMIT_MESSAGE = "feat: added daily verified yo mama joke";
 const OLLAMA_EMBEDDING_MODEL = process.env.OLLAMA_EMBEDDING_MODEL || "jina/jina-embeddings-v2-base-en";
 const SIMILARITY_THRESHOLD = 0.84; 
@@ -193,14 +192,7 @@ async function main() {
   fs.writeFileSync(filePath, content, "utf-8");
   console.log(`   - Updated ${finalCategory}.ts`);
 
-  // 2. Update Sitemap
-  let sitemapContent = fs.readFileSync(SITEMAP_PATH, "utf-8");
-  const today = new Date().toISOString().split("T")[0];
-  const locContent = `https://yomamajokescentral.com/jokes/${finalCategory}-yo-mama-jokes`;
-  const urlBlockRegex = new RegExp(`(<url>\\s*<loc>${locContent.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")}<\\/loc>[\\s\\S]*?<lastmod>)[^<]+(<\\/lastmod>[\\s\\S]*?<\\/url>)`, "g");
-  sitemapContent = sitemapContent.replace(urlBlockRegex, `$1${today}$2`);
-  fs.writeFileSync(SITEMAP_PATH, sitemapContent, "utf-8");
-  console.log(`   - Updated sitemap.xml`);
+  // 2. Sitemap is generated automatically by @astrojs/sitemap at build time.
 
   // 3. Git Push
   try {

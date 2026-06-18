@@ -1,0 +1,29 @@
+---
+import SocialShareButtons from "@/components/SocialShareButtons.astro";
+import { SITE_URL } from "@/lib/siteConfig";
+
+interface Props {
+  jokeText: string;
+  categorySlug: string;
+  categoryName?: string;
+}
+
+const { jokeText, categorySlug, categoryName } = Astro.props;
+
+const baseUrl = import.meta.env.PUBLIC_WEBSITE_URL || SITE_URL;
+const jokeUrl = `${baseUrl}/jokes/${categorySlug}`;
+const displayCategoryName =
+  categoryName || categorySlug.replace(/-/g, " ").toUpperCase();
+---
+
+<div class="joke-card">
+  <div class="joke-card__body">
+    <h2 class="joke-card__title">
+      <a href={`/jokes/${categorySlug}`}>{displayCategoryName}</a>
+    </h2>
+    <p class="joke-card__text">{jokeText}</p>
+  </div>
+  <div class="joke-card__footer">
+    <SocialShareButtons jokeText={jokeText} jokeUrl={jokeUrl} />
+  </div>
+</div>

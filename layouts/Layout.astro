@@ -1,0 +1,178 @@
+---
+import "@/styles/globals.css";
+import Seo from "@/components/Seo.astro";
+import ConsentBanner from "@/components/ConsentBanner.astro";
+import { organizationSchema, websiteSchema } from "@/lib/jsonld";
+import { ADSENSE_CLIENT } from "@/lib/siteConfig";
+
+interface Props {
+  title: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: object | object[];
+}
+
+const { title, description, path, image, noindex, jsonLd } = Astro.props;
+const GA_ID = "G-L8P7J1TJSY";
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#259be2" />
+    <meta
+      name="google-site-verification"
+      content="5LWdds1LtKAg7v_mojIG0FRYVWNkL8FIF3Q1f5ZT0n4"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <Seo
+      title={title}
+      description={description}
+      path={path}
+      image={image}
+      noindex={noindex}
+      jsonLd={jsonLd}
+    />
+
+    {/* Site-wide structured data: publisher + website identity on every page. */}
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify([organizationSchema(), websiteSchema()])}
+    />
+
+    {/* Google Consent Mode v2 — MUST run before GA & AdSense load.
+        Personalized ads/analytics are denied by default in the EEA, UK & CH
+        until the user consents (banner below); granted elsewhere. A stored
+        choice from a previous visit is re-applied immediately. */}
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag("consent", "default", {
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+        analytics_storage: "granted",
+      });
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        wait_for_update: 500,
+        region: [
+          "AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU",
+          "IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES",
+          "SE","IS","LI","NO","GB","CH",
+        ],
+      });
+      try {
+        var ymjcConsent = localStorage.getItem("ymjc-consent");
+        if (ymjcConsent === "granted") {
+          gtag("consent", "update", {
+            ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted",
+            analytics_storage: "granted",
+          });
+        } else if (ymjcConsent === "denied") {
+          gtag("consent", "update", {
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            analytics_storage: "denied",
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    {/* Google Analytics */}
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script is:inline define:vars={{ GA_ID }}>
+      // gtag()/dataLayer are defined by the Consent Mode script above.
+      gtag("js", new Date());
+      gtag("config", GA_ID);
+    </script>
+
+    {/* Google AdSense (Auto Ads). Loaded in production only to avoid invalid
+        impressions during local development. */}
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossorigin="anonymous"
+        />
+      )
+    }
+  </head>
+
+  <body class="antialiased">
+    <div class="site-shell flex flex-col min-h-screen">
+      <header class="site-header py-4">
+        <div
+          class="container mx-auto px-4 flex justify-between items-center"
+        >
+          <a href="/" class="text-lg font-bold site-logo-link">
+            <img
+              src="/favicon.ico"
+              alt="Yo Mama Jokes Central"
+              class="w-[70px] h-[70px]"
+              width="70"
+              height="70"
+            />
+          </a>
+          <nav class="site-nav space-x-6">
+            <a href="/" class="site-nav-link">Home</a>
+            <a href="/categories" class="site-nav-link">Categories</a>
+            <a
+              href="mailto:yomamajokescentral.contact@proton.me"
+              class="site-nav-link">Contact</a
+            >
+          </nav>
+        </div>
+      </header>
+
+      <main class="site-main mt-8 flex-grow">
+        <slot />
+      </main>
+
+      <footer class="site-footer py-8 mt-16 text-center">
+        <nav class="site-nav space-x-6 mb-3">
+          <a href="/categories" class="site-nav-link">Categories</a>
+          <a href="/privacy-policy" class="site-nav-link">Privacy Policy</a>
+          <a
+            href="mailto:yomamajokescentral.contact@proton.me"
+            class="site-nav-link">Contact</a
+          >
+        </nav>
+        <p class="site-footer-text">
+          &copy; {year} Yo Mama Jokes Central. All rights reserved.
+        </p>
+      </footer>
+    </div>
+
+    <ConsentBanner />
+  </body>
+</html>

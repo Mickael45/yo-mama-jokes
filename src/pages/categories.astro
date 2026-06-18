@@ -1,0 +1,65 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { categories } from "@/lib/categories";
+import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/siteConfig";
+import { breadcrumbSchema } from "@/lib/jsonld";
+
+const title = `Yo Mama Joke Categories | ${SITE_NAME}`;
+const description =
+  "Explore all Yo Mama Jokes Central categories! Find fat jokes, dumb jokes, ugly jokes, and many more. Browse our extensive collection and get ready to laugh.";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Categories", path: "/categories" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    description:
+      "Browse all Yo Mama joke categories, from fat and dumb to ugly, old, and many more.",
+    url: absoluteUrl("/categories"),
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: categories.length,
+      itemListElement: categories.map((category, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: `${category.name} Yo Mama Jokes`,
+        url: absoluteUrl(`/jokes/${category.slug}`),
+      })),
+    },
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  path="/categories"
+  jsonLd={jsonLd}
+>
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-inner--center">
+      <h1 class="site-title">Yo Mama Joke Categories</h1>
+      <p class="site-lede">
+        Explore our wide range of Yo Mama Joke categories! From classic insults
+        to specific joke types, find the perfect category to start laughing.
+        Browse all 21 categories below:
+      </p>
+      <div class="site-category-grid">
+        {
+          categories.map((category) => (
+            <a href={`/jokes/${category.slug}`} class="site-category-link">
+              <h2 class="site-category-link__title capitalize">
+                {category.name}
+              </h2>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

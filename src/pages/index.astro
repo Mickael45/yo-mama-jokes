@@ -1,0 +1,92 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import JokeCard from "@/components/JokeCard.astro";
+import Faq from "@/components/Faq.astro";
+import getDailyRandomJokes from "@/services/dailyJokesPicker";
+import { SITE_NAME, SITE_TAGLINE } from "@/lib/siteConfig";
+import { faqSchema, jokeCollectionSchema, type FaqItem } from "@/lib/jsonld";
+
+const featuredJokes = getDailyRandomJokes();
+
+const HOME_FAQ: FaqItem[] = [
+  {
+    question: "What is a Yo Mama joke?",
+    answer:
+      "A Yo Mama joke is a short, playful insult comedy format where the punchline exaggerates a trait of someone's mother — such as being fat, old, or dumb — for comic effect. They are a staple of friendly banter and \"the dozens,\" a back-and-forth game of witty comebacks.",
+  },
+  {
+    question: "Are these Yo Mama jokes appropriate for kids?",
+    answer:
+      "Most of our jokes are lighthearted and family-friendly. We do have a Dirty Yo Mama Jokes category that contains adult humor and is clearly labelled, so younger readers can stick to categories like Fat, Dumb, Tall, or Short.",
+  },
+  {
+    question: "How often are new jokes added?",
+    answer:
+      "We refresh a featured set of 5 hand-picked jokes every day, and our category collections are updated regularly with new, verified Yo Mama jokes.",
+  },
+  {
+    question: "Can I share these jokes on social media?",
+    answer:
+      "Yes! Every joke card includes one-click share buttons for Facebook, X (Twitter), Instagram, and TikTok, so you can roast your friends anywhere.",
+  },
+];
+
+const title = `${SITE_NAME} - ${SITE_TAGLINE}`;
+const description =
+  "The funniest Yo Mama Jokes online! Get your daily dose of hilarious insults and witty comebacks. Browse 21 categories or enjoy our featured jokes of the day.";
+
+const jsonLd = [
+  jokeCollectionSchema({
+    name: `${SITE_NAME} — Featured Jokes of the Day`,
+    description:
+      "A daily selection of 5 hand-picked Yo Mama jokes from across our categories.",
+    path: "/",
+    jokes: featuredJokes.map(({ joke }) => joke),
+  }),
+  faqSchema(HOME_FAQ),
+];
+---
+
+<Layout title={title} description={description} path="/" jsonLd={jsonLd}>
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-inner--center">
+      <h1 class="site-title">The Funniest Yo Mama Jokes Online</h1>
+      <p class="site-lede">
+        Get ready to laugh with the funniest Yo Mama Jokes online! Enjoy our
+        daily selection of 5 hilarious jokes, or browse hundreds more in our
+        categories. Find the perfect joke to share with friends!
+      </p>
+
+      <div class="site-feed">
+        {
+          featuredJokes.map(({ category, joke }) => (
+            <JokeCard jokeText={joke} categorySlug={category} />
+          ))
+        }
+      </div>
+
+      <a href="/categories" class="site-primary-btn">See More Jokes</a>
+
+      <div class="site-prose">
+        <p>
+          Welcome to {SITE_NAME}, your home for the best Yo Mama jokes on the
+          internet. A Yo Mama joke is a classic insult-comedy one-liner that
+          pokes fun at someone's mother — and we've gathered hundreds of them
+          across 21 themed categories so you always have the perfect comeback
+          ready.
+        </p>
+        <p>
+          Whether you're looking for <a href="/jokes/fat-yo-mama-jokes"
+            >fat jokes</a
+          >, <a href="/jokes/dumb-yo-mama-jokes">dumb jokes</a>, <a
+            href="/jokes/old-yo-mama-jokes">old jokes</a
+          >, or something a little edgier, you'll find a category to match every
+          mood. Bookmark us and come back daily for a fresh set of featured
+          jokes.
+        </p>
+      </div>
+
+      <Faq items={HOME_FAQ} />
+    </div>
+  </div>
+</Layout>

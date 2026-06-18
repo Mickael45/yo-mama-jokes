@@ -42,7 +42,7 @@ import {
   TALL_MAMA_JOKE_CATEGORY,
   UGLY_MAMA_JOKE_CATEGORY,
 } from "@/constants";
-import { CategoryJoke, CategoryJokes } from "@/types";
+import type { CategoryJoke, CategoryJokes } from "@/types";
 
 const categorizedJokes: CategoryJokes[] = [
   { category: FAT_MAMA_JOKE_CATEGORY, jokes: fatMamaJokes },

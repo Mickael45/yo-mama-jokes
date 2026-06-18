@@ -1,0 +1,84 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import JokeCard from "@/components/JokeCard.astro";
+import Faq from "@/components/Faq.astro";
+import { categories, jokesByCategory, categoryMeta } from "@/lib/categories";
+import { SITE_NAME } from "@/lib/siteConfig";
+import {
+  breadcrumbSchema,
+  jokeCollectionSchema,
+  faqSchema,
+  type FaqItem,
+} from "@/lib/jsonld";
+import type { Category } from "@/types";
+
+export function getStaticPaths() {
+  return categories.map(({ slug }) => ({
+    params: { category: slug },
+    props: { jokes: jokesByCategory[slug] ?? [] },
+  }));
+}
+
+const { category } = Astro.params;
+const { jokes } = Astro.props as { jokes: string[] };
+const cat = category as Category;
+
+const { metadata, page } = categoryMeta[cat];
+const { title, description } = metadata;
+const pageTitle = page.title;
+const pageDescription = page.description;
+
+const path = `/jokes/${category}`;
+const ogImage = `/og/${category}.png`;
+
+const faqItems: FaqItem[] = [
+  {
+    question: `What are ${pageTitle.toLowerCase()}?`,
+    answer: pageDescription,
+  },
+  {
+    question: `How many ${pageTitle.toLowerCase()} are there?`,
+    answer: `We currently have ${jokes.length} hand-picked ${pageTitle.toLowerCase()} in this collection, and we add new ones regularly.`,
+  },
+];
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Categories", path: "/categories" },
+    { name: pageTitle, path },
+  ]),
+  jokeCollectionSchema({
+    name: `${pageTitle} | ${SITE_NAME}`,
+    description,
+    path,
+    jokes,
+  }),
+  faqSchema(faqItems),
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  path={path}
+  image={ogImage}
+  jsonLd={jsonLd}
+>
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-inner--center">
+      <h1 class="site-title site-title--compact capitalize">{pageTitle}</h1>
+      <p class="site-lede">{pageDescription}</p>
+
+      <div class="site-feed">
+        {
+          jokes.map((joke) => (
+            <JokeCard jokeText={joke} categorySlug={category} />
+          ))
+        }
+      </div>
+
+      <Faq items={faqItems} />
+    </div>
+  </div>
+</Layout>
