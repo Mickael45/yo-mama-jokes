@@ -1,5 +1,6 @@
 ---
 import "@/styles/globals.css";
+import { Font } from "astro:assets";
 import Seo from "@/components/Seo.astro";
 import ConsentBanner from "@/components/ConsentBanner.astro";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
@@ -32,12 +33,10 @@ const year = new Date().getFullYear();
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/favicon.ico" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    {/* Self-hosted fonts (Astro Fonts API). Preload the display font used by
+        the above-the-fold h1; the body font loads with a size-matched fallback. */}
+    <Font cssVariable="--font-fredoka" preload />
+    <Font cssVariable="--font-nunito" />
 
     <Seo
       title={title}

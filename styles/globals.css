@@ -136,8 +136,8 @@
   --site-footer-text: rgba(30, 27, 75, 0.5);
   --site-radius: 1.5rem;
   --site-card-shadow: 0 12px 40px rgba(236, 72, 153, 0.15);
-  --site-font-display: "Fredoka", system-ui, sans-serif;
-  --site-font-body: "Nunito", system-ui, sans-serif;
+  --site-font-display: var(--font-fredoka), system-ui, sans-serif;
+  --site-font-body: var(--font-nunito), system-ui, sans-serif;
   --site-title-weight: 600;
 }
 
