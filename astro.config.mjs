@@ -7,8 +7,9 @@ const root = fileURLToPath(new URL("./", import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-  // Canonical apex domain. Used for absolute URLs, the sitemap, and <Seo>.
-  site: "https://yomamajokescentral.com",
+  // Canonical host = www (apex 308-redirects here). Used for absolute URLs,
+  // the sitemap, and <Seo>.
+  site: "https://www.yomamajokescentral.com",
   trailingSlash: "never",
   integrations: [sitemap()],
   vite: {

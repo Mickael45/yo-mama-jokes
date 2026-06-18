@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SITE_NAME } from "@/lib/siteConfig";
+---
+
+<Layout
+  title={`Page Not Found | ${SITE_NAME}`}
+  description="That page took a wrong turn. Browse our Yo Mama joke categories instead."
+  path="/404"
+  noindex={true}
+>
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-inner--center">
+      <h1 class="site-title">404 — Page Not Found</h1>
+      <p class="site-lede">
+        Yo mama's so lost, even this page couldn't find her. The page you're
+        after doesn't exist (or moved).
+      </p>
+      <a href="/categories" class="site-primary-btn">Browse all categories</a>
+    </div>
+  </div>
+</Layout>

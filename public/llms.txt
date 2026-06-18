@@ -1,6 +1,6 @@
 # Yo Mama Jokes Central
 
-> Yo Mama Jokes Central (https://yomamajokescentral.com) is a free website
+> Yo Mama Jokes Central (https://www.yomamajokescentral.com) is a free website
 > featuring hundreds of Yo Mama jokes organized into 21 themed categories,
 > plus a hand-picked set of 5 featured jokes refreshed daily. A "Yo Mama joke"
 > is a short insult-comedy one-liner that humorously exaggerates a trait of
@@ -8,29 +8,29 @@
 
 ## Main pages
 
-- [Home — Featured jokes of the day](https://yomamajokescentral.com/)
-- [All joke categories](https://yomamajokescentral.com/categories)
+- [Home — Featured jokes of the day](https://www.yomamajokescentral.com/)
+- [All joke categories](https://www.yomamajokescentral.com/categories)
 
 ## Joke categories
 
-- [Fat Yo Mama Jokes](https://yomamajokescentral.com/jokes/fat-yo-mama-jokes)
-- [Scary Yo Mama Jokes](https://yomamajokescentral.com/jokes/scary-yo-mama-jokes)
-- [Nasty Yo Mama Jokes](https://yomamajokescentral.com/jokes/nasty-yo-mama-jokes)
-- [Ugly Yo Mama Jokes](https://yomamajokescentral.com/jokes/ugly-yo-mama-jokes)
-- [Dumb Yo Mama Jokes](https://yomamajokescentral.com/jokes/dumb-yo-mama-jokes)
-- [Awful Yo Mama Jokes](https://yomamajokescentral.com/jokes/awful-yo-mama-jokes)
-- [Dirty Yo Mama Jokes (adult)](https://yomamajokescentral.com/jokes/dirty-yo-mama-jokes)
-- [Tall Yo Mama Jokes](https://yomamajokescentral.com/jokes/tall-yo-mama-jokes)
-- [Short Yo Mama Jokes](https://yomamajokescentral.com/jokes/short-yo-mama-jokes)
-- [Hairy Yo Mama Jokes](https://yomamajokescentral.com/jokes/hairy-yo-mama-jokes)
-- [Bald Yo Mama Jokes](https://yomamajokescentral.com/jokes/bald-yo-mama-jokes)
-- [Old Yo Mama Jokes](https://yomamajokescentral.com/jokes/old-yo-mama-jokes)
-- [Poor Yo Mama Jokes](https://yomamajokescentral.com/jokes/poor-yo-mama-jokes)
-- [Skinny Yo Mama Jokes](https://yomamajokescentral.com/jokes/skinny-yo-mama-jokes)
-- [Clumsy Yo Mama Jokes](https://yomamajokescentral.com/jokes/clumsy-yo-mama-jokes)
-- [Evil Yo Mama Jokes](https://yomamajokescentral.com/jokes/evil-yo-mama-jokes)
-- [Greedy Yo Mama Jokes](https://yomamajokescentral.com/jokes/greedy-yo-mama-jokes)
-- [Lazy Yo Mama Jokes](https://yomamajokescentral.com/jokes/lazy-yo-mama-jokes)
-- [Loud Yo Mama Jokes](https://yomamajokescentral.com/jokes/loud-yo-mama-jokes)
-- [Entitled Yo Mama Jokes](https://yomamajokescentral.com/jokes/entitled-yo-mama-jokes)
-- [Other Yo Mama Jokes](https://yomamajokescentral.com/jokes/other-yo-mama-jokes)
+- [Fat Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/fat-yo-mama-jokes)
+- [Scary Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/scary-yo-mama-jokes)
+- [Nasty Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/nasty-yo-mama-jokes)
+- [Ugly Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/ugly-yo-mama-jokes)
+- [Dumb Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/dumb-yo-mama-jokes)
+- [Awful Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/awful-yo-mama-jokes)
+- [Dirty Yo Mama Jokes (adult)](https://www.yomamajokescentral.com/jokes/dirty-yo-mama-jokes)
+- [Tall Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/tall-yo-mama-jokes)
+- [Short Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/short-yo-mama-jokes)
+- [Hairy Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/hairy-yo-mama-jokes)
+- [Bald Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/bald-yo-mama-jokes)
+- [Old Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/old-yo-mama-jokes)
+- [Poor Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/poor-yo-mama-jokes)
+- [Skinny Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/skinny-yo-mama-jokes)
+- [Clumsy Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/clumsy-yo-mama-jokes)
+- [Evil Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/evil-yo-mama-jokes)
+- [Greedy Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/greedy-yo-mama-jokes)
+- [Lazy Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/lazy-yo-mama-jokes)
+- [Loud Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/loud-yo-mama-jokes)
+- [Entitled Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/entitled-yo-mama-jokes)
+- [Other Yo Mama Jokes](https://www.yomamajokescentral.com/jokes/other-yo-mama-jokes)

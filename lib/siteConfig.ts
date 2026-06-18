@@ -1,7 +1,9 @@
 // Central, single source of truth for site-wide SEO/GEO metadata.
 // Canonical host is the bare apex domain (www should 301-redirect here).
 
-export const SITE_URL = "https://yomamajokescentral.com";
+// Canonical host = www (the apex 308-redirects to www in production, so www
+// is the URL Google should index; canonical/sitemap/OG must match it).
+export const SITE_URL = "https://www.yomamajokescentral.com";
 export const SITE_NAME = "Yo Mama Jokes Central";
 export const SITE_TAGLINE = "Hilarious Yo Mama Jokes for Everyone";
 export const SITE_DESCRIPTION =
