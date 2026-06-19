@@ -60,7 +60,7 @@ const jsonLd = [
       <div class="site-feed">
         {
           featuredJokes.map(({ category, joke }) => (
-            <JokeCard jokeText={joke} categorySlug={category} />
+            <JokeCard jokeText={joke} categorySlug={category} showCategoryLabel />
           ))
         }
       </div>
