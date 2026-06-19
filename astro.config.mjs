@@ -11,24 +11,24 @@ export default defineConfig({
   // the sitemap, and <Seo>.
   site: "https://www.yomamajokescentral.com",
   trailingSlash: "never",
-  // Self-host Fredoka (display) + Nunito (body) via Astro's Fonts API: removes
+  // Self-host Anton (display) + Outfit (body) via Astro's Fonts API: removes
   // the render-blocking third-party Google Fonts request, adds preload +
   // size-matched fallbacks (better LCP/CLS), and keeps visitor IPs off Google.
   fonts: [
     {
-      name: "Fredoka",
-      cssVariable: "--font-fredoka",
+      name: "Anton",
+      cssVariable: "--font-anton",
       provider: fontProviders.google(),
-      weights: [400, 600],
+      weights: [400], // Anton ships a single weight
       styles: ["normal"],
       subsets: ["latin"],
       fallbacks: ["system-ui", "sans-serif"],
     },
     {
-      name: "Nunito",
-      cssVariable: "--font-nunito",
+      name: "Outfit",
+      cssVariable: "--font-outfit",
       provider: fontProviders.google(),
-      weights: [400, 600],
+      weights: [400, 600, 700, 800],
       styles: ["normal"],
       subsets: ["latin"],
       fallbacks: ["system-ui", "sans-serif"],
