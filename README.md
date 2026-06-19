@@ -47,3 +47,17 @@ local Ollama model for dedup). The sitemap updates automatically on the next
 Static output in `dist/` — deploy to any static host (Vercel, Netlify, etc.).
 Ensure `www` 301-redirects to the apex domain `https://yomamajokescentral.com`
 to match the canonical URLs.
+
+## Daily rebuild (Vercel Deploy Hook)
+
+The "joke of the day" rotates by UTC date at build time, so the site must
+rebuild daily. A GitHub Actions workflow (`.github/workflows/daily-rebuild.yml`)
+POSTs a Vercel Deploy Hook every morning.
+
+Setup (one time):
+1. Vercel → Project → Settings → Git → **Deploy Hooks** → create a hook on the
+   production branch. Copy the URL.
+2. GitHub → repo → Settings → Secrets and variables → Actions → **New secret**
+   named `VERCEL_DEPLOY_HOOK_URL`, paste the URL.
+3. Optionally run the workflow once via **Actions → Daily rebuild → Run workflow**
+   to confirm it triggers a deploy.
