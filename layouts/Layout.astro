@@ -4,7 +4,7 @@ import { Font } from "astro:assets";
 import Seo from "@/components/Seo.astro";
 import ConsentBanner from "@/components/ConsentBanner.astro";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
-import { ADSENSE_CLIENT } from "@/lib/siteConfig";
+import { ADSENSE_CLIENT, ADS_ENABLED } from "@/lib/siteConfig";
 
 interface Props {
   title: string;
@@ -26,12 +26,21 @@ const year = new Date().getFullYear();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#259be2" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
     <meta
       name="google-site-verification"
       content="5LWdds1LtKAg7v_mojIG0FRYVWNkL8FIF3Q1f5ZT0n4"
     />
+    {/* Bing Webmaster Tools — replace REPLACE_WITH_BING_TOKEN after verifying
+        the site at https://www.bing.com/webmasters (gateway to Copilot). */}
+    <meta name="msvalidate.01" content="REPLACE_WITH_BING_TOKEN" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     {/* Self-hosted fonts (Astro Fonts API). Preload the display font used by
         the above-the-fold h1; the body font loads with a size-matched fallback. */}
@@ -116,7 +125,7 @@ const year = new Date().getFullYear();
     {/* Google AdSense (Auto Ads). Loaded in production only to avoid invalid
         impressions during local development. */}
     {
-      import.meta.env.PROD && (
+      import.meta.env.PROD && ADS_ENABLED && (
         <script
           is:inline
           async
@@ -135,7 +144,7 @@ const year = new Date().getFullYear();
         >
           <a href="/" class="text-lg font-bold site-logo-link">
             <img
-              src="/favicon.ico"
+              src="/logo.svg"
               alt="Yo Mama Jokes Central"
               class="w-[70px] h-[70px]"
               width="70"
@@ -145,10 +154,8 @@ const year = new Date().getFullYear();
           <nav class="site-nav space-x-6">
             <a href="/" class="site-nav-link">Home</a>
             <a href="/categories" class="site-nav-link">Categories</a>
-            <a
-              href="mailto:yomamajokescentral.contact@proton.me"
-              class="site-nav-link">Contact</a
-            >
+            <a href="/about" class="site-nav-link">About</a>
+            <a href="/contact" class="site-nav-link">Contact</a>
           </nav>
         </div>
       </header>
@@ -160,11 +167,10 @@ const year = new Date().getFullYear();
       <footer class="site-footer py-8 mt-16 text-center">
         <nav class="site-nav space-x-6 mb-3">
           <a href="/categories" class="site-nav-link">Categories</a>
+          <a href="/about" class="site-nav-link">About</a>
+          <a href="/contact" class="site-nav-link">Contact</a>
           <a href="/privacy-policy" class="site-nav-link">Privacy Policy</a>
-          <a
-            href="mailto:yomamajokescentral.contact@proton.me"
-            class="site-nav-link">Contact</a
-          >
+          <a href="/terms" class="site-nav-link">Terms</a>
         </nav>
         <p class="site-footer-text">
           &copy; {year} Yo Mama Jokes Central. All rights reserved.
@@ -173,5 +179,21 @@ const year = new Date().getFullYear();
     </div>
 
     <ConsentBanner />
+
+    <script is:inline>
+      document.addEventListener("click", function (e) {
+        var btn = e.target.closest ? e.target.closest(".copy-link-button") : null;
+        if (!btn) return;
+        var u = btn.getAttribute("data-copy-url");
+        if (navigator.clipboard && u) {
+          navigator.clipboard.writeText(u).then(function () {
+            btn.classList.add("copied");
+            setTimeout(function () {
+              btn.classList.remove("copied");
+            }, 1200);
+          });
+        }
+      });
+    </script>
   </body>
 </html>

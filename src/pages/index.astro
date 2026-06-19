@@ -27,7 +27,7 @@ const HOME_FAQ: FaqItem[] = [
   {
     question: "Can I share these jokes on social media?",
     answer:
-      "Yes! Every joke card includes one-click share buttons for Facebook, X (Twitter), Instagram, and TikTok, so you can roast your friends anywhere.",
+      "Yes! Every joke card includes one-click buttons to share on Facebook and X (Twitter), plus a copy-link button so you can paste a joke anywhere.",
   },
 ];
 
@@ -60,7 +60,7 @@ const jsonLd = [
       <div class="site-feed">
         {
           featuredJokes.map(({ category, joke }) => (
-            <JokeCard jokeText={joke} categorySlug={category} />
+            <JokeCard jokeText={joke} categorySlug={category} showCategoryLabel />
           ))
         }
       </div>

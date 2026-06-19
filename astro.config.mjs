@@ -1,6 +1,7 @@
 import { defineConfig, fontProviders } from "astro/config";
 import { fileURLToPath } from "node:url";
 import sitemap from "@astrojs/sitemap";
+import { lastmodForUrl } from "./scripts/lastmod.mjs";
 
 const root = fileURLToPath(new URL("./", import.meta.url));
 
@@ -33,7 +34,16 @@ export default defineConfig({
       fallbacks: ["system-ui", "sans-serif"],
     },
   ],
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      serialize(item) {
+        const lastmod = lastmodForUrl(item.url);
+        if (lastmod) item.lastmod = lastmod;
+        else delete item.lastmod; // omit rather than emit a flat/untrustworthy date
+        return item;
+      },
+    }),
+  ],
   vite: {
     // Tailwind v4 runs via PostCSS (postcss.config.mjs) for compatibility with
     // Astro 6's rolldown bundler.

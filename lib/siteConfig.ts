@@ -1,5 +1,6 @@
 // Central, single source of truth for site-wide SEO/GEO metadata.
-// Canonical host is the bare apex domain (www should 301-redirect here).
+// Canonical host = www; the apex (yomamajokescentral.com) 301/308-redirects to
+// www in production.
 
 // Canonical host = www (the apex 308-redirects to www in production, so www
 // is the URL Google should index; canonical/sitemap/OG must match it).
@@ -22,6 +23,23 @@ export const CONTACT_EMAIL = "yomamajokescentral.contact@proton.me";
 // Google AdSense publisher ID (matches /public/ads.txt). The loader script in
 // the Layout enables Auto Ads site-wide once the account/site is approved.
 export const ADSENSE_CLIENT = "ca-pub-3950888851778991";
+
+// Master switch for advertising. Keep FALSE until the content bar is met and
+// AdSense approves. When false: no loader script, no <ins> units render — but
+// AdSlot still reserves layout height so enabling ads causes no CLS shift.
+export const ADS_ENABLED = false;
+
+// Adult-flagged categories excluded from ad rendering even when ADS_ENABLED is
+// true (AdSense policy risk — see MASTER_SEO_COOKBOOK §9 / §17.3).
+export const ADULT_CATEGORIES = ["dirty-yo-mama-jokes", "nasty-yo-mama-jokes"];
+
+// Square brand logo (≥112×112) for Organization schema + header. SVG is an
+// accepted Google-Images format (cookbook X2); a raster 512 PNG also exists.
+export const LOGO_URL = `${SITE_URL}/logo.svg`;
+
+// Off-site profiles for Organization.sameAs (entity disambiguation / GEO).
+// Populate as social accounts are created; emitted only when non-empty.
+export const SAME_AS: string[] = [];
 
 /** Build an absolute URL from a site-relative path. */
 export function absoluteUrl(path = "/"): string {

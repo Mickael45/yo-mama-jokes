@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import JokeCard from "@/components/JokeCard.astro";
 import Faq from "@/components/Faq.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
 import { categories, jokesByCategory, categoryMeta } from "@/lib/categories";
 import { SITE_NAME } from "@/lib/siteConfig";
 import {
@@ -11,6 +12,9 @@ import {
   type FaqItem,
 } from "@/lib/jsonld";
 import type { Category } from "@/types";
+import { categoryContent, hasContent } from "@/lib/categoryContent";
+import AdSlot from "@/components/AdSlot.astro";
+import { ADULT_CATEGORIES } from "@/lib/siteConfig";
 
 export function getStaticPaths() {
   return categories.map(({ slug }) => ({
@@ -30,6 +34,14 @@ const pageDescription = page.description;
 
 const path = `/jokes/${category}`;
 const ogImage = `/og/${category}.png`;
+
+const content = categoryContent[cat];
+const showContent = hasContent(cat);
+const isAdult = ADULT_CATEGORIES.includes(cat);
+const lastUpdated = new Date(content.updated + "T00:00:00Z").toLocaleDateString(
+  "en-US",
+  { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" },
+);
 
 const faqItems: FaqItem[] = [
   {
@@ -53,6 +65,7 @@ const jsonLd = [
     description,
     path,
     jokes,
+    dateModified: content.updated,
   }),
   faqSchema(faqItems),
 ];
@@ -67,8 +80,41 @@ const jsonLd = [
 >
   <div class="site-page container mx-auto px-4 py-8">
     <div class="site-inner site-inner--center">
+      <Breadcrumb
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Categories", href: "/categories" },
+          { name: pageTitle },
+        ]}
+      />
       <h1 class="site-title site-title--compact capitalize">{pageTitle}</h1>
       <p class="site-lede">{pageDescription}</p>
+
+      {
+        showContent && (
+          <section class="site-prose site-answer">
+            <h2>{content.question}</h2>
+            <p class="site-answer__lead">{content.directAnswer}</p>
+            {content.body.map((para) => (
+              <p>{para}</p>
+            ))}
+            {content.citations.length > 0 && (
+              <p class="site-citations">
+                Sources:{" "}
+                {content.citations.map((c, i) => (
+                  <>
+                    {i > 0 && ", "}
+                    <a href={c.href} target="_blank" rel="noopener noreferrer">
+                      {c.label}
+                    </a>
+                  </>
+                ))}
+              </p>
+            )}
+            <p class="site-updated">Last updated: {lastUpdated}</p>
+          </section>
+        )
+      }
 
       <div class="site-feed">
         {
@@ -79,6 +125,8 @@ const jsonLd = [
       </div>
 
       <Faq items={faqItems} />
+
+      <AdSlot adult={isAdult} minHeight={280} />
     </div>
   </div>
 </Layout>

@@ -6,21 +6,32 @@ interface Props {
   jokeText: string;
   categorySlug: string;
   categoryName?: string;
+  /** Show the category as a small label (used on the mixed homepage feed). */
+  showCategoryLabel?: boolean;
 }
 
-const { jokeText, categorySlug, categoryName } = Astro.props;
+const {
+  jokeText,
+  categorySlug,
+  categoryName,
+  showCategoryLabel = false,
+} = Astro.props;
 
 const baseUrl = import.meta.env.PUBLIC_WEBSITE_URL || SITE_URL;
 const jokeUrl = `${baseUrl}/jokes/${categorySlug}`;
 const displayCategoryName =
-  categoryName || categorySlug.replace(/-/g, " ").toUpperCase();
+  categoryName || categorySlug.replace(/-yo-mama-jokes$/, "").replace(/-/g, " ");
 ---
 
 <div class="joke-card">
   <div class="joke-card__body">
-    <h2 class="joke-card__title">
-      <a href={`/jokes/${categorySlug}`}>{displayCategoryName}</a>
-    </h2>
+    {
+      showCategoryLabel && (
+        <span class="joke-card__category capitalize">
+          <a href={`/jokes/${categorySlug}`}>{displayCategoryName}</a>
+        </span>
+      )
+    }
     <p class="joke-card__text">{jokeText}</p>
   </div>
   <div class="joke-card__footer">
