@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { Font } from "astro:assets";
 import Seo from "@/components/Seo.astro";
 import ConsentBanner from "@/components/ConsentBanner.astro";
+import InstallPrompt from "@/components/InstallPrompt.astro";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
 import { ADSENSE_CLIENT, ADS_ENABLED } from "@/lib/siteConfig";
 
@@ -179,6 +180,10 @@ const year = new Date().getFullYear();
     </div>
 
     <ConsentBanner />
+
+    {/* Custom "Install app" affordance. Prod-only: the service worker that makes
+        the site installable (and fires beforeinstallprompt) is itself prod-only. */}
+    {import.meta.env.PROD && <InstallPrompt />}
 
     <script is:inline>
       document.addEventListener("click", function (e) {

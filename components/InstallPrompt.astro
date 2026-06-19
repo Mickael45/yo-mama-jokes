@@ -1,0 +1,138 @@
+---
+/**
+ * User-visible PWA install affordance. Most visitors never find the browser's
+ * native install icon, so we surface our own bar.
+ *
+ * - Chromium: capture `beforeinstallprompt`, show our Install button, and call
+ *   the real native prompt on click.
+ * - iOS Safari (no `beforeinstallprompt`): show a "Share -> Add to Home Screen"
+ *   hint with no button.
+ * - Hidden when already installed (standalone), once dismissed, or after install.
+ *
+ * Mounted prod-only from Layout.astro (the service worker — required for
+ * `beforeinstallprompt` — is itself prod-only). Sits above the consent banner
+ * while that is visible so the two never overlap.
+ */
+---
+
+<div id="pwa-install" class="pwa-install" hidden role="dialog" aria-label="Install app">
+  <span id="pwa-install-txt" class="pwa-install__txt">Install Yo Mama Jokes</span>
+  <button id="pwa-install-action" class="pwa-install__btn" type="button" hidden>Install</button>
+  <button id="pwa-install-close" class="pwa-install__close" type="button" aria-label="Dismiss">&times;</button>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = "pwa-install-dismissed";
+    var bar = document.getElementById("pwa-install");
+    if (!bar) return;
+    if (matchMedia("(display-mode: standalone)").matches || navigator.standalone === true) return;
+
+    var txt = document.getElementById("pwa-install-txt");
+    var action = document.getElementById("pwa-install-action");
+    var close = document.getElementById("pwa-install-close");
+
+    function dismissed() { try { return localStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
+    function remember() { try { localStorage.setItem(KEY, "1"); } catch (e) {} }
+
+    // Keep the bar clear of the cookie-consent banner while that is showing.
+    function reposition() {
+      var cb = document.getElementById("consent-banner");
+      bar.style.bottom = cb && !cb.hidden ? cb.getBoundingClientRect().height + 24 + "px" : "";
+    }
+    function show() { if (!dismissed()) { reposition(); bar.hidden = false; } }
+    function hide() { bar.hidden = true; }
+
+    var cb = document.getElementById("consent-banner");
+    if (cb && "MutationObserver" in window) {
+      new MutationObserver(reposition).observe(cb, { attributes: true, attributeFilter: ["hidden"] });
+    }
+    window.addEventListener("resize", reposition);
+
+    close.addEventListener("click", function () { hide(); remember(); });
+    window.addEventListener("appinstalled", function () { hide(); remember(); });
+
+    var deferred = null;
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      deferred = e;
+      action.hidden = false;
+      show();
+    });
+    action.addEventListener("click", function () {
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.then(function (c) {
+        deferred = null;
+        hide();
+        if (c.outcome !== "accepted") remember();
+      });
+    });
+
+    // iOS Safari never fires beforeinstallprompt — show a manual hint instead.
+    var ua = navigator.userAgent;
+    var isIOS =
+      /iphone|ipad|ipod/i.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var isSafari = /safari/i.test(ua) && !/crios|fxios|edgios/i.test(ua);
+    if (isIOS && isSafari) {
+      txt.innerHTML = 'Install: tap Share, then “Add to Home Screen”';
+      action.hidden = true;
+      setTimeout(show, 1500);
+    }
+  })();
+</script>
+
+<style>
+  /* Themed to Roast Mode tokens; pink neon accent on the dark surface. */
+  .pwa-install {
+    position: fixed;
+    z-index: 60;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 16px;
+    width: min(440px, calc(100% - 24px));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: linear-gradient(180deg, var(--site-surface-2) 0%, var(--site-surface) 100%);
+    border: 1px solid var(--site-border);
+    border-radius: 0.75rem;
+    box-shadow:
+      0 14px 40px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(255, 45, 120, 0.18);
+    color: var(--site-text);
+    font: 500 13px/1.4 var(--font-outfit, system-ui, sans-serif);
+  }
+  .pwa-install[hidden] { display: none; }
+  .pwa-install__txt { flex: 1; }
+  .pwa-install__btn {
+    flex: none;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 6px 13px;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--site-accent);
+    border: 1px solid var(--site-accent);
+    font: 600 12px/1 var(--font-outfit, system-ui, sans-serif);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pwa-install__btn[hidden] { display: none; }
+  .pwa-install__btn:hover {
+    background: rgba(255, 45, 120, 0.14);
+    box-shadow: 0 0 18px rgba(255, 45, 120, 0.35);
+  }
+  .pwa-install__close {
+    flex: none;
+    cursor: pointer;
+    padding: 0 2px;
+    background: transparent;
+    border: none;
+    color: var(--site-text-muted, #9a93b3);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .pwa-install__close:hover { color: var(--site-text); }
+</style>
