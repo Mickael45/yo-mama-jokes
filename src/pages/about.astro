@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SITE_NAME } from "@/lib/siteConfig";
+
+const title = `About | ${SITE_NAME}`;
+const description =
+  "About Yo Mama Jokes Central — who we are, how we curate our jokes, and the comedy tradition behind them.";
+---
+
+<Layout title={title} description={description} path="/about">
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-prose">
+      <h1 class="site-title">About Yo Mama Jokes Central</h1>
+      <p>
+        Yo Mama Jokes Central is a curated home for the classic insult-comedy
+        one-liner known as the "yo mama" joke. Every joke in our collection is
+        hand-reviewed and sorted into one of 21 themed categories so you can
+        always find the right comeback for the moment.
+      </p>
+      <h2>How we curate</h2>
+      <p>
+        We read every joke before it goes live. We keep the lighthearted ones
+        front and center, label adult material clearly, and refresh a featured
+        set of five jokes every single day. Our goal is simple: the funniest,
+        cleanest-organized yo mama jokes on the web.
+      </p>
+      <h2>The tradition behind the jokes</h2>
+      <p>
+        Yo mama jokes grew out of "the dozens," a centuries-old game of
+        competitive, witty insult-trading. The point was never cruelty — it was
+        quick thinking, wordplay, and staying cool under pressure. We carry that
+        spirit forward: playful exaggeration meant to make everyone, including
+        the target, laugh.
+      </p>
+      <p>
+        Questions or suggestions? Visit our <a href="/contact">contact page</a>.
+      </p>
+    </div>
+  </div>
+</Layout>

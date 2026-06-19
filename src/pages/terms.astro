@@ -1,0 +1,46 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SITE_NAME } from "@/lib/siteConfig";
+
+const title = `Terms of Use | ${SITE_NAME}`;
+const description =
+  "The terms governing your use of Yo Mama Jokes Central.";
+const year = new Date().getFullYear();
+---
+
+<Layout title={title} description={description} path="/terms">
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-prose">
+      <h1 class="site-title">Terms of Use</h1>
+      <p>Last updated: January 1, {year}.</p>
+      <h2>Acceptance</h2>
+      <p>
+        By using Yo Mama Jokes Central ("the site"), you agree to these terms. If
+        you do not agree, please do not use the site.
+      </p>
+      <h2>Content and intended use</h2>
+      <p>
+        All content is provided for entertainment purposes only. Yo mama jokes
+        are playful exaggerations and are not statements of fact about any real
+        person. Some categories contain adult humor and are labelled as such;
+        you are responsible for choosing what you read.
+      </p>
+      <h2>Intellectual property</h2>
+      <p>
+        The site's design, branding, and original written content are owned by
+        Yo Mama Jokes Central. You may share individual jokes; you may not
+        scrape or republish the collection wholesale.
+      </p>
+      <h2>Disclaimer</h2>
+      <p>
+        The site is provided "as is" without warranties of any kind. We are not
+        liable for any damages arising from your use of the site.
+      </p>
+      <h2>Changes</h2>
+      <p>
+        We may update these terms from time to time. Continued use after a change
+        constitutes acceptance of the revised terms.
+      </p>
+    </div>
+  </div>
+</Layout>

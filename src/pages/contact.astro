@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SITE_NAME, CONTACT_EMAIL } from "@/lib/siteConfig";
+
+const title = `Contact | ${SITE_NAME}`;
+const description =
+  "Get in touch with Yo Mama Jokes Central — joke submissions, corrections, and general questions.";
+---
+
+<Layout title={title} description={description} path="/contact">
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-prose">
+      <h1 class="site-title">Contact Us</h1>
+      <p>
+        We'd love to hear from you — whether you've got a joke to submit, spotted
+        something that needs fixing, or just want to say hello.
+      </p>
+      <p>
+        Email us at{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. We read every
+        message and aim to reply within a few business days.
+      </p>
+      <p>
+        For how we handle your data, see our{" "}
+        <a href="/privacy-policy">Privacy Policy</a>.
+      </p>
+    </div>
+  </div>
+</Layout>
