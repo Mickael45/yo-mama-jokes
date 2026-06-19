@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readdirSync, statSync, writeFileSync, existsSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join, posix } from "node:path";
 
@@ -22,6 +22,21 @@ const FIXED_ASSETS = [
 function pageUrl(pathname) {
   const trimmed = pathname.replace(/^\/+|\/+$/g, "");
   return trimmed === "" ? "/" : `/${trimmed}`;
+}
+
+// Resolve a precache URL to the file on disk it is served from, so the cache
+// version can hash content (not just paths). Clean URLs map to dir/index.html;
+// some routes (e.g. 404) emit <name>.html at the root.
+function urlToFile(outDir, url) {
+  if (url === "/") return join(outDir, "index.html");
+  const rel = url.slice(1);
+  const direct = join(outDir, rel);
+  if (existsSync(direct) && statSync(direct).isFile()) return direct;
+  const indexHtml = join(outDir, rel, "index.html");
+  if (existsSync(indexHtml)) return indexHtml;
+  const dotHtml = join(outDir, `${rel}.html`);
+  if (existsSync(dotHtml)) return dotHtml;
+  return null;
 }
 
 // Recursively list URL paths of every file under <outDir>/<sub>.
@@ -122,10 +137,16 @@ export default function pwa() {
           ])
         ).sort();
 
-        const version = createHash("sha256")
-          .update(precache.join("\n"))
-          .digest("hex")
-          .slice(0, 8);
+        // Version = hash of every precached file's *content*, so any deploy that
+        // changes a page, icon, or the manifest bumps the cache name and the old
+        // cache is purged on activate (content at stable URLs busts correctly).
+        const hash = createHash("sha256");
+        for (const url of precache) {
+          hash.update(`${url}\0`);
+          const file = urlToFile(outDir, url);
+          if (file) hash.update(readFileSync(file));
+        }
+        const version = hash.digest("hex").slice(0, 8);
 
         writeFileSync(join(outDir, "sw.js"), serviceWorkerSource(version, precache));
         logger.info(`sw.js written — cache ymjc-${version}, ${precache.length} entries precached`);
