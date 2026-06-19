@@ -169,17 +169,15 @@
 /* Pink neon glow on hover (carried over from the Roast Mode demo).
    `.joke-card--active` is toggled by JS on touch devices for whichever card is
    crossing the vertical middle of the viewport, so touch users get the same
-   life desktop users get on hover. See the scroll-glow script in Layout.astro. */
+   life desktop users get on hover. See the scroll-glow script in Layout.astro.
+   The active selector is doubled (`.joke-card.joke-card--active`) so it outranks
+   the base `.joke-card` box-shadow defined later in this file — without that the
+   class toggles but the glow never paints. */
 .joke-card:hover,
-.joke-card--active {
+.joke-card.joke-card--active {
   box-shadow:
     0 0 0 1px rgba(255, 45, 120, 0.4),
     0 22px 54px rgba(255, 45, 120, 0.2);
-}
-
-/* A touch more presence than the glow alone on touch, since there's no cursor. */
-.joke-card--active {
-  transform: translateY(-2px);
   border-color: rgba(255, 45, 120, 0.4);
 }
 

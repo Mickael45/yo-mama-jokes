@@ -202,14 +202,14 @@ const year = new Date().getFullYear();
     </script>
 
     {/* Touch-only "scroll glow": light up whichever joke card is crossing the
-        vertical middle of the viewport, mirroring the desktop :hover effect
-        (which never fires on touch). Skipped for users who prefer reduced motion
-        and for pointer devices that already have real hover. */}
+        vertical middle of the viewport, mirroring the desktop :hover glow (which
+        never fires on touch). Only on pointer devices without real hover. The
+        effect is a color/shadow glow — no movement — so it runs regardless of
+        prefers-reduced-motion. */}
     <script is:inline>
       (function () {
         if (!("IntersectionObserver" in window)) return;
         var touch = window.matchMedia("(hover: none)");
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
         var observer = null;
         function clearActive() {
           var active = document.querySelectorAll(".joke-card--active");
@@ -223,7 +223,7 @@ const year = new Date().getFullYear();
             observer = null;
           }
           clearActive();
-          if (!touch.matches || reduce.matches) return;
+          if (!touch.matches) return;
           var cards = document.querySelectorAll(".joke-card");
           if (!cards.length) return;
           observer = new IntersectionObserver(
@@ -242,10 +242,8 @@ const year = new Date().getFullYear();
           for (var j = 0; j < cards.length; j++) observer.observe(cards[j]);
         }
         setup();
-        var onChange = function () { setup(); };
         if (touch.addEventListener) {
-          touch.addEventListener("change", onChange);
-          reduce.addEventListener("change", onChange);
+          touch.addEventListener("change", function () { setup(); });
         }
       })();
     </script>
