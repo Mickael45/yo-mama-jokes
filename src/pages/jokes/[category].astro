@@ -11,6 +11,7 @@ import {
   type FaqItem,
 } from "@/lib/jsonld";
 import type { Category } from "@/types";
+import { categoryContent, hasContent } from "@/lib/categoryContent";
 
 export function getStaticPaths() {
   return categories.map(({ slug }) => ({
@@ -30,6 +31,13 @@ const pageDescription = page.description;
 
 const path = `/jokes/${category}`;
 const ogImage = `/og/${category}.png`;
+
+const content = categoryContent[cat];
+const showContent = hasContent(cat);
+const lastUpdated = new Date(content.updated + "T00:00:00Z").toLocaleDateString(
+  "en-US",
+  { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" },
+);
 
 const faqItems: FaqItem[] = [
   {
@@ -53,6 +61,7 @@ const jsonLd = [
     description,
     path,
     jokes,
+    dateModified: content.updated,
   }),
   faqSchema(faqItems),
 ];
@@ -69,6 +78,32 @@ const jsonLd = [
     <div class="site-inner site-inner--center">
       <h1 class="site-title site-title--compact capitalize">{pageTitle}</h1>
       <p class="site-lede">{pageDescription}</p>
+
+      {
+        showContent && (
+          <section class="site-prose site-answer">
+            <h2>{content.question}</h2>
+            <p class="site-answer__lead">{content.directAnswer}</p>
+            {content.body.map((para) => (
+              <p>{para}</p>
+            ))}
+            {content.citations.length > 0 && (
+              <p class="site-citations">
+                Sources:{" "}
+                {content.citations.map((c, i) => (
+                  <>
+                    {i > 0 && ", "}
+                    <a href={c.href} target="_blank" rel="noopener noreferrer">
+                      {c.label}
+                    </a>
+                  </>
+                ))}
+              </p>
+            )}
+            <p class="site-updated">Last updated: {lastUpdated}</p>
+          </section>
+        )
+      }
 
       <div class="site-feed">
         {

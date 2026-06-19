@@ -59,6 +59,7 @@ export function jokeCollectionSchema(opts: {
   description: string;
   path: string;
   jokes: string[];
+  dateModified?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -68,6 +69,7 @@ export function jokeCollectionSchema(opts: {
     url: absoluteUrl(opts.path),
     isPartOf: { "@id": `${SITE_URL}/#website` },
     primaryImageOfPage: DEFAULT_OG_IMAGE,
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: opts.jokes.length,
