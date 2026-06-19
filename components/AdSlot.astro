@@ -1,0 +1,35 @@
+---
+import { ADS_ENABLED, ADSENSE_CLIENT } from "@/lib/siteConfig";
+
+interface Props {
+  /** AdSense ad-unit slot id (set when you create the unit). */
+  slot?: string;
+  /** Reserved height in px to prevent CLS. */
+  minHeight?: number;
+  /** When true, never render an ad here (adult category). */
+  adult?: boolean;
+}
+
+const { slot = "", minHeight = 280, adult = false } = Astro.props;
+const renderAd = ADS_ENABLED && !adult;
+---
+
+<div
+  class="ad-slot"
+  style={`min-height:${minHeight}px`}
+  aria-hidden="true"
+  data-ad-placeholder={renderAd ? undefined : "true"}
+>
+  {
+    renderAd && (
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client={ADSENSE_CLIENT}
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    )
+  }
+</div>

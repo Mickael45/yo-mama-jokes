@@ -13,6 +13,8 @@ import {
 } from "@/lib/jsonld";
 import type { Category } from "@/types";
 import { categoryContent, hasContent } from "@/lib/categoryContent";
+import AdSlot from "@/components/AdSlot.astro";
+import { ADULT_CATEGORIES } from "@/lib/siteConfig";
 
 export function getStaticPaths() {
   return categories.map(({ slug }) => ({
@@ -35,6 +37,7 @@ const ogImage = `/og/${category}.png`;
 
 const content = categoryContent[cat];
 const showContent = hasContent(cat);
+const isAdult = ADULT_CATEGORIES.includes(cat);
 const lastUpdated = new Date(content.updated + "T00:00:00Z").toLocaleDateString(
   "en-US",
   { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" },
@@ -122,6 +125,8 @@ const jsonLd = [
       </div>
 
       <Faq items={faqItems} />
+
+      <AdSlot adult={isAdult} minHeight={280} />
     </div>
   </div>
 </Layout>

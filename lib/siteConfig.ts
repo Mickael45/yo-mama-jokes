@@ -23,6 +23,15 @@ export const CONTACT_EMAIL = "yomamajokescentral.contact@proton.me";
 // the Layout enables Auto Ads site-wide once the account/site is approved.
 export const ADSENSE_CLIENT = "ca-pub-3950888851778991";
 
+// Master switch for advertising. Keep FALSE until the content bar is met and
+// AdSense approves. When false: no loader script, no <ins> units render — but
+// AdSlot still reserves layout height so enabling ads causes no CLS shift.
+export const ADS_ENABLED = false;
+
+// Adult-flagged categories excluded from ad rendering even when ADS_ENABLED is
+// true (AdSense policy risk — see MASTER_SEO_COOKBOOK §9 / §17.3).
+export const ADULT_CATEGORIES = ["dirty-yo-mama-jokes", "nasty-yo-mama-jokes"];
+
 /** Build an absolute URL from a site-relative path. */
 export function absoluteUrl(path = "/"): string {
   if (path.startsWith("http")) return path;

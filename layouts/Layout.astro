@@ -4,7 +4,7 @@ import { Font } from "astro:assets";
 import Seo from "@/components/Seo.astro";
 import ConsentBanner from "@/components/ConsentBanner.astro";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
-import { ADSENSE_CLIENT } from "@/lib/siteConfig";
+import { ADSENSE_CLIENT, ADS_ENABLED } from "@/lib/siteConfig";
 
 interface Props {
   title: string;
@@ -116,7 +116,7 @@ const year = new Date().getFullYear();
     {/* Google AdSense (Auto Ads). Loaded in production only to avoid invalid
         impressions during local development. */}
     {
-      import.meta.env.PROD && (
+      import.meta.env.PROD && ADS_ENABLED && (
         <script
           is:inline
           async
