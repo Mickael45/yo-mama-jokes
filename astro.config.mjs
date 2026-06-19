@@ -2,6 +2,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import { fileURLToPath } from "node:url";
 import sitemap from "@astrojs/sitemap";
 import { lastmodForUrl } from "./scripts/lastmod.mjs";
+import pwa from "./scripts/pwa.mjs";
 
 const root = fileURLToPath(new URL("./", import.meta.url));
 
@@ -43,6 +44,8 @@ export default defineConfig({
         return item;
       },
     }),
+    // Generates sw.js (full-offline precache) on build. See scripts/pwa.mjs.
+    pwa(),
   ],
   vite: {
     // Tailwind v4 runs via PostCSS (postcss.config.mjs) for compatibility with

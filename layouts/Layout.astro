@@ -195,5 +195,17 @@ const year = new Date().getFullYear();
         }
       });
     </script>
+
+    {/* Register the service worker (full-offline PWA). Production only so the
+        dev server isn't shadowed by a cached SW. See scripts/pwa.mjs. */}
+    {import.meta.env.PROD && (
+      <script is:inline>
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", function () {
+            navigator.serviceWorker.register("/sw.js");
+          });
+        }
+      </script>
+    )}
   </body>
 </html>
