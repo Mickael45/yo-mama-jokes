@@ -1,0 +1,19 @@
+{
+  "name": "Yo Mama Jokes Central",
+  "short_name": "Yo Mama Jokes",
+  "description": "The funniest Yo Mama Jokes online, across 21 categories.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#259be2",
+  "icons": [
+    { "src": "/og/logo-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/og/logo-512.png", "sizes": "192x192", "type": "image/png" },
+    {
+      "src": "/og/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

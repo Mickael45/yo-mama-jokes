@@ -32,6 +32,14 @@ export const ADS_ENABLED = false;
 // true (AdSense policy risk — see MASTER_SEO_COOKBOOK §9 / §17.3).
 export const ADULT_CATEGORIES = ["dirty-yo-mama-jokes", "nasty-yo-mama-jokes"];
 
+// Square brand logo (≥112×112) for Organization schema + header. SVG is an
+// accepted Google-Images format (cookbook X2); a raster 512 PNG also exists.
+export const LOGO_URL = `${SITE_URL}/logo.svg`;
+
+// Off-site profiles for Organization.sameAs (entity disambiguation / GEO).
+// Populate as social accounts are created; emitted only when non-empty.
+export const SAME_AS: string[] = [];
+
 /** Build an absolute URL from a site-relative path. */
 export function absoluteUrl(path = "/"): string {
   if (path.startsWith("http")) return path;

@@ -11,6 +11,9 @@ import {
   SITE_NAME,
   SITE_DESCRIPTION,
   DEFAULT_OG_IMAGE,
+  LOGO_URL,
+  SAME_AS,
+  CONTACT_EMAIL,
   absoluteUrl,
 } from "./siteConfig";
 
@@ -21,8 +24,19 @@ export function organizationSchema() {
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/favicon.ico`,
+    logo: {
+      "@type": "ImageObject",
+      url: LOGO_URL,
+      width: 512,
+      height: 512,
+    },
     description: SITE_DESCRIPTION,
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: CONTACT_EMAIL,
+      contactType: "customer support",
+    },
+    ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
   };
 }
 
