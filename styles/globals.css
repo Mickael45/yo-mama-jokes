@@ -166,6 +166,13 @@
   background: linear-gradient(180deg, var(--site-surface) 0%, #120f1b 100%);
 }
 
+/* Pink neon glow on hover (carried over from the Roast Mode demo) */
+.joke-card:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 45, 120, 0.4),
+    0 22px 54px rgba(255, 45, 120, 0.2);
+}
+
 /* Glowing primary / consent buttons */
 .site-primary-btn,
 .consent-btn:not(.consent-btn--ghost) {
