@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import JokeCard from "@/components/JokeCard.astro";
 import Faq from "@/components/Faq.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
 import { categories, jokesByCategory, categoryMeta } from "@/lib/categories";
 import { SITE_NAME } from "@/lib/siteConfig";
 import {
@@ -76,6 +77,13 @@ const jsonLd = [
 >
   <div class="site-page container mx-auto px-4 py-8">
     <div class="site-inner site-inner--center">
+      <Breadcrumb
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Categories", href: "/categories" },
+          { name: pageTitle },
+        ]}
+      />
       <h1 class="site-title site-title--compact capitalize">{pageTitle}</h1>
       <p class="site-lede">{pageDescription}</p>
 
