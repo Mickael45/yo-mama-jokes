@@ -120,25 +120,91 @@
 
 /* Candy roast look + staggered joke cards (site-wide) */
 
+/* Roast Mode — bold, dark, neon comedy-brand theme. The whole site is driven
+   by these --site-* tokens, so the palette swap below re-skins every page. */
 :root {
-  --site-bg: linear-gradient(165deg, #fff1f7 0%, #eff6ff 48%, #fef9c3 100%);
-  --site-text: #1e1b4b;
-  --site-muted: rgba(30, 27, 75, 0.7);
-  --site-surface: rgba(255, 255, 255, 0.88);
-  --site-surface-2: rgba(255, 255, 255, 0.65);
-  --site-border: rgba(244, 114, 182, 0.35);
-  --site-accent: #ec4899;
-  --site-accent-2: #38bdf8;
-  --site-link: #db2777;
-  --site-link-hover: #be185d;
-  --site-header-bg: rgba(255, 255, 255, 0.55);
-  --site-footer-bg: rgba(255, 255, 255, 0.5);
-  --site-footer-text: rgba(30, 27, 75, 0.5);
-  --site-radius: 1.5rem;
-  --site-card-shadow: 0 12px 40px rgba(236, 72, 153, 0.15);
-  --site-font-display: var(--font-fredoka), system-ui, sans-serif;
-  --site-font-body: var(--font-nunito), system-ui, sans-serif;
-  --site-title-weight: 600;
+  --site-bg:
+    radial-gradient(80% 60% at 80% -10%, rgba(255, 45, 120, 0.22) 0%, transparent 60%),
+    radial-gradient(70% 50% at 0% 10%, rgba(0, 229, 255, 0.16) 0%, transparent 55%),
+    #0c0a13;
+  --site-text: #f4f2ff;
+  --site-muted: rgba(244, 242, 255, 0.62);
+  --site-surface: #16131f;
+  --site-surface-2: #1e1a2b;
+  --site-card-bg: #16131f; /* used by FAQ items + consent banner */
+  --site-border: rgba(255, 255, 255, 0.1);
+  --site-accent: #ff2d78;
+  --site-accent-2: #00e5ff;
+  --site-link: #00e5ff;
+  --site-link-hover: #7df3ff;
+  --site-header-bg: rgba(12, 10, 19, 0.7);
+  --site-footer-bg: rgba(12, 10, 19, 0.85);
+  --site-footer-text: rgba(244, 242, 255, 0.4);
+  --site-radius: 1rem;
+  --site-card-shadow: 0 0 0 1px rgba(255, 45, 120, 0.16),
+    0 18px 44px rgba(0, 0, 0, 0.55);
+  --site-font-display: var(--font-anton), system-ui, sans-serif;
+  --site-font-body: var(--font-outfit), system-ui, sans-serif;
+  --site-title-weight: 400; /* Anton is a single heavy weight */
+}
+
+/* ---- Roast Mode signature touches ---- */
+
+/* Neon gradient headlines */
+.site-title {
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  background: linear-gradient(100deg, #ffffff 0%, #ff2d78 55%, #00e5ff 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(255, 45, 120, 0.25);
+}
+
+/* Raised dark cards with a subtle vertical gradient */
+.joke-card {
+  background: linear-gradient(180deg, var(--site-surface) 0%, #120f1b 100%);
+}
+
+/* Glowing primary / consent buttons */
+.site-primary-btn,
+.consent-btn:not(.consent-btn--ghost) {
+  background: linear-gradient(135deg, var(--site-accent), #ff6a9c);
+  box-shadow: 0 0 26px rgba(255, 45, 120, 0.45);
+}
+
+/* Drop the playful tilt — Roast Mode cards sit straight and confident */
+.site-feed .joke-card:nth-child(odd),
+.site-feed .joke-card:nth-child(even) {
+  transform: none;
+}
+
+/* Category tiles read as neon labels */
+.site-category-link__title {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Social share icons legible on dark cards (overrides the light-theme
+   hardcoded colors via higher specificity) */
+.joke-card__footer .social-icon-button {
+  background-color: var(--site-surface-2);
+  border-color: var(--site-border);
+  color: var(--site-text);
+}
+.joke-card__footer .facebook-button {
+  color: #5b8def;
+}
+.joke-card__footer .twitter-button {
+  color: var(--site-text);
+}
+.joke-card__footer .social-icon-button:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--site-accent) 24%,
+    var(--site-surface-2)
+  );
+  color: #ffffff;
 }
 
 .site-header {
