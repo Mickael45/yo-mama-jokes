@@ -45,8 +45,8 @@ local Ollama model for dedup). The sitemap updates automatically on the next
 ## Deploy
 
 Static output in `dist/` — deploy to any static host (Vercel, Netlify, etc.).
-Ensure `www` 301-redirects to the apex domain `https://yomamajokescentral.com`
-to match the canonical URLs.
+Ensure the apex domain (`yomamajokescentral.com`) 301-redirects to
+`https://www.yomamajokescentral.com` to match the canonical URLs.
 
 ## Daily rebuild (Vercel Deploy Hook)
 

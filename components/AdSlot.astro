@@ -17,7 +17,7 @@ const renderAd = ADS_ENABLED && !adult;
 <div
   class="ad-slot"
   style={`min-height:${minHeight}px`}
-  aria-hidden="true"
+  aria-hidden={renderAd ? undefined : "true"}
   data-ad-placeholder={renderAd ? undefined : "true"}
 >
   {

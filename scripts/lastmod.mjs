@@ -5,8 +5,6 @@
 // - homepage "/"            -> today (the daily featured set genuinely rotates)
 import { execSync } from "node:child_process";
 
-const SITE = "https://www.yomamajokescentral.com";
-
 function gitDate(file) {
   try {
     const out = execSync(`git log -1 --format=%cI -- "${file}"`, {

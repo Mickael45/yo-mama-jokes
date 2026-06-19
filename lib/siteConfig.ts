@@ -1,5 +1,6 @@
 // Central, single source of truth for site-wide SEO/GEO metadata.
-// Canonical host is the bare apex domain (www should 301-redirect here).
+// Canonical host = www; the apex (yomamajokescentral.com) 301/308-redirects to
+// www in production.
 
 // Canonical host = www (the apex 308-redirects to www in production, so www
 // is the URL Google should index; canonical/sitemap/OG must match it).

@@ -50,19 +50,3 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url
     <span class="sr-only">Copy link</span>
   </button>
 </div>
-
-<script is:inline>
-  document.querySelectorAll(".copy-link-button").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var u = btn.getAttribute("data-copy-url");
-      if (navigator.clipboard && u) {
-        navigator.clipboard.writeText(u).then(function () {
-          btn.classList.add("copied");
-          setTimeout(function () {
-            btn.classList.remove("copied");
-          }, 1200);
-        });
-      }
-    });
-  });
-</script>
