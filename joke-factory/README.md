@@ -45,8 +45,11 @@ EOF
 ```
 
 ### 5. Passwordless suspend (rtcwake)
+`rtcwake` lives at `/usr/bin/rtcwake` on some installs and `/usr/sbin/rtcwake` on
+others. Find the real path first and whitelist exactly that:
 ```bash
-echo "$USER ALL=(root) NOPASSWD: /usr/sbin/rtcwake" | sudo tee /etc/sudoers.d/joke-factory
+RTCWAKE=$(command -v rtcwake)   # e.g. /usr/bin/rtcwake or /usr/sbin/rtcwake
+echo "$USER ALL=(root) NOPASSWD: $RTCWAKE" | sudo tee /etc/sudoers.d/joke-factory
 sudo chmod 440 /etc/sudoers.d/joke-factory
 ```
 

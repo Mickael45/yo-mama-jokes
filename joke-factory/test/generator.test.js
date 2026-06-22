@@ -23,6 +23,16 @@ test("parseJokes strips numbering, bullets and quotes, keeps Yo lines", () => {
   ]);
 });
 
+test("parseJokes keeps 'Yo momma' and smart-quoted lines", () => {
+  const text = [
+    "Yo momma so fat she has her own moon.",
+    "“Yo mamma so old her birth certificate is in Roman numerals.”",
+  ].join("\n");
+  const out = parseJokes(text);
+  assert.ok(out.includes("Yo momma so fat she has her own moon."));
+  assert.ok(out.some((j) => /^Yo mamma so old/.test(j)));
+});
+
 test("generateJokes parses the chat response content", async () => {
   const fakeChat = async () => ({ message: { content: "Yo mama joke one.\nYo mama joke two." } });
   const out = await generateJokes({ chat: fakeChat, model: "m", category: "fat", existingJokes: [], count: 2 });

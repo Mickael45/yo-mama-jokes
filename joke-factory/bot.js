@@ -16,7 +16,7 @@ function keyboardFor(jokes, kept) {
 
 function renderBatch(category, jokes) {
   const lines = jokes.map((j, i) => `${i + 1}. ${j}`).join("\n");
-  return `🎲 Category: *${category}*\n\n${lines || "(no novel jokes this round)"}\n\nTap 👍 to keep, 🔁 for more, 🎯 to steer, ✅ when done.`;
+  return `🎲 Category: ${category.toUpperCase()}\n\n${lines || "(no novel jokes this round)"}\n\nTap 👍 to keep, 🔁 for more, 🎯 to steer, ✅ when done.`;
 }
 
 function runTelegramSession({
@@ -49,7 +49,7 @@ function runTelegramSession({
       });
       kept.clear();
       const opts = keyboardFor(jokes, kept);
-      const msg = await bot.sendMessage(chatId, renderBatch(category, jokes), { parse_mode: "Markdown", ...opts });
+      const msg = await bot.sendMessage(chatId, renderBatch(category, jokes), opts);
       messageId = msg.message_id;
       armTimeout();
     };

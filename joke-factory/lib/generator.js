@@ -19,8 +19,8 @@ function parseJokes(text) {
     .split("\n")
     .map((l) => l.trim())
     .map((l) => l.replace(/^\s*(?:\d+[.)]|[-*•])\s*/, "")) // strip numbering/bullets
-    .map((l) => l.replace(/^["'`]+|["'`]+$/g, "").trim())   // strip wrapping quotes
-    .filter((l) => /^yo\s+mam{1,2}a\b/i.test(l));           // keep only joke lines
+    .map((l) => l.replace(/^["'`“”‘’]+|["'`“”‘’]+$/g, "").trim()) // strip wrapping quotes (incl. smart quotes)
+    .filter((l) => /^yo\s+m[ao]m{1,2}a\b/i.test(l));        // keep only joke lines (mama/mamma/momma)
 }
 
 async function generateJokes({ chat, model, category, existingJokes, count = 5, steer = "" }) {

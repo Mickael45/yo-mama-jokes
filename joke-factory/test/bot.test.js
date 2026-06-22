@@ -48,7 +48,7 @@ test("keyboardFor with no jokes still has regen/steer and Done rows", () => {
 
 test("renderBatch includes the category and numbered jokes", () => {
   const text = renderBatch("fat", JOKES);
-  assert.ok(text.includes("*fat*"), "should bold the category");
+  assert.ok(text.includes("Category: FAT"), "should show the category as plain text");
   JOKES.forEach((j, i) => {
     assert.ok(text.includes(`${i + 1}. ${j}`), `should number joke ${i + 1}`);
   });
@@ -59,6 +59,6 @@ test("renderBatch includes the category and numbered jokes", () => {
 
 test("renderBatch shows a placeholder when there are no jokes", () => {
   const text = renderBatch("fat", []);
-  assert.ok(text.includes("*fat*"));
+  assert.ok(text.includes("Category: FAT"));
   assert.ok(text.includes("(no novel jokes this round)"));
 });
