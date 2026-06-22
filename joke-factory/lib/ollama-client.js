@@ -1,7 +1,8 @@
 const { Ollama } = require("ollama");
 
-function createOllama({ host, model, embeddingModel }) {
-  const client = new Ollama({ host });
+function createOllama({ host, ollamaHost, model, embeddingModel }) {
+  const resolvedHost = host || ollamaHost || "http://127.0.0.1:11434";
+  const client = new Ollama({ host: resolvedHost });
   return {
     model,
     chat: (args) => client.chat(args),
