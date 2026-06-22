@@ -25,6 +25,22 @@ test("generateBatch tops up across attempts until count is reached", async () =>
   assert.ok(out.includes("Yo mama one."));
 });
 
+test("generateBatch retries past a transient generation error", async () => {
+  let call = 0;
+  // First attempt throws (e.g. a transient ollama 500); second succeeds.
+  const chat = async () => {
+    call++;
+    if (call === 1) throw new Error("ollama 500");
+    return { message: { content: "Yo mama one.\nYo mama two." } };
+  };
+  const vectors = { "Yo mama one.": [1, 0, 0], "Yo mama two.": [0, 1, 0] };
+  const embed = async (t) => vectors[t] || [0.5, 0.5, 0.5];
+  const out = await generateBatch({
+    chat, embed, model: "m", category: "fat", existingJokes: [], count: 2, threshold: 0.84,
+  });
+  assert.equal(out.length, 2, "a transient error on one attempt must not abort the session");
+});
+
 test("generateBatch stops at maxAttempts", async () => {
   const chat = async () => ({ message: { content: "" } }); // never produces jokes
   const embed = async () => [1, 0, 0];

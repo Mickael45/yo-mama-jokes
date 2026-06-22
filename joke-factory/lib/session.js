@@ -7,7 +7,15 @@ async function generateBatch({
 }) {
   const collected = [];
   for (let attempt = 0; attempt < maxAttempts && collected.length < count; attempt++) {
-    const candidates = await generateJokes({ chat, model, category, existingJokes, count, steer });
+    let candidates;
+    try {
+      candidates = await generateJokes({ chat, model, category, existingJokes, count, steer });
+    } catch (err) {
+      // A transient ollama error (e.g. a 500 from the CPU runner) should cost
+      // one attempt, not abort the whole nightly session — retry next loop.
+      console.error(`[factory] generation attempt ${attempt + 1} failed: ${err.message}`);
+      continue;
+    }
     if (candidates.length === 0) continue;
     const { novel } = await filterNovel({
       candidates,
