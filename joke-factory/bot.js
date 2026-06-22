@@ -1,4 +1,4 @@
-const DefaultBotApi = require("node-telegram-bot-api");
+const { Telegraf } = require("telegraf");
 const { generateBatch } = require("./lib/session");
 
 function keyboardFor(jokes, kept) {
@@ -22,19 +22,23 @@ function renderBatch(category, jokes) {
 function runTelegramSession({
   botToken, chatId, category, existingJokes,
   chat, embed, model, batchSize = 5, threshold = 0.84,
-  idleTimeoutMin = 120, BotApi = DefaultBotApi,
+  idleTimeoutMin = 120, Bot = Telegraf,
 }) {
   return new Promise((resolve) => {
-    const bot = new BotApi(botToken, { polling: true });
+    const bot = new Bot(botToken);
+    const tg = bot.telegram;
     let jokes = [];
     const kept = new Set();
     let awaitingSteer = false;
     let messageId = null;
     let timer = null;
+    let done = false;
 
     const finish = async (result) => {
+      if (done) return;
+      done = true;
       clearTimeout(timer);
-      try { await bot.stopPolling(); } catch (_) {}
+      try { bot.stop(); } catch (_) {}
       resolve(result);
     };
 
@@ -48,56 +52,60 @@ function runTelegramSession({
         chat, embed, model, category, existingJokes, count: batchSize, threshold, steer,
       });
       kept.clear();
-      const opts = keyboardFor(jokes, kept);
-      const msg = await bot.sendMessage(chatId, renderBatch(category, jokes), opts);
+      const msg = await tg.sendMessage(chatId, renderBatch(category, jokes), keyboardFor(jokes, kept));
       messageId = msg.message_id;
       armTimeout();
     };
 
-    bot.on("callback_query", async (q) => {
+    bot.on("callback_query", async (ctx) => {
+      const q = ctx.callbackQuery;
       if (String(q.message.chat.id) !== String(chatId)) return;
       armTimeout();
       const data = q.data;
       try {
         if (data === "regen") {
-          await bot.answerCallbackQuery(q.id, { text: "Regenerating…" });
+          await ctx.answerCbQuery("Regenerating…");
           await sendBatch();
         } else if (data === "steer") {
           awaitingSteer = true;
-          await bot.answerCallbackQuery(q.id, { text: "Send your steer text" });
-          await bot.sendMessage(chatId, "✍️ Reply with how to steer the next batch (e.g. 'make them about traffic').");
+          await ctx.answerCbQuery("Send your steer text");
+          await tg.sendMessage(chatId, "✍️ Reply with how to steer the next batch (e.g. 'make them about traffic').");
         } else if (data.startsWith("keep:")) {
           const i = parseInt(data.split(":")[1], 10);
           if (kept.has(i)) kept.delete(i); else kept.add(i);
-          await bot.answerCallbackQuery(q.id, { text: kept.has(i) ? "Kept" : "Removed" });
-          await bot.editMessageReplyMarkup(keyboardFor(jokes, kept).reply_markup, {
-            chat_id: chatId, message_id: messageId,
-          });
+          await ctx.answerCbQuery(kept.has(i) ? "Kept" : "Removed");
+          await tg.editMessageReplyMarkup(chatId, messageId, undefined, keyboardFor(jokes, kept).reply_markup);
         } else if (data === "done") {
-          await bot.answerCallbackQuery(q.id, { text: "Saving keepers" });
+          await ctx.answerCbQuery("Saving keepers");
           const approved = [...kept].sort((a, b) => a - b).map((i) => jokes[i]);
-          await bot.sendMessage(chatId, approved.length
+          await tg.sendMessage(chatId, approved.length
             ? `✅ Saving ${approved.length} joke(s) and pushing.`
             : "Nothing kept — nothing committed.");
           await finish(approved);
         }
       } catch (err) {
-        await bot.sendMessage(chatId, `⚠️ ${err.message}`);
+        await tg.sendMessage(chatId, `⚠️ ${err.message}`);
       }
     });
 
-    bot.on("message", async (m) => {
+    bot.on("message", async (ctx) => {
+      const m = ctx.message;
       if (String(m.chat.id) !== String(chatId)) return;
       if (awaitingSteer && m.text && !m.text.startsWith("/")) {
         awaitingSteer = false;
         armTimeout();
-        await bot.sendMessage(chatId, `🎯 Steering: "${m.text}"`);
+        await tg.sendMessage(chatId, `🎯 Steering: "${m.text}"`);
         await sendBatch(m.text);
       }
     });
 
+    bot.catch((err) => { console.error(`[factory] telegraf error: ${err.message}`); });
+
+    // launch() resolves only when the bot stops, so don't await it; start
+    // long-polling, then push the first batch.
+    bot.launch({ dropPendingUpdates: true });
     sendBatch().catch((err) => {
-      bot.sendMessage(chatId, `⚠️ Generation failed: ${err.message}`).finally(() => finish([]));
+      tg.sendMessage(chatId, `⚠️ Generation failed: ${err.message}`).catch(() => {}).finally(() => finish([]));
     });
   });
 }
