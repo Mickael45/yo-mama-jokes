@@ -38,3 +38,15 @@ test("generateJokes parses the chat response content", async () => {
   const out = await generateJokes({ chat: fakeChat, model: "m", category: "fat", existingJokes: [], count: 2 });
   assert.deepEqual(out, ["Yo mama joke one.", "Yo mama joke two."]);
 });
+
+test("generateJokes requests streaming and accumulates the chunks", async () => {
+  async function* fakeStream() {
+    yield { message: { content: "Yo mama joke one.\n" } };
+    yield { message: { content: "Yo mama joke two." } };
+  }
+  let requestedStream = false;
+  const fakeChat = async (args) => { requestedStream = args.stream === true; return fakeStream(); };
+  const out = await generateJokes({ chat: fakeChat, model: "m", category: "fat", existingJokes: [], count: 2 });
+  assert.equal(requestedStream, true, "should request stream:true to avoid undici header timeout");
+  assert.deepEqual(out, ["Yo mama joke one.", "Yo mama joke two."]);
+});

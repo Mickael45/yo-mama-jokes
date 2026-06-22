@@ -25,14 +25,26 @@ function parseJokes(text) {
 
 async function generateJokes({ chat, model, category, existingJokes, count = 5, steer = "" }) {
   const { system, user } = buildPrompt(category, existingJokes, count, steer);
+  // Stream the response: on CPU-only inference a full batch can take ~20 min,
+  // far beyond undici's 300s headers timeout. Streaming makes headers arrive at
+  // the first token and each chunk resets the body timeout.
   const res = await chat({
     model,
+    stream: true,
     messages: [
       { role: "system", content: system },
       { role: "user", content: user },
     ],
   });
-  return parseJokes(res && res.message ? res.message.content : "");
+  let content = "";
+  if (res && typeof res[Symbol.asyncIterator] === "function") {
+    for await (const part of res) {
+      content += (part && part.message && part.message.content) || "";
+    }
+  } else {
+    content = res && res.message ? res.message.content : "";
+  }
+  return parseJokes(content);
 }
 
 module.exports = { buildPrompt, parseJokes, generateJokes };
