@@ -43,3 +43,5 @@ next-env.d.ts
 *mergejokes.js
 
 *combined_arrays.js
+
+.joke-factory.env

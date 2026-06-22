@@ -1,0 +1,15 @@
+[Unit]
+Description=Yo-Mama Joke Factory nightly loop
+After=network-online.target ollama.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=REPO_DIR=%h/yo-mama-jokes
+Environment=WAKE_TIME=20:00
+ExecStart=/usr/bin/env bash %h/yo-mama-jokes/joke-factory/loop.sh
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target
