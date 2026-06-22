@@ -1,0 +1,23 @@
+const { generateJokes } = require("./generator");
+const { filterNovel } = require("./dedup");
+
+async function generateBatch({
+  chat, embed, model, category, existingJokes,
+  count = 5, threshold = 0.84, steer = "", maxAttempts = 5,
+}) {
+  const collected = [];
+  for (let attempt = 0; attempt < maxAttempts && collected.length < count; attempt++) {
+    const candidates = await generateJokes({ chat, model, category, existingJokes, count, steer });
+    if (candidates.length === 0) continue;
+    const { novel } = await filterNovel({
+      candidates,
+      existingJokes: [...existingJokes, ...collected],
+      embed,
+      threshold,
+    });
+    collected.push(...novel);
+  }
+  return collected.slice(0, count);
+}
+
+module.exports = { generateBatch };
