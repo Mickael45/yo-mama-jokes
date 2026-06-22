@@ -5,9 +5,9 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-Environment=REPO_DIR=%h/yo-mama-jokes
+Environment=REPO_DIR=%h/Projects/yo-mama-jokes
 Environment=WAKE_TIME=20:00
-ExecStart=/usr/bin/env bash %h/yo-mama-jokes/joke-factory/loop.sh
+ExecStart=/usr/bin/env bash %h/Projects/yo-mama-jokes/joke-factory/loop.sh
 Restart=always
 RestartSec=30
 
