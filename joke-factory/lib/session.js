@@ -3,7 +3,7 @@ const { filterNovel } = require("./dedup");
 
 async function generateBatch({
   chat, embed, model, category, existingJokes,
-  count = 5, threshold = 0.84, steer = "", maxAttempts = 5,
+  count = 5, threshold = 0.84, steer = "", maxAttempts = 5, onNovel,
 }) {
   const collected = [];
   for (let attempt = 0; attempt < maxAttempts && collected.length < count; attempt++) {
@@ -23,7 +23,14 @@ async function generateBatch({
       embed,
       threshold,
     });
-    collected.push(...novel);
+    if (novel.length === 0) continue;
+    // Don't overshoot the batch size — keep only what still fits the budget.
+    const added = novel.slice(0, count - collected.length);
+    collected.push(...added);
+    // Hand each productive attempt's jokes to the caller as they're found so they
+    // can be delivered immediately, rather than withholding the whole batch until
+    // every attempt finishes (~25-30 min each on CPU).
+    if (onNovel) await onNovel(added);
   }
   return collected.slice(0, count);
 }

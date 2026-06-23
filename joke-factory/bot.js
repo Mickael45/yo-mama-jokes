@@ -19,6 +19,11 @@ function renderBatch(category, jokes) {
   return `🎲 Category: ${category.toUpperCase()}\n\n${lines || "(no novel jokes this round)"}\n\nTap 👍 to keep, 🔁 for more, 🎯 to steer, ✅ when done.`;
 }
 
+function renderGenerating(category, soFar) {
+  const progress = soFar ? ` (${soFar} so far)` : "";
+  return `🎲 Category: ${category.toUpperCase()}\n\n⏳ Generating on CPU — this is slow${progress}. Jokes appear here as they're ready…`;
+}
+
 function runTelegramSession({
   botToken, chatId, category, existingJokes,
   chat, embed, model, batchSize = 5, threshold = 0.84,
@@ -48,13 +53,29 @@ function runTelegramSession({
     };
 
     const sendBatch = async (steer = "") => {
-      jokes = await generateBatch({
-        chat, embed, model, category, existingJokes, count: batchSize, threshold, steer,
-      });
+      jokes = [];
       kept.clear();
-      const msg = await tg.sendMessage(chatId, renderBatch(category, jokes), keyboardFor(jokes, kept));
+      // Send a placeholder immediately so the phone isn't dead-silent for the
+      // ~25-30 min a CPU batch takes; we edit it in place as jokes arrive.
+      const msg = await tg.sendMessage(chatId, renderGenerating(category, 0), keyboardFor(jokes, kept));
       messageId = msg.message_id;
       armTimeout();
+      await generateBatch({
+        chat, embed, model, category, existingJokes, count: batchSize, threshold, steer,
+        onNovel: async (novel) => {
+          jokes.push(...novel);
+          armTimeout();
+          try {
+            await tg.editMessageText(chatId, messageId, undefined, renderBatch(category, jokes), keyboardFor(jokes, kept));
+          } catch (_) { /* a transient edit failure must not abort generation */ }
+        },
+      });
+      // Nothing survived dedup: turn the placeholder into the empty-batch notice.
+      if (jokes.length === 0) {
+        try {
+          await tg.editMessageText(chatId, messageId, undefined, renderBatch(category, jokes), keyboardFor(jokes, kept));
+        } catch (_) {}
+      }
     };
 
     bot.on("callback_query", async (ctx) => {
@@ -110,4 +131,4 @@ function runTelegramSession({
   });
 }
 
-module.exports = { runTelegramSession, keyboardFor, renderBatch };
+module.exports = { runTelegramSession, keyboardFor, renderBatch, renderGenerating };

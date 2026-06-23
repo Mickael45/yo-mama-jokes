@@ -1,6 +1,6 @@
 const { test } = require("node:test");
 const assert = require("node:assert");
-const { keyboardFor, renderBatch } = require("../bot");
+const { keyboardFor, renderBatch, renderGenerating } = require("../bot");
 
 const JOKES = ["Yo mama joke one.", "Yo mama joke two.", "Yo mama joke three."];
 
@@ -55,6 +55,16 @@ test("renderBatch includes the category and numbered jokes", () => {
   // Instruction footer present.
   assert.ok(text.includes("👍 to keep"));
   assert.ok(text.includes("✅ when done"));
+});
+
+test("renderGenerating shows the category and a progress count", () => {
+  const start = renderGenerating("fat", 0);
+  assert.ok(start.includes("Category: FAT"));
+  assert.ok(start.includes("Generating"));
+  assert.ok(!start.includes("so far"), "no count before any jokes are found");
+
+  const mid = renderGenerating("fat", 3);
+  assert.ok(mid.includes("(3 so far)"), "shows how many have arrived");
 });
 
 test("renderBatch shows a placeholder when there are no jokes", () => {
