@@ -160,4 +160,5 @@ export default [
   "Yo mama's so ugly, she gets trick-or-treaters in July.",
 
   "Yo mama so ugly, her smartphone's Face ID requires a CAPTCHA just to prove it's looking at a human.",
-  "Yo mama so ugly, even Face ID shuts its eyes and asks for the passcode.",];
+  "Yo mama so ugly, even Face ID shuts its eyes and asks for the passcode.",  "A blind man felt your mother's face and asked why someone had written a horror novel in braille.",
+];
