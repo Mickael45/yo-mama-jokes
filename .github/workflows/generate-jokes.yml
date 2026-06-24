@@ -22,7 +22,7 @@ jobs:
 
     - name: Install Runtime Dependencies
       run: |
-        pip install google-generativeai pyTelegramBotAPI
+        pip install google-genai pyTelegramBotAPI
 
     - name: Run Gemini Comedy Pipeline
       env:
