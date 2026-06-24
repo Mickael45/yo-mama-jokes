@@ -6,9 +6,11 @@ import requests
 import telebot
 from flask import Flask, request
 
-# Initialize API wrappers
-TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-GITHUB_TOKEN = os.environ["MINIMAL_GITHUB_PAT"]
+# Initialize API wrappers. Read with .get so a missing var never crashes the
+# module at import time (which would 500 even the health check); the values are
+# only actually required when handling a real callback.
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+GITHUB_TOKEN = os.environ.get("MINIMAL_GITHUB_PAT", "")
 # Shared secret Telegram echoes in the X-Telegram-Bot-Api-Secret-Token header.
 # Set the SAME value as the secret_token when registering via setWebhook.
 WEBHOOK_SECRET = os.environ.get("TELEGRAM_WEBHOOK_SECRET", "")
