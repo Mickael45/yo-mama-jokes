@@ -136,8 +136,14 @@ def webhook():
         return "Forbidden", 403
 
     if request.headers.get("content-type") == "application/json":
-        update = telebot.types.Update.de_json(request.get_data().decode("utf-8"))
-        bot.process_new_updates([update])
+        try:
+            update = telebot.types.Update.de_json(request.get_data().decode("utf-8"))
+        except (KeyError, ValueError):
+            # Not a well-formed Telegram update (e.g. a manual probe). Ack and
+            # drop it — returning 5xx would make Telegram retry indefinitely.
+            return "OK", 200
+        if update is not None:
+            bot.process_new_updates([update])
         return "OK", 200
     return "Forbidden", 403
 
