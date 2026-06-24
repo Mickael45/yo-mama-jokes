@@ -3,98 +3,154 @@ import random
 import glob
 import re
 import telebot
+import numpy as np
 from google import genai
 from google.genai import types
 from pydantic import BaseModel, Field
 from typing import List
 
-# 1. Define the mandatory output schema structure
+# 1. Enforce Structured Outputs Schema
 class JokeBatch(BaseModel):
     jokes: List[str] = Field(
-        description="A list containing exactly 5 hilarious, unique, and distinct Yo Mama jokes."
+        description="A list containing exactly 5 hilarious, completely unique, and distinct Yo Mama jokes."
     )
 
-# Initialize APIs
+# 2. Initialization Configurations
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
 client = genai.Client()
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
-def get_existing_jokes():
+# 3. Read pre-existing jokes dynamically from your category tree
+def get_existing_jokes() -> list:
     existing_jokes = []
+    # Reads all markdown files recursively within the jokes folder structure
     for filepath in glob.glob("jokes/**/*.md", recursive=True):
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
+            # Extracts list items starting with '-' or '*'
             jokes = re.findall(r'[-\*]\s*(.+)', content)
             existing_jokes.extend([j.strip() for j in jokes if j.strip()])
     return existing_jokes
 
-CATEGORIES = ["Tech", "Classic", "Short", "Absurd", "Pop Culture", "Gaming", "Sports"]
-selected_category = random.choice(CATEGORIES)
-existing_pool = get_existing_jokes()
-
-# 2. Bind the Pydantic schema structure straight into the Gemini config
-config = types.GenerateContentConfig(
-    temperature=1.0,
-    top_p=0.95,
-    max_output_tokens=2048,
-    response_mime_type="application/json",
-    response_schema=JokeBatch,
-    system_instruction=(
-        "You are a master comedy writer specialized in sharp, clever 'Yo Mama' jokes. "
-        "Your humor uses clever subversions, smart metaphors, and punchy delivery. "
-        "Avoid repetitive templates (e.g., don't start every joke with 'Yo mama so...')."
+# 4. Math-based Embedding Computations for Semantic Deduplication
+def get_embedding(text: str) -> list:
+    """Fetches high-quality dense vector representations from Gemini."""
+    response = client.models.embed_content(
+        model="text-embedding-004",
+        contents=text,
+        config=types.EmbedContentConfig(task_type="SEMANTIC_SIMILARITY")
     )
-)
+    return response.embeddings[0].values
 
-prompt = f"""
-Generate exactly 5 completely unique and hilarious 'Yo Mama' jokes belonging to the '{selected_category}' category.
+def calculate_cosine_similarity(vec_a, vec_b) -> float:
+    """Calculates semantic directional distance. 1.0 means exact meaning copy."""
+    dot_product = np.dot(vec_a, vec_b)
+    norm_a = np.linalg.norm(vec_a)
+    norm_b = np.linalg.norm(vec_b)
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+    return dot_product / (norm_a * norm_b)
 
-CRITICAL INSTRUCTIONS:
-1. Do NOT repeat or closely rephrase any of the existing jokes listed below.
-2. Ensure all 5 jokes use entirely different premises, setups, or angles from one another.
+def is_duplicate_concept(new_joke: str, existing_pool: list, threshold: float = 0.82) -> bool:
+    """Validates the joke against existing jokes using vector calculations."""
+    if not existing_pool:
+        return False
 
----
-EXISTING JOKES POOL (DO NOT REPEAT ANY OF THESE):
-{chr(10).join(existing_pool[:300])}
-"""
+    try:
+        new_vector = get_embedding(new_joke)
+        # Check a randomized sample of 50 jokes to verify vector consistency
+        # (Saves API limits as your joke list scales over thousands of items)
+        sampled_pool = random.sample(existing_pool, min(len(existing_pool), 50))
 
-print("Generating jokes via Gemini 3.5 Flash (Structured Mode)...")
-response = client.models.generate_content(
-    model="gemini-3.5-flash",
-    contents=prompt,
-    config=config
-)
+        for old_joke in sampled_pool:
+            old_vector = get_embedding(old_joke)
+            similarity = calculate_cosine_similarity(new_vector, old_vector)
+            if similarity > threshold:
+                print(f"Skipped conceptual duplicate: '{new_joke}' matched with '{old_joke}' (Score: {similarity:.2f})")
+                return True
+    except Exception as e:
+        print(f"Embedding check skipped or faulted, defaulting to text validation: {e}")
+    return False
 
-# 3. Parse directly as JSON object matching our schema (No regex needed!)
-try:
-    # Under the new SDK, response.parsed automatically converts JSON to your Pydantic object
+# 5. Runtime Execution Loop
+def main():
+    # Derive categories from the jokes/ folder so new category files are picked up automatically
+    available_categories = sorted(
+        os.path.splitext(os.path.basename(f))[0]
+        for f in glob.glob("jokes/*.ts")
+    )
+    selected_category = random.choice(available_categories)
+    existing_pool = get_existing_jokes()
+
+    print(f"Selected category: {selected_category}")
+    print(f"Analyzing {len(existing_pool)} historical jokes for structural comparisons...")
+
+    # Configure Gemini 3.5 Flash Model Config
+    config = types.GenerateContentConfig(
+        temperature=1.0, # High creativity
+        top_p=0.95,
+        max_output_tokens=2048,
+        response_mime_type="application/json",
+        response_schema=JokeBatch,
+        system_instruction=(
+            "You are a master comedy writer specialized in sharp, clever 'Yo Mama' jokes. "
+            "Your humor uses clever subversions, smart metaphors, and punchy delivery. "
+            "Avoid repetitive templates (e.g., don't start every joke with 'Yo mama so...')."
+        )
+    )
+
+    prompt = f"""
+    Generate exactly 5 completely unique and hilarious 'Yo Mama' jokes belonging to the '{selected_category}' category.
+
+    CRITICAL INSTRUCTIONS:
+    1. Do NOT repeat or closely rephrase any of the existing jokes listed below.
+    2. Ensure all 5 jokes use entirely different premises, setups, or angles from one another.
+
+    ---
+    EXISTING JOKES SAMPLE:
+    {chr(10).join(random.sample(existing_pool, min(len(existing_pool), 100)) if existing_pool else [])}
+    """
+
+    print("Generating raw batches via Gemini 3.5 Flash...")
+    response = client.models.generate_content(
+        model="gemini-3.5-flash",
+        contents=prompt,
+        config=config
+    )
+
+    # Convert the Structured Object directly into filtered arrays
     joke_data = response.parsed
-    clean_jokes = [j.strip() for j in joke_data.jokes if j.strip()][:5]
-except Exception as e:
-    print(f"Fallback parsing required due to schema mismatch: {e}")
-    # Backup parsing in case of unexpected structural anomalies
-    import json
-    data = json.loads(response.text)
-    clean_jokes = data.get("jokes", [])
+    candidates = [j.strip() for j in joke_data.jokes if j.strip()]
 
-# Ensure we received jokes back before reaching out to Telegram
-if not clean_jokes:
-    print("Error: No jokes were generated.")
-    exit(1)
+    clean_jokes = []
+    for joke in candidates:
+        if not is_duplicate_concept(joke, existing_pool):
+            clean_jokes.append(joke)
 
-# Build Telegram Interactive UI Payload
-markup = telebot.types.InlineKeyboardMarkup(row_width=1)
-for idx, joke in enumerate(clean_jokes, 1):
-    markup.add(telebot.types.InlineKeyboardButton(text=f"👍 Keep #{idx}", callback_data=f"keep_{idx}"))
+    # Cap list values back to 5 indexes maximum
+    clean_jokes = clean_jokes[:5]
 
-markup.add(telebot.types.InlineKeyboardButton(text="🔄 Rerun Full Batch", callback_data="rerun_all"))
+    if not clean_jokes:
+        print("Pipeline termination notice: No unique candidate selections compiled successfully.")
+        return
 
-message_text = f"✨ **Fresh Yo Mama Jokes ({selected_category})** ✨\n\n"
-for idx, joke in enumerate(clean_jokes, 1):
-    message_text += f"**{idx}.** {joke}\n\n"
+    # 6. Render Telegram Inline Keyboard Callbacks
+    markup = telebot.types.InlineKeyboardMarkup(row_width=1)
+    for idx, joke in enumerate(clean_jokes, 1):
+        markup.add(telebot.types.InlineKeyboardButton(text=f"👍 Keep #{idx}", callback_data=f"keep_{idx}"))
 
-# Dispatch to your chat sequence
-bot.send_message(TELEGRAM_CHAT_ID, message_text, parse_mode="Markdown", reply_markup=markup)
-print(f"Batch of {len(clean_jokes)} jokes dispatched to Telegram successfully.")
+    markup.add(telebot.types.InlineKeyboardButton(text="🔄 Rerun Full Batch", callback_data="rerun_all"))
+
+    # Construct presentation template
+    message_text = f"✨ **Fresh Yo Mama Jokes ({selected_category})** ✨\n\n"
+    for idx, joke in enumerate(clean_jokes, 1):
+        message_text += f"**{idx}.** {joke}\n\n"
+
+    # Send out message
+    bot.send_message(TELEGRAM_CHAT_ID, message_text, parse_mode="Markdown", reply_markup=markup)
+    print(f"Successfully delivered {len(clean_jokes)} pristine options directly to your device.")
+
+if __name__ == "__main__":
+    main()
