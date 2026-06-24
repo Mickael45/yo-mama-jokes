@@ -75,6 +75,11 @@ def trigger_github_rerun() -> bool:
         "Accept": "application/vnd.github.v3+json",
     }
     res = requests.post(url, headers=headers, json={"ref": "main"})
+    if res.status_code != 204:
+        # Surface the reason in the Vercel logs (usually 403/404 = PAT missing
+        # the Actions:write permission, since workflow_dispatch differs from the
+        # Contents write that the Keep button uses).
+        print(f"workflow_dispatch failed: {res.status_code} {res.text}")
     return res.status_code == 204
 
 
@@ -99,6 +104,11 @@ def handle_menu_clicks(call):
                 message_id=call.message.message_id,
                 text="🔄 *Regenerating batch...* New items will arrive in seconds!",
                 parse_mode="Markdown",
+            )
+        else:
+            bot.send_message(
+                call.message.chat.id,
+                "❌ Rerun dispatch failed (see Vercel logs). The MINIMAL_GITHUB_PAT likely lacks Actions: write.",
             )
         return
 
