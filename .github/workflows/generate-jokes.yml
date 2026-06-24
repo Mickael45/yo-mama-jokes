@@ -1,0 +1,32 @@
+name: Daily Comedy Engine
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Fires automatically every single day at 8:00 AM UTC
+  workflow_dispatch:   # Allows manual trigger or instant Telegram API dispatch callbacks
+
+jobs:
+  generate_batch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: true
+
+    - name: Set up Python Runtime
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Runtime Dependencies
+      run: |
+        pip install google-generativeai pyTelegramBotAPI
+
+    - name: Run Gemini Comedy Pipeline
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: python generate_joke.py
