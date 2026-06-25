@@ -81,13 +81,10 @@ def main():
         os.path.splitext(os.path.basename(f))[0]
         for f in glob.glob("jokes/*.ts")
     )
-    selected_category = random.choice(available_categories)
     existing_pool = get_existing_jokes()
-
-    print(f"Selected category: {selected_category}")
     print(f"Analyzing {len(existing_pool)} historical jokes for structural comparisons...")
 
-    # Configure Gemini 3.5 Flash Model Config
+    # Configure Gemini 3.5 Flash Model Config (category-independent)
     config = types.GenerateContentConfig(
         temperature=1.0, # High creativity
         top_p=0.95,
@@ -101,7 +98,21 @@ def main():
         )
     )
 
-    prompt = f"""
+    # Gemini occasionally returns no parseable structured output (safety block or
+    # token cutoff), leaving response.parsed as None. Try a couple of distinct
+    # categories before giving up so one bad category doesn't cost a whole night.
+    tried_categories = set()
+    selected_category = None
+    candidates = []
+    for attempt in range(1, 3):
+        remaining = [c for c in available_categories if c not in tried_categories]
+        if not remaining:
+            break
+        selected_category = random.choice(remaining)
+        tried_categories.add(selected_category)
+        print(f"Selected category: {selected_category} (attempt {attempt})")
+
+        prompt = f"""
     Generate exactly 5 completely unique and hilarious 'Yo Mama' jokes belonging to the '{selected_category}' category.
 
     CRITICAL INSTRUCTIONS:
@@ -113,16 +124,25 @@ def main():
     {chr(10).join(random.sample(existing_pool, min(len(existing_pool), 100)) if existing_pool else [])}
     """
 
-    print("Generating raw batches via Gemini 3.5 Flash...")
-    response = client.models.generate_content(
-        model="gemini-3.5-flash",
-        contents=prompt,
-        config=config
-    )
+        print("Generating raw batches via Gemini 3.5 Flash...")
+        response = client.models.generate_content(
+            model="gemini-3.5-flash",
+            contents=prompt,
+            config=config
+        )
 
-    # Convert the Structured Object directly into filtered arrays
-    joke_data = response.parsed
-    candidates = [j.strip() for j in joke_data.jokes if j.strip()]
+        # response.parsed is None when the response was blocked or truncated.
+        joke_data = response.parsed
+        if joke_data is None or not getattr(joke_data, "jokes", None):
+            print(f"No parseable output for '{selected_category}' (safety block or token cutoff); retrying with another category.")
+            continue
+        candidates = [j.strip() for j in joke_data.jokes if j.strip()]
+        if candidates:
+            break
+
+    if not candidates:
+        print("Pipeline termination notice: no parseable jokes after retries; aborting.")
+        return
 
     clean_jokes = []
     for joke in candidates:
