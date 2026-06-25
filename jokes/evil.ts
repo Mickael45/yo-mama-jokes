@@ -38,4 +38,5 @@ export default [
   "Yo mama’s so evil, she negotiates with ransomware",
   "Yo mama’s so evil, she collects lost causes just to dismantle them",
   "Yo mama's so evil, she tricked the Tooth Fairy into getting a root canal!",
-  "Yo mama's so evil, she makes Dracula seek therapy!",];
+  "Yo mama's so evil, she makes Dracula seek therapy!",  "The Devil keeps a framed portrait of your mother on his desk to remind himself of what he aspires to be.",
+];
