@@ -347,4 +347,5 @@ export default [
   "Yo mama's so fat, when she goes to the gym, they charge her for two memberships.",
   "Yo mama's so fat, GPS reroutes around her.",
 
-  "Yo mama is so fat, the simulation needs a software update just to render her completely.",];
+  "Yo mama is so fat, the simulation needs a software update just to render her completely.",  "Google Maps had to upgrade to 64-bit integers just to calculate your mother's latitude and longitude at the same time.",
+];
