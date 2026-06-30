@@ -15,6 +15,19 @@ class JokeBatch(BaseModel):
         description="A list containing exactly 5 hilarious, completely unique, and distinct Yo Mama jokes."
     )
 
+# Classic "yo mama" opener variants. We shuffle and assign a different one to
+# each joke per run so batches alternate phrasings instead of collapsing onto a
+# single template (e.g. always "Your mother...").
+OPENER_VARIANTS = [
+    "Yo mama so",
+    "Yo momma so",
+    "Yo mama's so",
+    "Ya mama so",
+    "Yer ma's so",
+    "Your mom is so",
+    "Your mother is so",
+]
+
 # 2. Initialization Configurations
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
@@ -94,7 +107,9 @@ def main():
         system_instruction=(
             "You are a master comedy writer specialized in sharp, clever 'Yo Mama' jokes. "
             "Your humor uses clever subversions, smart metaphors, and punchy delivery. "
-            "Avoid repetitive templates (e.g., don't start every joke with 'Yo mama so...')."
+            "Keep the classic 'yo mama' voice, but vary the opener phrasing (Yo mama, "
+            "Yo momma, Ya mama, Your mom, Your mother, etc.) so the batch doesn't feel "
+            "like one repeated template. Vary the joke premises, not just the opening words."
         )
     )
 
@@ -112,12 +127,21 @@ def main():
         tried_categories.add(selected_category)
         print(f"Selected category: {selected_category} (attempt {attempt})")
 
+        # Pick 5 distinct openers (shuffled) so each joke leads with a different
+        # variant and the mix changes from run to run.
+        chosen_openers = random.sample(OPENER_VARIANTS, 5)
+        opener_lines = chr(10).join(
+            f"    Joke {i}: start with \"{opener} ...\"" for i, opener in enumerate(chosen_openers, 1)
+        )
+
         prompt = f"""
     Generate exactly 5 completely unique and hilarious 'Yo Mama' jokes belonging to the '{selected_category}' category.
 
     CRITICAL INSTRUCTIONS:
     1. Do NOT repeat or closely rephrase any of the existing jokes listed below.
     2. Ensure all 5 jokes use entirely different premises, setups, or angles from one another.
+    3. Each joke must use a DIFFERENT opener variant, exactly as assigned here:
+{opener_lines}
 
     ---
     EXISTING JOKES SAMPLE:
