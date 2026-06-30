@@ -20,4 +20,5 @@ export default [
   "Yo mama's so tall, she has to file a 1099 form for every sunset she blocks",
   "Yo mama's so tall, she needs a weather report before she bends over to pick up a penny",
   "Yo mama's so tall, she gets her shoe size in area codes",
-  "Yo mama's so tall, she has to ask the giraffe for a reach-up",];
+  "Yo mama's so tall, she has to ask the giraffe for a reach-up",  "NASA actually had to adjust the trajectory of the International Space Station because your mother stood up to stretch and accidentally photobombed a deep-space transmission.",
+];
