@@ -22,7 +22,7 @@ export const CONTACT_EMAIL = "yomamajokescentral.contact@proton.me";
 
 // Google AdSense publisher ID (matches /public/ads.txt). The loader script in
 // the Layout enables Auto Ads site-wide once the account/site is approved.
-export const ADSENSE_CLIENT = "ca-pub-3950888851778991";
+export const ADSENSE_CLIENT = "ca-pub-6421306327536314";
 
 // Master switch for advertising. Keep FALSE until the content bar is met and
 // AdSense approves. When false: no loader script, no <ins> units render — but
