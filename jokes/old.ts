@@ -89,4 +89,5 @@ export default [
   "Yo mama's so old, she has an autographed scroll from Cleopatra.",
   "Yo mama's so old, she used to run errands for dinosaurs.",
   "Yo mama's so old, her first selfie was a cave painting.",
+  "Your mom is so old, she remembers when the Big Bang was just a quiet whisper.",
 ];
