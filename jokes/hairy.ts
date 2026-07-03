@@ -56,4 +56,5 @@ export default [
   "Yo mama's hair is so dense, she uses a metal detector to find her earrings",
   "Yo mamma's so hairy, she could make a wig for the whole Slytherin House!",
   "Yo mama's hair is so thick, they need a crane to lift it when she gets a perm!",
-  "Your mom is so furry, she tried to pay for groceries with a handful of cedar chips.",];
+  "Your mom is so furry, she tried to pay for groceries with a handful of cedar chips.",  "Ya mama so hairy, her passport photo is just a high-definition close-up of a kiwi fruit.",
+];
