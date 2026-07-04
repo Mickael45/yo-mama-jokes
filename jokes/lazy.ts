@@ -21,4 +21,5 @@ export default [
   "Yo mama's so lazy she's trying to get a cat to do her laundry for her, but it keeps just sitting on the pile and judging her instead",
   "Yo mama so lazy, she started using a drone to deliver her TV remote from the coffee table to the couch, but then she canceled the order because she didn't want to sign for the package.",
   "Yo mama so lazy, she straps her Apple Watch to the Roomba just to close her daily rings.",
-  "Yo mama so lazy, she put a \"No Fly Zone\" sticker on her window so she wouldn't have to swat the flies.",];
+  "Yo mama so lazy, she put a \"No Fly Zone\" sticker on her window so she wouldn't have to swat the flies.",  "Your mother is so lazy, she keeps a laser pointer on her nightstand just to trick the cat into flipping the light switch.",
+];
