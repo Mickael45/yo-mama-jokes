@@ -1,21 +1,35 @@
 name: Daily rebuild
 
-# Triggers a Vercel deploy once a day so the date-seeded "joke of the day"
-# picker rotates and sitemap lastmod for "/" advances. Vercel rebuilds the
-# static site; no serverless function is needed.
+# Rebuilds + deploys the static site once a day so the date-seeded "joke of the
+# day" picker rotates and the "/" sitemap lastmod advances. Without a scheduled
+# deploy, build-time freshness is frozen until the next push (MASTER §5/§14).
 on:
   schedule:
     - cron: "10 5 * * *" # 05:10 UTC daily
   workflow_dispatch: {}
 
 jobs:
-  trigger:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel Deploy Hook
-        run: |
-          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
-            echo "VERCEL_DEPLOY_HOOK_URL secret is not set" >&2
-            exit 1
-          fi
-          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

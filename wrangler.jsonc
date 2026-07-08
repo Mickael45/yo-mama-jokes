@@ -1,0 +1,26 @@
+{
+  // Cloudflare Workers static-assets deploy for the pre-built Astro `dist/`.
+  // Deploy with `npx wrangler deploy` (CI or local). No adapter/Worker code —
+  // the site is fully static; Workers just serves the assets at the edge.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "yo-mama-jokes",
+  "compatibility_date": "2026-07-08",
+
+  "assets": {
+    "directory": "./dist",
+    // Astro uses `trailingSlash: "never"` — mirror it so `/about/` → `/about`.
+    "html_handling": "drop-trailing-slash",
+    // Serve dist/404.html with a real HTTP 404 (no soft-404). See MASTER §1/§14.
+    "not_found_handling": "404-page"
+  },
+
+  // Canonical host = www. Attaching the www custom domain routes it to this
+  // Worker. The apex → www 301 is an edge Redirect Rule (dashboard-only — it
+  // can't live here), recorded in SEO_COOKBOOK.md.
+  "routes": [
+    {
+      "pattern": "www.yomamajokescentral.com",
+      "custom_domain": true
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# https://www.rfc-editor.org/rfc/rfc9116 — served at /.well-known/security.txt
+Contact: mailto:mickaelgomesconsulting@gmail.com
+Expires: 2027-07-08T00:00:00.000Z
+Canonical: https://www.yomamajokescentral.com/.well-known/security.txt
+Preferred-Languages: en, fr
