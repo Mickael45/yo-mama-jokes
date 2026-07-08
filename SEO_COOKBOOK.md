@@ -271,8 +271,11 @@ trust/perf wins and reviewers/AI engines reward a clean, well-configured origin.
 
 ## 9c. ☁️ Cloudflare migration state (2026-07-08) 🆕
 
-Migrated off Vercel to **Cloudflare Workers static assets**, deployed with `wrangler deploy`.
-Canonical host stays **www** (`astro.config.mjs` `site:` + apex→www 301). See MASTER §14.
+Migrated off Vercel to **Cloudflare Workers static assets**, deployed via **Cloudflare Git
+integration (Workers Builds)** — every push to `main` auto-builds (`npm run build` → `dist/`) and
+deploys. The daily comedy-bot commit is itself a push, so it rebuilds the site (rotating the
+date-seeded "joke of the day" + advancing "/" `lastmod`) with no separate cron. No CI deploy
+secrets needed. Canonical host stays **www** (`astro.config.mjs` `site:` + apex→www 301). See MASTER §14.
 
 **Config-as-code (committed, verified via `wrangler deploy --dry-run` + `npm run build`):**
 
@@ -282,7 +285,7 @@ Canonical host stays **www** (`astro.config.mjs` `site:` + apex→www 301). See 
 | **www** custom-domain route (canonical host) | ✅ | `wrangler.jsonc` → `routes` |
 | Response headers (HSTS, `nosniff`, `Referrer-Policy`, immutable `/_astro/*`) | ✅ | `public/_headers` (was `vercel.json`) |
 | `.well-known/security.txt` (RFC 9116) | ✅ | `public/.well-known/security.txt` |
-| Scheduled rebuild → build + `wrangler deploy` | ✅ | `.github/workflows/daily-rebuild.yml` |
+| Deploy on push (incl. daily bot commit) | ✅ | Cloudflare Git integration — no cron, no CI secrets |
 | Retired Vercel config | ✅ | `vercel.json` + `public/vercel.svg` deleted |
 | Path-level `_redirects` | ➖ | none needed yet (host redirect is dashboard, below) |
 
@@ -298,8 +301,9 @@ Canonical host stays **www** (`astro.config.mjs` `site:` + apex→www 301). See 
 | **Crawler Hints** (free IndexNow) | ON — makes hand-rolled `public/indexnow.txt` redundant | 🟡 |
 | Early Hints (HTTP 103) | ON | 🟡 |
 | Don't stack optimizers (Mirage/Polish/minify) | OFF on static output | 🟢 |
+| **Workers Builds** connected to the GitHub repo | build `npm run build`, output `dist`, deploy on push to `main` | 🔴 |
 
-**CI secrets required:** `CLOUDFLARE_API_TOKEN` (Workers deploy scope) + `CLOUDFLARE_ACCOUNT_ID`. The old `VERCEL_DEPLOY_HOOK_URL` can be removed.
+**CI secrets:** none needed (Git integration deploys server-side). The old `VERCEL_DEPLOY_HOOK_URL` secret can be removed.
 
 ---
 
