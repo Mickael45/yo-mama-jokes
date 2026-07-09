@@ -9,7 +9,6 @@ export default [
   "Yo mama so strict, she locked you up in a tower.",
   "Yo mama's unpleasant, even silence is preferable.",
   "Yo mama's slow, she still uses Internet Explorer.",
-  "Yo mommas like a shotgun: two cocks and she blows.",
   "Yo momma's so strong, she can drink peanut butter!",
   "Yo mama so American, she deep-fries her toothpaste.",
   "Yo mama's so weird, she talks to herself on FaceTime.",

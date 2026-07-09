@@ -29,9 +29,10 @@ export const ADSENSE_CLIENT = "ca-pub-6421306327536314";
 // AdSlot still reserves layout height so enabling ads causes no CLS shift.
 export const ADS_ENABLED = false;
 
-// Adult-flagged categories excluded from ad rendering even when ADS_ENABLED is
-// true (AdSense policy risk — see MASTER_SEO_COOKBOOK §9 / §17.3).
-export const ADULT_CATEGORIES = ["dirty-yo-mama-jokes", "nasty-yo-mama-jokes"];
+// Categories excluded from ad rendering even when ADS_ENABLED is true. The
+// site is kept AdSense-safe (no adult/explicit content), so nothing is flagged
+// today — this list is retained as a lever for any future risky category.
+export const ADULT_CATEGORIES: string[] = [];
 
 // Square brand logo (≥112×112) for Organization schema + header. SVG is an
 // accepted Google-Images format (cookbook X2); a raster 512 PNG also exists.

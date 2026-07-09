@@ -163,12 +163,12 @@ export const categoryMeta: Record<Category, CategoryPageData> = {
   },
   [DIRTY_MAMA_JOKE_CATEGORY]: {
     metadata: {
-      title: "Dirty Yo Mama Jokes -  Adult & Hilarious (Warning!) | Yo Mama Jokes Central",
-      description: "Warning: Dirty Yo Mama Jokes - for adults only!  Explore our collection of risqué, suggestive, and hilariously inappropriate insults. Browse with caution (and a sense of humor)!",
+      title: "Dirty Yo Mama Jokes - Filthy & Hilarious | Yo Mama Jokes Central",
+      description: "Dirty Yo Mama Jokes!  Explore our collection of gross-out, grimy, and hilariously filthy insults about the world's least-washed mama. Browse and share the funk!",
     },
     page: {
       title: "Dirty Yo Mama Jokes",
-      description: "Enter at your own risk: Dirty Yo Mama Jokes!  This category is strictly for adults and contains jokes with mature themes, suggestive humor, and risqué insults.  If you're ready for jokes that are definitely not for kids, explore this collection (with caution)!",
+      description: "Dive into Dirty Yo Mama Jokes!  This category is all about grime, funk, and questionable hygiene — over-the-top insults about a mama who makes mud look clean. Gross-out fun for the whole comedy crowd!",
     },
   },
   [TALL_MAMA_JOKE_CATEGORY]: {

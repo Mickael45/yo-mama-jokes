@@ -1,7 +1,5 @@
 export default [
   "Yo mama's so tall, she can see her house from anywhere.",
-  "Yo mama is so tall, she uses the Eiffel Tower as a dildo.",
-  "Yo mamma is so tall she used the Eiffel Tower as a dildo.",
   "Yo mama's so tall, she uses two 100-foot ladders as crutches.",
   "Yo momma's so fat, when she sits down, she's three feet taller.",
   "Yo mama's so tall, she did a push-up and burned her back on the sun.",

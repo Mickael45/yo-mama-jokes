@@ -141,11 +141,11 @@ export const categoryContent: Record<Category, CategoryContent> = {
   [DIRTY_MAMA_JOKE_CATEGORY]: {
     question: "What are dirty yo mama jokes?",
     directAnswer:
-      "Dirty yo mama jokes are the adults-only branch of the format, using suggestive and risqué themes for mature audiences. Clearly labelled as adult humor, they trade on innuendo and edgy wordplay rather than the family-friendly silliness of dumb or tall jokes — and are best kept to grown-up company.",
+      "Dirty yo mama jokes run on grime and gross-out imagery — a mother so filthy she makes mud look clean, or one who fertilizes the lawn by rolling in it. Like nasty jokes, they exaggerate poor hygiene and funk for a big reaction, painting a cartoonish picture of filth rather than describing anyone real.",
     body: [
-      "Dirty jokes are where the format grows up. They lean on innuendo, double meanings, and grown-up themes, and they're squarely meant for adult audiences looking for something racier than the lighthearted categories.",
-      "Because of that, this category is clearly flagged as adult on our site, so younger readers and anyone after clean fun can steer toward categories like dumb, tall, short, or clumsy. Knowing your audience isn't optional here — it's the whole etiquette of the category.",
-      "The better dirty jokes rely on wit and suggestion rather than crudeness for its own sake; a clever double entendre lands harder than something merely shocking. Save them for the right room and they earn their laugh.",
+      "Filth is the whole engine here. These lines pile on the grime — dust bunnies, grease trails, roaches that pack up and leave — until the image is so over-the-top it loops back around to funny. The dirtier and more absurd the picture, the better it lands.",
+      "They're close cousins of nasty and awful jokes, all built on inflating a single trait past the point of realism. The point was never that anyone is actually unwashed; it's the ridiculous scene the line paints — a river that turns to mud, bathwater that runs away rather than touch her.",
+      "Keep them playful and the grime reads as a roast, not an insult. Reach for a fresh image instead of the tired ones, commit to the absurdity, and the groan-laugh takes care of itself.",
     ],
     citations: [
       {

@@ -1,5 +1,4 @@
 export default [
-  "Yo mama is so skinny, her nipples touch.",
   "Yo mama so skinny she can dodge raindrops.",
   "Yo momma so skinny she hang glides with Doritos.",
   "Yo momma so skinny her eyes are in a single file.",
@@ -13,7 +12,6 @@ export default [
   "Yo mama is so skinny that she uses Chapstick for deodorant.",
   "Yo Mama So Skinny She Could Only Fit One Stripe On Her PJs.",
   "Yo mama is so skinny that she uses a Band-Aid as a maxi-pad.",
-  "Yo mama is so skinny that she inspires crack whores to diet.",
   "Yo mama is so skinny that her pants only have one belt loop.",
   "Yo mama is so skinny that she turned sideways and disappeared.",
   "Yo mama is so skinny that she only has one stripe on her pajamas.",
