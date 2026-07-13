@@ -10,7 +10,7 @@ const root = fileURLToPath(new URL("./", import.meta.url));
 export default defineConfig({
   // Canonical host = www (apex 308-redirects here). Used for absolute URLs,
   // the sitemap, and <Seo>.
-  site: "https://www.yomamajokescentral.com",
+  site: "https://yomamajokescentral.com",
   trailingSlash: "never",
   // Self-host Anton (display) + Outfit (body) via Astro's Fonts API: removes
   // the render-blocking third-party Google Fonts request, adds preload +

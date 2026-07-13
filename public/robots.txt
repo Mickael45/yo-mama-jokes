@@ -1,4 +1,4 @@
-# Yo Mama Jokes Central — https://www.yomamajokescentral.com
+# Yo Mama Jokes Central — https://yomamajokescentral.com
 
 User-agent: *
 Allow: /
@@ -22,4 +22,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://www.yomamajokescentral.com/sitemap-index.xml
+Sitemap: https://yomamajokescentral.com/sitemap-index.xml

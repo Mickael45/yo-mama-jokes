@@ -24,10 +24,16 @@
     "run_worker_first": ["/api/*"]
   },
 
-  // Canonical host = www. Attaching the www custom domain routes it to this
-  // Worker. The apex → www 301 is an edge Redirect Rule (dashboard-only — it
-  // can't live here), recorded in SEO_COOKBOOK.md.
+  // Canonical host = apex. Bind BOTH apex and www to this Worker so both resolve
+  // and get certs. www → apex is an edge Redirect Rule (dashboard-only, "Redirect
+  // from WWW to root"). NOTE: this Worker also serves the Telegram webhook at
+  // /api/webhook — re-register that webhook to the APEX URL before adding the
+  // www→apex rule, or Telegram (which won't follow a 301) will break.
   "routes": [
+    {
+      "pattern": "yomamajokescentral.com",
+      "custom_domain": true
+    },
     {
       "pattern": "www.yomamajokescentral.com",
       "custom_domain": true

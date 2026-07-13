@@ -1,10 +1,8 @@
 // Central, single source of truth for site-wide SEO/GEO metadata.
-// Canonical host = www; the apex (yomamajokescentral.com) 301/308-redirects to
-// www in production.
-
-// Canonical host = www (the apex 308-redirects to www in production, so www
-// is the URL Google should index; canonical/sitemap/OG must match it).
-export const SITE_URL = "https://www.yomamajokescentral.com";
+// Canonical host = apex (portfolio doctrine). www (www.yomamajokescentral.com)
+// 301-redirects to the apex in production via a Cloudflare dashboard Redirect
+// Rule, so the apex is the URL Google should index; canonical/sitemap/OG match it.
+export const SITE_URL = "https://yomamajokescentral.com";
 export const SITE_NAME = "Yo Mama Jokes Central";
 export const SITE_TAGLINE = "Hilarious Yo Mama Jokes for Everyone";
 export const SITE_DESCRIPTION =
