@@ -2,10 +2,8 @@
 import "@/styles/globals.css";
 import { Font } from "astro:assets";
 import Seo from "@/components/Seo.astro";
-import ConsentBanner from "@/components/ConsentBanner.astro";
 import InstallPrompt from "@/components/InstallPrompt.astro";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
-import { ADSENSE_CLIENT, ADS_ENABLED } from "@/lib/siteConfig";
 
 interface Props {
   title: string;
@@ -17,7 +15,6 @@ interface Props {
 }
 
 const { title, description, path, image, noindex, jsonLd } = Astro.props;
-const GA_ID = "G-L8P7J1TJSY";
 const year = new Date().getFullYear();
 ---
 
@@ -27,15 +24,10 @@ const year = new Date().getFullYear();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0c0a13" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.google-analytics.com" />
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
     <meta
       name="google-site-verification"
       content="5LWdds1LtKAg7v_mojIG0FRYVWNkL8FIF3Q1f5ZT0n4"
     />
-    <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
     {/* Bing Webmaster Tools — replace REPLACE_WITH_BING_TOKEN after verifying
         the site at https://www.bing.com/webmasters (gateway to Copilot). */}
     <meta name="msvalidate.01" content="REPLACE_WITH_BING_TOKEN" />
@@ -64,78 +56,6 @@ const year = new Date().getFullYear();
       is:inline
       set:html={JSON.stringify([organizationSchema(), websiteSchema()])}
     />
-
-    {/* Google Consent Mode v2 — MUST run before GA & AdSense load.
-        Personalized ads/analytics are denied by default in the EEA, UK & CH
-        until the user consents (banner below); granted elsewhere. A stored
-        choice from a previous visit is re-applied immediately. */}
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      window.gtag = gtag;
-      gtag("consent", "default", {
-        ad_storage: "granted",
-        ad_user_data: "granted",
-        ad_personalization: "granted",
-        analytics_storage: "granted",
-      });
-      gtag("consent", "default", {
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        analytics_storage: "denied",
-        wait_for_update: 500,
-        region: [
-          "AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU",
-          "IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES",
-          "SE","IS","LI","NO","GB","CH",
-        ],
-      });
-      try {
-        var ymjcConsent = localStorage.getItem("ymjc-consent");
-        if (ymjcConsent === "granted") {
-          gtag("consent", "update", {
-            ad_storage: "granted",
-            ad_user_data: "granted",
-            ad_personalization: "granted",
-            analytics_storage: "granted",
-          });
-        } else if (ymjcConsent === "denied") {
-          gtag("consent", "update", {
-            ad_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied",
-            analytics_storage: "denied",
-          });
-        }
-      } catch (e) {}
-    </script>
-
-    {/* Google Analytics */}
-    <script
-      is:inline
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-    <script is:inline define:vars={{ GA_ID }}>
-      // gtag()/dataLayer are defined by the Consent Mode script above.
-      gtag("js", new Date());
-      gtag("config", GA_ID);
-    </script>
-
-    {/* Google AdSense (Auto Ads). Loaded in production only to avoid invalid
-        impressions during local development. */}
-    {
-      import.meta.env.PROD && ADS_ENABLED && (
-        <script
-          is:inline
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          crossorigin="anonymous"
-        />
-      )
-    }
   </head>
 
   <body class="antialiased">
@@ -179,8 +99,6 @@ const year = new Date().getFullYear();
         </p>
       </footer>
     </div>
-
-    <ConsentBanner />
 
     {/* Custom "Install app" affordance. Prod-only: the service worker that makes
         the site installable (and fires beforeinstallprompt) is itself prod-only. */}

@@ -20,20 +20,6 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og/default.png`;
 
 export const CONTACT_EMAIL = "yomamajokescentral.contact@proton.me";
 
-// Google AdSense publisher ID (matches /public/ads.txt). The loader script in
-// the Layout enables Auto Ads site-wide once the account/site is approved.
-export const ADSENSE_CLIENT = "ca-pub-6421306327536314";
-
-// Master switch for advertising. Keep FALSE until the content bar is met and
-// AdSense approves. When false: no loader script, no <ins> units render — but
-// AdSlot still reserves layout height so enabling ads causes no CLS shift.
-export const ADS_ENABLED = false;
-
-// Categories excluded from ad rendering even when ADS_ENABLED is true. The
-// site is kept AdSense-safe (no adult/explicit content), so nothing is flagged
-// today — this list is retained as a lever for any future risky category.
-export const ADULT_CATEGORIES: string[] = [];
-
 // Square brand logo (≥112×112) for Organization schema + header. SVG is an
 // accepted Google-Images format (cookbook X2); a raster 512 PNG also exists.
 export const LOGO_URL = `${SITE_URL}/logo.svg`;

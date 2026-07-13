@@ -10,8 +10,7 @@
  * - Hidden when already installed (standalone), once dismissed, or after install.
  *
  * Mounted prod-only from Layout.astro (the service worker — required for
- * `beforeinstallprompt` — is itself prod-only). Sits above the consent banner
- * while that is visible so the two never overlap.
+ * `beforeinstallprompt` — is itself prod-only).
  */
 ---
 
@@ -35,19 +34,8 @@
     function dismissed() { try { return localStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
     function remember() { try { localStorage.setItem(KEY, "1"); } catch (e) {} }
 
-    // Keep the bar clear of the cookie-consent banner while that is showing.
-    function reposition() {
-      var cb = document.getElementById("consent-banner");
-      bar.style.bottom = cb && !cb.hidden ? cb.getBoundingClientRect().height + 24 + "px" : "";
-    }
-    function show() { if (!dismissed()) { reposition(); bar.hidden = false; } }
+    function show() { if (!dismissed()) { bar.hidden = false; } }
     function hide() { bar.hidden = true; }
-
-    var cb = document.getElementById("consent-banner");
-    if (cb && "MutationObserver" in window) {
-      new MutationObserver(reposition).observe(cb, { attributes: true, attributeFilter: ["hidden"] });
-    }
-    window.addEventListener("resize", reposition);
 
     close.addEventListener("click", function () { hide(); remember(); });
     window.addEventListener("appinstalled", function () { hide(); remember(); });
