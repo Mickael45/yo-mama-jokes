@@ -346,4 +346,5 @@ export default [
 
   "Yo mama is so fat, the simulation needs a software update just to render her completely.",  "Google Maps had to upgrade to 64-bit integers just to calculate your mother's latitude and longitude at the same time.",
   "Yo mama so fat, when she steps on a scale, the screen says 'To Be Continued...'",
+  "Your mother is so fat, physicists use her gravity to slingshot satellites into deep space.",
 ];
