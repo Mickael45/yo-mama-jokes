@@ -28,4 +28,5 @@ export default [
   "Yo mama’s so bald, she pays a team of squirrels to keep her head shaded",
   "Yo mamma is so bald, she donates to wig companies anonymously",
   "Yo mamma is so bald, even an empty nest feels overcrowded!",  "Yo momma so bald, she can't wear a turtleneck without looking like a stick of roll-on deodorant.",
+  "Your mother is so bald, when she wears a black turtleneck she looks like a freshly uncapped Sharpie.",
 ];
