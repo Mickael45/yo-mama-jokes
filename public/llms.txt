@@ -2,13 +2,13 @@
 
 > Yo Mama Jokes Central (https://yomamajokescentral.com) is a free website
 > featuring hundreds of Yo Mama jokes organized into 21 themed categories,
-> plus a hand-picked set of 5 featured jokes refreshed daily. A "Yo Mama joke"
+> plus a rotating hand-picked set of 5 featured jokes. A "Yo Mama joke"
 > is a short insult-comedy one-liner that humorously exaggerates a trait of
 > someone's mother.
 
 ## Main pages
 
-- [Home — Featured jokes of the day](https://yomamajokescentral.com/)
+- [Home — Featured jokes](https://yomamajokescentral.com/)
 - [All joke categories](https://yomamajokescentral.com/categories)
 
 ## Joke categories

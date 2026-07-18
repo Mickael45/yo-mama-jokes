@@ -8,8 +8,8 @@ const root = fileURLToPath(new URL("./", import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-  // Canonical host = www (apex 308-redirects here). Used for absolute URLs,
-  // the sitemap, and <Seo>.
+  // Canonical host = apex (www 301-redirects here via a Cloudflare Redirect
+  // Rule). Used for absolute URLs, the sitemap, and <Seo>.
   site: "https://yomamajokescentral.com",
   trailingSlash: "never",
   // Self-host Anton (display) + Outfit (body) via Astro's Fonts API: removes

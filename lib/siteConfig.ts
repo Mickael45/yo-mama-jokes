@@ -6,7 +6,7 @@ export const SITE_URL = "https://yomamajokescentral.com";
 export const SITE_NAME = "Yo Mama Jokes Central";
 export const SITE_TAGLINE = "Hilarious Yo Mama Jokes for Everyone";
 export const SITE_DESCRIPTION =
-  "The funniest Yo Mama Jokes online. Get your daily dose of hilarious insults and witty comebacks, or browse hundreds of jokes across 21 categories.";
+  "The funniest Yo Mama Jokes online. Get your fix of hilarious insults and witty comebacks, or browse hundreds of jokes across 21 categories.";
 
 // Twitter / X handle (without the @). Update if the brand handle changes.
 export const TWITTER_HANDLE = "";

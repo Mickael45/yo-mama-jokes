@@ -22,7 +22,7 @@ const HOME_FAQ: FaqItem[] = [
   {
     question: "How often are new jokes added?",
     answer:
-      "We refresh a featured set of 5 hand-picked jokes every day, and our category collections are updated regularly with new, verified Yo Mama jokes.",
+      "We rotate a featured set of 5 hand-picked jokes, and our category collections are updated regularly with new, verified Yo Mama jokes.",
   },
   {
     question: "Can I share these jokes on social media?",
@@ -33,13 +33,13 @@ const HOME_FAQ: FaqItem[] = [
 
 const title = `${SITE_NAME} - ${SITE_TAGLINE}`;
 const description =
-  "The funniest Yo Mama Jokes online! Get your daily dose of hilarious insults and witty comebacks. Browse 21 categories or enjoy our featured jokes of the day.";
+  "The funniest Yo Mama Jokes online! Get your fix of hilarious insults and witty comebacks. Browse 21 categories or enjoy our rotating featured jokes.";
 
 const jsonLd = [
   jokeCollectionSchema({
-    name: `${SITE_NAME} — Featured Jokes of the Day`,
+    name: `${SITE_NAME} — Featured Jokes`,
     description:
-      "A daily selection of 5 hand-picked Yo Mama jokes from across our categories.",
+      "A rotating selection of 5 hand-picked Yo Mama jokes from across our categories.",
     path: "/",
     jokes: featuredJokes.map(({ joke }) => joke),
   }),
@@ -53,7 +53,7 @@ const jsonLd = [
       <h1 class="site-title">The Funniest Yo Mama Jokes Online</h1>
       <p class="site-lede">
         Get ready to laugh with the funniest Yo Mama Jokes online! Enjoy our
-        daily selection of 5 hilarious jokes, or browse hundreds more in our
+        rotating selection of 5 hilarious jokes, or browse hundreds more in our
         categories. Find the perfect joke to share with friends!
       </p>
 
@@ -81,7 +81,7 @@ const jsonLd = [
           >, <a href="/jokes/dumb-yo-mama-jokes">dumb jokes</a>, <a
             href="/jokes/old-yo-mama-jokes">old jokes</a
           >, or something a little edgier, you'll find a category to match every
-          mood. Bookmark us and come back daily for a fresh set of featured
+          mood. Bookmark us and check back for a fresh set of featured
           jokes.
         </p>
       </div>
