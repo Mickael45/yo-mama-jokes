@@ -13,6 +13,12 @@
 # testing
 /coverage
 
+# playwright (accessibility gate — a11y.spec.ts)
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # astro
 /dist/
 /.astro/

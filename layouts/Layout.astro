@@ -16,6 +16,10 @@ interface Props {
 
 const { title, description, path, image, noindex, jsonLd } = Astro.props;
 const year = new Date().getFullYear();
+
+// Current path (no trailing slash) for aria-current on the active nav item.
+const here = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (href: string) => (href === "/" ? here === "/" : here === href);
 ---
 
 <!doctype html>
@@ -59,6 +63,7 @@ const year = new Date().getFullYear();
   </head>
 
   <body class="antialiased">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="site-shell flex flex-col min-h-screen">
       <header class="site-header py-4">
         <div
@@ -73,26 +78,26 @@ const year = new Date().getFullYear();
               height="70"
             />
           </a>
-          <nav class="site-nav space-x-3 sm:space-x-6">
-            <a href="/" class="site-nav-link">Home</a>
-            <a href="/categories" class="site-nav-link">Categories</a>
-            <a href="/about" class="site-nav-link">About</a>
-            <a href="/contact" class="site-nav-link">Contact</a>
+          <nav class="site-nav space-x-3 sm:space-x-6" aria-label="Primary">
+            <a href="/" class="site-nav-link" aria-current={isCurrent("/") ? "page" : undefined}>Home</a>
+            <a href="/categories" class="site-nav-link" aria-current={isCurrent("/categories") ? "page" : undefined}>Categories</a>
+            <a href="/about" class="site-nav-link" aria-current={isCurrent("/about") ? "page" : undefined}>About</a>
+            <a href="/contact" class="site-nav-link" aria-current={isCurrent("/contact") ? "page" : undefined}>Contact</a>
           </nav>
         </div>
       </header>
 
-      <main class="site-main mt-8 flex-grow">
+      <main id="main-content" tabindex="-1" class="site-main mt-8 flex-grow">
         <slot />
       </main>
 
       <footer class="site-footer py-8 mt-16 text-center">
-        <nav class="site-nav space-x-6 mb-3">
-          <a href="/categories" class="site-nav-link">Categories</a>
-          <a href="/about" class="site-nav-link">About</a>
-          <a href="/contact" class="site-nav-link">Contact</a>
-          <a href="/privacy-policy" class="site-nav-link">Privacy Policy</a>
-          <a href="/terms" class="site-nav-link">Terms</a>
+        <nav class="site-nav space-x-6 mb-3" aria-label="Footer">
+          <a href="/categories" class="site-nav-link" aria-current={isCurrent("/categories") ? "page" : undefined}>Categories</a>
+          <a href="/about" class="site-nav-link" aria-current={isCurrent("/about") ? "page" : undefined}>About</a>
+          <a href="/contact" class="site-nav-link" aria-current={isCurrent("/contact") ? "page" : undefined}>Contact</a>
+          <a href="/privacy-policy" class="site-nav-link" aria-current={isCurrent("/privacy-policy") ? "page" : undefined}>Privacy Policy</a>
+          <a href="/terms" class="site-nav-link" aria-current={isCurrent("/terms") ? "page" : undefined}>Terms</a>
         </nav>
         <p class="site-footer-text">
           &copy; {year} Yo Mama Jokes Central. All rights reserved.
@@ -104,6 +109,10 @@ const year = new Date().getFullYear();
         the site installable (and fires beforeinstallprompt) is itself prod-only. */}
     {import.meta.env.PROD && <InstallPrompt />}
 
+    {/* Polite live region: announces copy-link success to screen readers
+        (WCAG 4.1.3 Status Messages). Visually hidden. */}
+    <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+
     <script is:inline>
       document.addEventListener("click", function (e) {
         var btn = e.target.closest ? e.target.closest(".copy-link-button") : null;
@@ -112,8 +121,15 @@ const year = new Date().getFullYear();
         if (navigator.clipboard && u) {
           navigator.clipboard.writeText(u).then(function () {
             btn.classList.add("copied");
+            var status = document.getElementById("copy-status");
+            if (status) {
+              status.textContent = "";
+              // Reassign on the next tick so AT reliably announces a change.
+              setTimeout(function () { status.textContent = "Link copied to clipboard"; }, 30);
+            }
             setTimeout(function () {
               btn.classList.remove("copied");
+              if (status) status.textContent = "";
             }, 1200);
           });
         }

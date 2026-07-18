@@ -1,0 +1,22 @@
+# Accessibility CI gate — blocks merges on axe / keyboard / reflow failures.
+# playwright.config.ts's webServer runs `npm run build && npm run preview`, so
+# no separate build step is needed here.
+name: accessibility
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test a11y --reporter=list

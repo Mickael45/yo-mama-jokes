@@ -44,6 +44,9 @@
     background-repeat: var(--site-bg-repeat, no-repeat);
     color: var(--site-text, #333333);
     font-family: var(--site-font-body, system-ui, sans-serif);
+    /* Long unbreakable tokens (emails, URLs) must wrap rather than force a
+       horizontal scrollbar at 320px (WCAG 1.4.10 Reflow). */
+    overflow-wrap: break-word;
     transition:
       background 0.35s ease,
       color 0.25s ease;
@@ -51,11 +54,59 @@
 
   a {
     color: var(--site-link, #e2746d);
+    /* Break long link labels (e.g. the contact/privacy email) so they reflow. */
+    overflow-wrap: anywhere;
     transition: color 200ms;
 
     &:hover {
       color: var(--site-link-hover, #f2ca5e);
     }
+  }
+
+  /* Site-wide visible focus indicator (WCAG 2.4.7 / 2.4.11). High-contrast
+     cyan (--site-accent-2 ≈ 12.8:1 on the dark background) applied on keyboard
+     focus for every interactive element. Never remove this to satisfy a design. */
+  :focus-visible {
+    outline: 3px solid var(--site-accent-2, #00e5ff);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+}
+
+/* Skip link — first focusable element; jumps keyboard/AT users to <main>
+   (WCAG 2.4.1 Bypass Blocks). Off-screen until focused. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--site-accent, #ff2d78);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 0.5rem;
+  color: #ffffff;
+}
+
+/* Respect the user's reduced-motion preference: neutralize transitions,
+   animations, and the alternating joke-card tilt (WCAG 2.3.3). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .site-feed .joke-card:nth-child(odd),
+  .site-feed .joke-card:nth-child(even) {
+    transform: none !important;
   }
 }
 
@@ -64,7 +115,7 @@
 }
 
 .social-icon-button {
-  @apply inline-flex items-center justify-center rounded-full p-2 transition-colors duration-200 focus:outline-none;
+  @apply inline-flex items-center justify-center rounded-full p-2 transition-colors duration-200;
   background-color: color-mix(in srgb, var(--site-surface-2) 80%, transparent);
   border: 1px solid var(--site-border);
   border-radius: 50%;
@@ -139,7 +190,7 @@
   --site-link-hover: #7df3ff;
   --site-header-bg: rgba(12, 10, 19, 0.7);
   --site-footer-bg: rgba(12, 10, 19, 0.85);
-  --site-footer-text: rgba(244, 242, 255, 0.4);
+  --site-footer-text: rgba(244, 242, 255, 0.62);
   --site-radius: 1rem;
   --site-card-shadow: 0 0 0 1px rgba(255, 45, 120, 0.16),
     0 18px 44px rgba(0, 0, 0, 0.55);
@@ -179,12 +230,6 @@
     0 0 0 1px rgba(255, 45, 120, 0.4),
     0 22px 54px rgba(255, 45, 120, 0.2);
   border-color: rgba(255, 45, 120, 0.4);
-}
-
-/* Glowing primary buttons */
-.site-primary-btn {
-  background: linear-gradient(135deg, var(--site-accent), #ff6a9c);
-  box-shadow: 0 0 26px rgba(255, 45, 120, 0.45);
 }
 
 /* Drop the playful tilt — Roast Mode cards sit straight and confident */
@@ -238,9 +283,18 @@
 }
 
 .site-nav-link {
+  display: inline-block;
+  /* Padding lifts the hit area to ≥24px in both axes (WCAG 2.5.8 Target Size). */
+  padding: 0.35rem 0.4rem;
   color: var(--site-muted, #404040);
   font-weight: 600;
   transition: color 0.2s ease;
+}
+
+/* Current-page nav item: stronger weight + full-strength color (paired with
+   aria-current="page" in the markup). */
+.site-nav-link[aria-current="page"] {
+  color: var(--site-text, #171717);
 }
 
 .site-nav-link:hover {
@@ -288,9 +342,12 @@
   padding: 0.75rem 1.5rem;
   font-weight: 700;
   border-radius: var(--site-radius, 0.5rem);
-  background: var(--site-accent);
+  /* Fill darkened from the raw neon accent so white label text clears 4.5:1
+     (WCAG 1.4.3): #e11d63 ≈ 4.63:1, #c9134f ≈ 5.69:1. The pink neon glow is
+     kept at the brand accent, preserving the Roast Mode look. */
+  background: linear-gradient(135deg, #e11d63, #c9134f);
   color: #fff;
-  box-shadow: var(--site-card-shadow);
+  box-shadow: 0 0 26px rgba(255, 45, 120, 0.45);
   transition:
     transform 0.15s ease,
     filter 0.15s ease;

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "audit": "web-accessibility",
+  "site": "yo-mama-jokes",
+  "generated_at": "2026-07-18T00:00:00Z",
+  "target": {
+    "url": "https://yomamajokescentral.com"
+  },
+  "pages_audited": 10,
+  "checks_run": {
+    "axe-violations": 1,
+    "keyboard-operable": 1,
+    "no-keyboard-trap": 1,
+    "visible-focus": 1,
+    "focus-order-logical": 1,
+    "skip-link": 1,
+    "reflow-320": 1,
+    "zoom-400": 1,
+    "zoom-not-disabled": 1,
+    "reduced-motion": 1,
+    "text-contrast": 1,
+    "ui-contrast": 1,
+    "headings-landmarks": 1,
+    "accessible-names": 1,
+    "alt-text": 1,
+    "target-size": 1,
+    "status-announcements": 1,
+    "descriptive-links": 1,
+    "aria-current": 1,
+    "framework-a11y-lint": 1,
+    "wcag-checklist-disposition": 1
+  },
+  "checks_skipped": {
+    "form-labels": "no HTML forms on the site — the contact page uses a mailto: link, not a form",
+    "form-errors-associated": "no HTML forms on the site",
+    "autocomplete-tokens": "no form inputs on the site",
+    "captions": "no video or audio content anywhere on the site",
+    "lighthouse-a11y-100": "Lighthouse's accessibility category is a subset of axe-core; the full axe WCAG 2.2 A-AA suite already passes with 0 violations across all 8 routes + 2 states, so it adds no signal"
+  },
+  "issue_counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+  },
+  "issues": [],
+  "report_path": "audits/web-accessibility/2026-07-18-report.md"
+}
