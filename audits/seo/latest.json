@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "audit": "seo",
+  "site": "yo-mama-jokes",
+  "generated_at": "2026-07-18T13:52:27Z",
+  "target": {
+    "url": "https://yomamajokescentral.com"
+  },
+  "pages_audited": 28,
+  "checks_run": {
+    "raw-html-content": 1,
+    "robots-txt-valid": 1,
+    "robots-prod-vs-repo": 1,
+    "sitemap-valid": 1,
+    "canonical-present": 1,
+    "canonical-resolves-200": 1,
+    "host-canonicalization": 1,
+    "public-dns-resolution": 1,
+    "indexability-directives": 1,
+    "soft-404-real-status": 1,
+    "lastmod-honest": 1,
+    "title-unique": 1,
+    "title-length": 1,
+    "meta-description-unique": 2,
+    "meta-description-length": 1,
+    "single-h1": 1,
+    "html-lang": 1,
+    "viewport-meta": 1,
+    "schema-valid": 1,
+    "schema-matches-content": 1,
+    "og-image-present": 1,
+    "open-graph-complete": 1,
+    "favicon-icon-set": 1,
+    "manifest-installable": 1,
+    "core-web-vitals": 1,
+    "security-headers": 1,
+    "ai-crawler-access": 1,
+    "publisher-identity-visible": 1,
+    "eeat-identity": 1,
+    "content-spam-guardrails": 1,
+    "orphaned-pages": 1,
+    "click-depth-exceeded": 1
+  },
+  "checks_skipped": {
+    "hreflang-valid": "single-language site (en-US); no alternate locales",
+    "ads-txt-valid": "ad-free — AdSense removed in commit edbb8f8; no ads.txt expected",
+    "ad-unit-renders": "ad-free — no ad loader script present",
+    "publisher-id-correct": "ad-free — no ad publisher ID present",
+    "cmp-consent-footer": "no CMP ships — no ads and no consent-requiring analytics",
+    "consent-mode-region-scoped": "no Consent Mode / GA / ad tags present"
+  },
+  "issue_counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+  },
+  "issues": [],
+  "report_path": "audits/seo/2026-07-18-report.md"
+}
