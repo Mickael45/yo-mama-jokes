@@ -2,7 +2,7 @@
   "schema_version": 1,
   "audit": "seo",
   "site": "yo-mama-jokes",
-  "generated_at": "2026-07-18T13:52:27Z",
+  "generated_at": "2026-07-21T13:35:56Z",
   "target": {
     "url": "https://yomamajokescentral.com"
   },
@@ -33,7 +33,7 @@
     "favicon-icon-set": 1,
     "manifest-installable": 1,
     "core-web-vitals": 1,
-    "security-headers": 1,
+    "security-headers": 2,
     "ai-crawler-access": 1,
     "publisher-identity-visible": 1,
     "eeat-identity": 1,
