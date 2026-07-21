@@ -44,4 +44,5 @@ export default [
   "Yo mama's so nasty, even seagulls fly backwards at the sight of her!",
   "Yo mama's so nasty, even Google Maps warns users to avoid her vicinity due to extreme biohazard risk",
   "Yo mama's so nasty she has to wear a Hazmat suit to her own birthday party and still nobody wants to attend",  "Deodorant companies don't test on animals anymore; they just send their strongest formulas to your mama for the ultimate stress test.",
+  "Yo momma so funky, she walked past a dumpster and the trash started gagging.",
 ];
