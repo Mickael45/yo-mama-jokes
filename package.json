@@ -17,7 +17,7 @@
     "@astrojs/check": "^0.9.9",
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.61.1",
-    "@tailwindcss/postcss": "^4.3.1",
+    "@tailwindcss/vite": "^4.3.3",
     "ollama": "^0.5.14",
     "tailwindcss": "^4.3.1",
     "telegraf": "^4.16.3",

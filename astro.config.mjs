@@ -1,6 +1,7 @@
 import { defineConfig, fontProviders } from "astro/config";
 import { fileURLToPath } from "node:url";
 import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
 import { lastmodForUrl } from "./scripts/lastmod.mjs";
 import pwa from "./scripts/pwa.mjs";
 
@@ -48,8 +49,9 @@ export default defineConfig({
     pwa(),
   ],
   vite: {
-    // Tailwind v4 runs via PostCSS (postcss.config.mjs) for compatibility with
-    // Astro 6's rolldown bundler.
+    // Tailwind v4 runs via its official Vite plugin (rolldown-vite in Astro 7
+    // resolves `@import "tailwindcss"` before a PostCSS plugin could intercept).
+    plugins: [tailwindcss()],
     resolve: {
       // "@/..." -> repo root. Regex-scoped so it never matches "@astrojs/*".
       alias: [{ find: /^@\//, replacement: root }],
