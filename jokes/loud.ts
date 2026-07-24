@@ -11,4 +11,5 @@ export default [
   "Yo mama’s so loud, her karaoke night caused a nearby seismograph to register a minor earthquake",
   "Yo mamma's so loud, even her silent films come with subtitles!",
   "Yo mama's so loud, they named a freight train after her",
-  "Your mom is so loud, when she laughs, local wildlife starts fleeing the area.",];
+  "Your mom is so loud, when she laughs, local wildlife starts fleeing the area.",  "Yo momma so loud, when she sighs, the local wind turbine farm generates enough clean energy to power a small European nation.",
+];
