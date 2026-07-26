@@ -25,4 +25,5 @@ export default [
   "Yer ma's so lazy, she puts a pot of water on the stove and waits for global warming to bring it to a boil.",
   "Ya mama so lazy, she ordered DoorDash to deliver her UberEats order from the porch to the couch.",
   "Ya mama so lazy she trained her dog to use a laser pointer just to click 'Next Episode' on Netflix.",
+  "Yer ma's so lazy, she ordered delivery from a food truck parked in her own driveway.",
 ];
