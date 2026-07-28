@@ -13,4 +13,5 @@ export default [
   "Yo mama's so loud, they named a freight train after her",
   "Your mom is so loud, when she laughs, local wildlife starts fleeing the area.",  "Yo momma so loud, when she sighs, the local wind turbine farm generates enough clean energy to power a small European nation.",
   "Yo mama so loud, when she sighs, wind turbines in three neighboring states set new generation records.",
+  "Your mother is so loud, she disproved the vacuum of space; NASA heard her clear her throat from Mars.",
 ];
