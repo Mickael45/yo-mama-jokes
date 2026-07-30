@@ -93,4 +93,5 @@ export default [
 
   "Yo mama so poor, she tried to pawn a screenshot of an NFT just to afford a real-life banana.",
   "Yo mama so poor, she waits for the Google Street View car to drive by just so she can update her family portrait.",  "Your mom is so poor, she uses Google Street View to go on a family vacation.",
+  "Ya mama so poor, she went to KFC just to lick other people's fingers.",
 ];
