@@ -32,4 +32,5 @@ export default [
   "Your mother is so bald, she sat down at a fortune teller's table and the psychic immediately tried to read her mind through her forehead.",
   "Yo mama so bald, her thoughts have to wear non-slip socks just to stay in her head.",
   "Yer ma's so bald, she has to use a plunger just to get her winter beanie off.",
+  "Yo mama's so bald, she stepped out into the sun and accidentally generated 1.21 gigawatts of clean, renewable energy.",
 ];
