@@ -12,4 +12,5 @@ export default [
 
   "Yo mama’s so scary, haunted houses charge *her* for the experience",
   "Your mom is so scary, she makes zombies reapply for health insurance",  "Your mom is so terrifying, Bloody Mary looked in the mirror and whispered her name three times just to escape.",
+  "Ya mama so creepy, her sleep paralysis demon wakes up in a cold sweat dreaming about her.",
 ];
