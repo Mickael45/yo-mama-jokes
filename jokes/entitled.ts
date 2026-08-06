@@ -20,4 +20,5 @@ export default [
   "Yo mama's so entitled, she sued the universe for not providing unlimited wishes!",
   "Yo mama's so entitled, she sent her therapist a demand for a refund on their entire therapy session because she didn't get to pick the couch color",
   "Yo mama's so entitled, she sent her Uber driver a demand for a refund on the ride because she didn't get to pick the playlist!",  "Your mother is so entitled, she asked the flight attendant to mute the turbulence.",
+  "Yo momma so entitled, she left a one-star Yelp review for the emergency room because she had to wait behind people who were actively flatlining.",
 ];
