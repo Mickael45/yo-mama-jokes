@@ -1,0 +1,47 @@
+---
+// Legal notice — publisher identity, publication director and hosting provider,
+// as required by the French LCEN (loi n° 2004-575). Identity facts come from
+// LEGAL / HOST in lib/siteConfig.ts; never re-state them as literals here.
+import Layout from "@/layouts/Layout.astro";
+import { SITE_NAME, LEGAL, HOST } from "@/lib/siteConfig";
+
+const title = `Legal Notice | ${SITE_NAME}`;
+const description =
+  "Legal notice for Yo Mama Jokes Central: publisher identity, publication director and hosting provider.";
+---
+
+<Layout title={title} description={description} path="/legal">
+  <div class="site-page container mx-auto px-4 py-8">
+    <div class="site-inner site-prose">
+      <h1 class="site-title">Legal Notice</h1>
+      <p>
+        This legal notice provides the disclosures required by France's
+        <i>Confidence in the Digital Economy Act</i> (LCEN, Law No. 2004-575 of
+        June 21, 2004).
+      </p>
+
+      <h2>Website publisher</h2>
+      <p>
+        {SITE_NAME} is published by <strong>{LEGAL.legalName}</strong>, {LEGAL.legalForm},
+        share capital {LEGAL.shareCapital}, registered with the {LEGAL.registry} under
+        no. {LEGAL.registrationNumber}, EU VAT {LEGAL.vatIntracom}.
+      </p>
+      <ul>
+        <li><strong>Registered office:</strong> {LEGAL.registeredOffice}</li>
+        <li>
+          <strong>Contact:</strong>
+          <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>
+        </li>
+      </ul>
+
+      <h2>Publication director</h2>
+      <p>{LEGAL.publicationDirector}, {LEGAL.publicationDirectorRole}.</p>
+
+      <h2>Hosting provider</h2>
+      <p>
+        {HOST.name}, {HOST.address} —
+        <a href={`https://www.${HOST.url}`} rel="nofollow noopener">{HOST.url}</a> — {HOST.phone}
+      </p>
+    </div>
+  </div>
+</Layout>

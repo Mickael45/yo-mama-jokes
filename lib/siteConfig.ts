@@ -18,6 +18,35 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og/default.png`;
 
 export const CONTACT_EMAIL = "yomamajokescentral.contact@proton.me";
 
+// Canonical publisher identity (LCEN, loi n° 2004-575) — SINGLE SOURCE OF TRUTH.
+// Rendered on /legal and in Organization JSON-LD; never re-state these facts as
+// literals in a template.
+//
+// `registeredOffice` is deliberately a sentence, not an address: the registered
+// office is mid-transfer. When the new domiciliation is registered, edit ONLY
+// this block.
+export const LEGAL = {
+  legalName: "MICKAEL GOMES CONSULTING",
+  legalForm: "a French single-member limited company (EURL)",
+  shareCapital: "€1,500",
+  registry: "Versailles Trade & Companies Register",
+  registrationNumber: "853 099 414",
+  vatIntracom: "FR08 853 099 414",
+  registeredOffice:
+    "transfer in progress; this notice will be updated upon registration",
+  publicationDirector: "Mickaël Gomes",
+  publicationDirectorRole: "managing director",
+  email: CONTACT_EMAIL,
+};
+
+// Hosting provider (LCEN art. 6 III) — canonical across the portfolio.
+export const HOST = {
+  name: "Cloudflare, Inc.",
+  address: "101 Townsend Street, San Francisco, CA 94107, United States",
+  url: "cloudflare.com",
+  phone: "+1 650 319 8930",
+};
+
 // Square brand logo (≥112×112) for Organization schema + header. SVG is an
 // accepted Google-Images format (cookbook X2); a raster 512 PNG also exists.
 export const LOGO_URL = `${SITE_URL}/logo.svg`;
