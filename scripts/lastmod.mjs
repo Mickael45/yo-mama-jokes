@@ -1,37 +1,31 @@
-// Resolve an honest <lastmod> per URL from git history, so we never stamp a
-// single flat build date across every page (Google distrusts uniform lastmods).
-// - /jokes/<slug>           -> git mtime of jokes/<short>.ts (when jokes changed)
-// - /, /categories, /about… -> git mtime of the page's .astro source
-// - homepage "/"            -> today (the daily featured set genuinely rotates)
-import { execSync } from "node:child_process";
+// Resolve an honest <lastmod> per URL from the committed lastmod.json manifest
+// (regenerated from full git history by scripts/gen-lastmod.mjs). The production
+// build env clones SHALLOW, so asking git at build time silently stamps HEAD's
+// date on every page — the flat-lastmod anti-pattern this replaces. A path
+// missing from the manifest resolves undefined and the sitemap omits lastmod
+// rather than emitting an untrustworthy date.
+import { readFileSync } from "node:fs";
 
-function gitDate(file) {
-  try {
-    const out = execSync(`git log -1 --format=%cI -- "${file}"`, {
-      encoding: "utf8",
-    }).trim();
-    return out || undefined;
-  } catch {
-    return undefined;
+let _manifest;
+function manifest() {
+  if (_manifest === undefined) {
+    try {
+      _manifest = JSON.parse(readFileSync(new URL("../lastmod.json", import.meta.url), "utf8"));
+    } catch {
+      _manifest = {};
+    }
   }
+  return _manifest;
 }
 
-function pathOf(url) {
-  return new URL(url).pathname.replace(/\/$/, "") || "/";
+// Pure core (unit-tested): path + manifest -> date | undefined.
+export function resolveLastmod(path, m) {
+  // Homepage content (daily featured picker) genuinely changes each daily deploy.
+  if (path === "/") return new Date().toISOString();
+  return m[path];
 }
 
 export function lastmodForUrl(url) {
-  const p = pathOf(url);
-  // Homepage content (daily picker) genuinely changes each rebuild.
-  if (p === "/") return new Date().toISOString();
-
-  const m = p.match(/^\/jokes\/(.+)$/);
-  if (m) {
-    const short = m[1].replace(/-yo-mama-jokes$/, "");
-    return gitDate(`jokes/${short}.ts`);
-  }
-
-  // Static pages: map /foo -> src/pages/foo.astro
-  const astro = `src/pages${p}.astro`;
-  return gitDate(astro);
+  const p = new URL(url).pathname.replace(/\/$/, "") || "/";
+  return resolveLastmod(p, manifest());
 }
