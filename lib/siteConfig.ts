@@ -28,6 +28,7 @@ export const CONTACT_EMAIL = "yomamajokescentral.contact@proton.me";
 export const LEGAL = {
   legalName: "MICKAEL GOMES CONSULTING",
   legalForm: "a French single-member limited company (EURL)",
+  legalFormShort: "EURL",
   shareCapital: "€1,500",
   registry: "Versailles Trade & Companies Register",
   registrationNumber: "853 099 414",

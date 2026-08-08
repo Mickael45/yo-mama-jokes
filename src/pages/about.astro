@@ -1,6 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { SITE_NAME } from "@/lib/siteConfig";
+import { SITE_NAME, SITE_URL, LEGAL } from "@/lib/siteConfig";
+
+const domain = new URL(SITE_URL).host;
 
 const title = `About Yo Mama Jokes Central — Who We Are & How We Curate`;
 const description =
@@ -31,6 +33,10 @@ const description =
         quick thinking, wordplay, and staying cool under pressure. We carry that
         spirit forward: playful exaggeration meant to make everyone, including
         the target, laugh.
+      </p>
+      <p>
+        {domain} is published by <strong>{LEGAL.legalName}</strong> ({LEGAL.legalFormShort})
+        — full details on the <a href="/legal">Legal page</a>.
       </p>
       <p>
         Questions or suggestions? Visit our <a href="/contact">contact page</a>.

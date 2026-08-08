@@ -177,7 +177,7 @@ Targets at p75: **LCP < 2.5s**, **INP < 200ms** (now a primary signal; FID is go
 
 | Item | Status | Notes |
 |------|--------|-------|
-| `ads.txt` present & matches publisher ID | ✅ | `public/ads.txt` → `pub-3950888851778991` |
+| `ads.txt` present & matches publisher ID | ❌ | No ads.txt in production; create at AdSense submission with the account pub ID (see project STATE). |
 | AdSense loader script (prod-only) | ✅ | `Layout.astro`, gated on `import.meta.env.PROD` |
 | **Google-certified CMP (IAB TCF v2.3)** for EEA/UK/CH | ❌ 🔴 | **Custom `ConsentBanner.astro` is NOT certified.** Required since 2024, still enforced 2026. Without it, EEA/UK/CH traffic is capped to non-personalized/limited ads. **Fix:** enable AdSense's free **Privacy & messaging → GDPR message** (Google's own certified CMP) or adopt a certified CMP (Cookiebot, CookieHub, Usercentrics). Then retire or downgrade the custom banner to non-EEA only. 🆕 **TCF v2.3 timeline (verified):** IAB Europe released v2.3 on 19 Jun 2025; Google has accepted v2.3 strings since 17 Oct 2025; **full support was mandatory by 28 Feb 2026** and from **1 Mar 2026** any new consent string must be v2.3 or vendors treat traffic as **"Limited Ads."** Pick a CMP already certified for v2.3 — a certified CMP migrates the version for you with no forced re-consent. (Sibling cookbooks still said "v2.2" — outdated; v2.3 is current.) |
 | Consent Mode v2 default state (denied in EEA/UK/CH, wait_for_update) | ✅ | `Layout.astro` — correct *signaling*, but signaling ≠ certified CMP (above) |
