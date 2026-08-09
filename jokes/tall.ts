@@ -22,4 +22,5 @@ export default [
   "Yer ma's so tall, she can stand in the deepest part of the Mariana Trench and still get a sunburn from the Aurora Borealis.",
   "Your mom is so tall, King Kong climbed up her leg to get a better view of the city.",
   "Ya mama so tall, she stepped on a Lego in 1998 and the pain signal is still traveling up her nervous system to reach her brain.",
+  "Your mother is so tall, she didn't need a parachute to go skydiving; she just stepped out of the plane and waited for her feet to touch the ground.",
 ];
