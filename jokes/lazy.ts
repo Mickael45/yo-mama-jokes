@@ -27,4 +27,5 @@ export default [
   "Ya mama so lazy she trained her dog to use a laser pointer just to click 'Next Episode' on Netflix.",
   "Yer ma's so lazy, she ordered delivery from a food truck parked in her own driveway.",
   "Yo momma so lazy, she bought a second Alexa just to tell the first Alexa to turn off the bedroom lights.",
+  "Yo mama's so lazy, she ordered DoorDash to her table while sitting inside the restaurant.",
 ];
