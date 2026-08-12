@@ -160,4 +160,5 @@ export default [
   "Yo mama so ugly, even Face ID shuts its eyes and asks for the passcode.",  "A blind man felt your mother's face and asked why someone had written a horror novel in braille.",
   "Your mother walked into a funhouse mirror maze, and the mirrors actually straightened themselves out just to avoid making things any worse.",
   "Ya mama so ugly, she walked into a modern art gallery and won first prize for 'Bold Depiction of Chaos'.",
+  "Ya mama so ugly, she walked into a modern art gallery and the curator tried to hang her on the wall.",
 ];
