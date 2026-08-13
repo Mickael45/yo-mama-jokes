@@ -44,6 +44,15 @@ must **not** promise a "daily" cadence. Fixed 2026-07-18 to "rotating / regularl
 If a true daily cadence is wanted, add a scheduled Cloudflare Deploy Hook (needs
 `CLOUDFLARE_DEPLOY_HOOK_URL` secret) — then honest "daily" copy may return.
 
+### PWA candidacy & installability — verified 2026-08-13 (seo rev 3)
+**Candidacy: yes** — a browse-and-return jokes site with frequently appended content.
+`public/site.webmanifest`: `display:standalone`, `/og/logo-192.png` and `/og/logo-512.png`
+(any) plus `/og/logo-maskable-512.png` (maskable). The maskable entry previously reused the full-bleed
+`/og/logo-512.png` tile — 49% outside the safe zone, so the OS mask cropped the frame and the
+outer letters of "MAMA" on install; fixed in `820fe35` (`scripts/make-maskable-icon.mjs`,
+197.3 px of the 204.8 px safe radius, precached by `scripts/pwa.mjs`). Offline: own SW —
+network-first navigations, SWR for the rest, cache keyed to a content hash.
+
 ### Fast-movers to re-verify next run
 - AI-crawler UA list + Cloudflare AI Crawl Control defaults (`references/geo-ai.md`).
 - Google/Bing structured-data support status (validate JSON-LD with validator.schema.org, not the deprecated Rich Results Test).
