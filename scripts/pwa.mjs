@@ -16,6 +16,7 @@ const FIXED_ASSETS = [
   "/apple-touch-icon.png",
   "/og/logo-192.png",
   "/og/logo-512.png",
+  "/og/logo-maskable-512.png",
 ];
 
 // Normalize an Astro page pathname to a clean URL (trailingSlash: "never").
