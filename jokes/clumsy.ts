@@ -13,4 +13,5 @@ export default [
   "Yo mama's so clumsy, she knocked over the Jenga tower before it was even built",
   "Yo mama is so clumsy, she's been trying to breakdance since 1985 and finally perfected the art of flailing while standing still",
   "Yo mama so clumsy, she tripped over a painted line in a grocery store parking lot.",  "Your mother is so clumsy, she fell up the stairs and somehow ended up in the neighbor's basement.",
+  "Yo mama so clumsy, she tried to give a casual high-five and accidentally signed a five-year lease on a commercial property.",
 ];
