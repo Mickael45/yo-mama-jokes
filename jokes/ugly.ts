@@ -161,4 +161,5 @@ export default [
   "Your mother walked into a funhouse mirror maze, and the mirrors actually straightened themselves out just to avoid making things any worse.",
   "Ya mama so ugly, she walked into a modern art gallery and won first prize for 'Bold Depiction of Chaos'.",
   "Ya mama so ugly, she walked into a modern art gallery and the curator tried to hang her on the wall.",
+  "Yer ma's so ugly, when she walks into the forest, the trees start shedding their leaves early just to cover her up.",
 ];
