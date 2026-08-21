@@ -35,7 +35,6 @@ export default [
   "Yo mama is so old that she sat next to Jesus in third grade.",
   "Yo mama so old, she knew 50 Cent when he was only a quarter.",
   "Yo momma's so old, she sat in front of Jesus in first grade.",
-  "Yo momma's so stupid, she cooks Indian curry with Old Spice.",
   "Yo mama is so old that she owes Fred Flintstone a food stamp.",
   "Yo mamma is so old she knew Burger King when he was a prince.",
   "Yo mamas so old, she knew Gandalf when he only had a mustache.",
