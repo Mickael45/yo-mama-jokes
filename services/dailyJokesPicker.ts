@@ -1,10 +1,8 @@
 import fatMamaJokes from "@/jokes/fat";
 import scaryMamaJokes from "@/jokes/scary";
-import nastyMamaJokes from "@/jokes/nasty";
 import uglyMamaJokes from "@/jokes/ugly";
 import dumbMamaJokes from "@/jokes/dumb";
 import awfulMamaJokes from "@/jokes/awful";
-import dirtyMamaJokes from "@/jokes/dirty";
 import tallMamaJokes from "@/jokes/tall";
 import shortMamaJokes from "@/jokes/short";
 import hairyMamaJokes from "@/jokes/hairy";
@@ -23,7 +21,6 @@ import {
   AWFUL_MAMA_JOKE_CATEGORY,
   BALD_MAMA_JOKE_CATEGORY,
   CLUMSY_MAMA_JOKE_CATEGORY,
-  DIRTY_MAMA_JOKE_CATEGORY,
   DUMB_MAMA_JOKE_CATEGORY,
   ENTITLED_MAMA_JOKE_CATEGORY,
   EVIL_MAMA_JOKE_CATEGORY,
@@ -32,7 +29,6 @@ import {
   HAIRY_MAMA_JOKE_CATEGORY,
   LAZY_MAMA_JOKE_CATEGORY,
   LOUD_MAMA_JOKE_CATEGORY,
-  NASTY_MAMA_JOKE_CATEGORY,
   OLD_MAMA_JOKE_CATEGORY,
   OTHER_MAMA_JOKE_CATEGORY,
   POOR_MAMA_JOKE_CATEGORY,
@@ -47,11 +43,9 @@ import type { CategoryJoke, CategoryJokes } from "@/types";
 const categorizedJokes: CategoryJokes[] = [
   { category: FAT_MAMA_JOKE_CATEGORY, jokes: fatMamaJokes },
   { category: SCARY_MAMA_JOKE_CATEGORY, jokes: scaryMamaJokes },
-  { category: NASTY_MAMA_JOKE_CATEGORY, jokes: nastyMamaJokes },
   { category: UGLY_MAMA_JOKE_CATEGORY, jokes: uglyMamaJokes },
   { category: DUMB_MAMA_JOKE_CATEGORY, jokes: dumbMamaJokes },
   { category: AWFUL_MAMA_JOKE_CATEGORY, jokes: awfulMamaJokes },
-  { category: DIRTY_MAMA_JOKE_CATEGORY, jokes: dirtyMamaJokes },
   { category: TALL_MAMA_JOKE_CATEGORY, jokes: tallMamaJokes },
   { category: SHORT_MAMA_JOKE_CATEGORY, jokes: shortMamaJokes },
   { category: HAIRY_MAMA_JOKE_CATEGORY, jokes: hairyMamaJokes },

@@ -5,7 +5,7 @@
 // prose paragraphs; `citations` are outbound links to authorities.
 // `updated` is an ISO date (YYYY-MM-DD) shown as "Last updated" + fed to schema.
 //
-// All 21 categories now carry authored prose. To add or revise a category,
+// All 19 categories now carry authored prose. To add or revise a category,
 // mirror the existing entries: one question heading, a tight direct answer,
 // 2–4 original paragraphs, and 1–2 real citations, and bump `updated`.
 // `hasContent()` gates rendering, so any future entry reset to `body: []`
@@ -13,9 +13,9 @@
 
 import type { Category } from "@/types";
 import {
-  FAT_MAMA_JOKE_CATEGORY, SCARY_MAMA_JOKE_CATEGORY, NASTY_MAMA_JOKE_CATEGORY,
+  FAT_MAMA_JOKE_CATEGORY, SCARY_MAMA_JOKE_CATEGORY,
   UGLY_MAMA_JOKE_CATEGORY, DUMB_MAMA_JOKE_CATEGORY, AWFUL_MAMA_JOKE_CATEGORY,
-  DIRTY_MAMA_JOKE_CATEGORY, TALL_MAMA_JOKE_CATEGORY, SHORT_MAMA_JOKE_CATEGORY,
+  TALL_MAMA_JOKE_CATEGORY, SHORT_MAMA_JOKE_CATEGORY,
   HAIRY_MAMA_JOKE_CATEGORY, BALD_MAMA_JOKE_CATEGORY, OLD_MAMA_JOKE_CATEGORY,
   POOR_MAMA_JOKE_CATEGORY, SKINNY_MAMA_JOKE_CATEGORY, CLUMSY_MAMA_JOKE_CATEGORY,
   EVIL_MAMA_JOKE_CATEGORY, GREEDY_MAMA_JOKE_CATEGORY, LAZY_MAMA_JOKE_CATEGORY,
@@ -87,23 +87,6 @@ export const categoryContent: Record<Category, CategoryContent> = {
     ],
     updated: "2026-06-19",
   },
-  [NASTY_MAMA_JOKE_CATEGORY]: {
-    question: "What are nasty yo mama jokes?",
-    directAnswer:
-      "Nasty yo mama jokes push the rude, gross-out end of the format — crude, over-the-top insults built for shock value and big reactions. They lean on exaggeration about hygiene, manners, or attitude rather than explicit content, and are best saved for audiences who enjoy humor that deliberately crosses the line for laughs.",
-    body: [
-      "Every joke style has a spectrum, and \"nasty\" sits at the rowdy end of yo mama humor. These lines trade politeness for shock, going for the gross-out or the outrageous to get a loud reaction from a crowd that's in on the game.",
-      "Because the whole appeal is crossing a line, audience matters more here than almost anywhere else. Among friends who enjoy edgy banter they land hard; in mixed or younger company they fall flat or offend. Reading the room is part of the craft.",
-      "The skill is staying clever while being crude — a nasty joke that's only mean isn't funny, but one that's outrageous and unexpected earns the groan-laugh it's after. Keep it playful, keep it absurd, and know when to dial it back.",
-    ],
-    citations: [
-      {
-        label: "Wikipedia — Maternal insult (\"yo mama\" jokes)",
-        href: "https://en.wikipedia.org/wiki/Maternal_insult",
-      },
-    ],
-    updated: "2026-06-19",
-  },
   [UGLY_MAMA_JOKE_CATEGORY]: {
     question: "What are ugly yo mama jokes?",
     directAnswer:
@@ -134,23 +117,6 @@ export const categoryContent: Record<Category, CategoryContent> = {
       {
         label: "Encyclopædia Britannica — \"the dozens\" (verbal contest tradition)",
         href: "https://www.britannica.com/topic/the-dozens",
-      },
-    ],
-    updated: "2026-06-19",
-  },
-  [DIRTY_MAMA_JOKE_CATEGORY]: {
-    question: "What are dirty yo mama jokes?",
-    directAnswer:
-      "Dirty yo mama jokes run on grime and gross-out imagery — a mother so filthy she makes mud look clean, or one who fertilizes the lawn by rolling in it. Like nasty jokes, they exaggerate poor hygiene and funk for a big reaction, painting a cartoonish picture of filth rather than describing anyone real.",
-    body: [
-      "Filth is the whole engine here. These lines pile on the grime — dust bunnies, grease trails, roaches that pack up and leave — until the image is so over-the-top it loops back around to funny. The dirtier and more absurd the picture, the better it lands.",
-      "They're close cousins of nasty and awful jokes, all built on inflating a single trait past the point of realism. The point was never that anyone is actually unwashed; it's the ridiculous scene the line paints — a river that turns to mud, bathwater that runs away rather than touch her.",
-      "Keep them playful and the grime reads as a roast, not an insult. Reach for a fresh image instead of the tired ones, commit to the absurdity, and the groan-laugh takes care of itself.",
-    ],
-    citations: [
-      {
-        label: "Wikipedia — Maternal insult (\"yo mama\" jokes)",
-        href: "https://en.wikipedia.org/wiki/Maternal_insult",
       },
     ],
     updated: "2026-06-19",

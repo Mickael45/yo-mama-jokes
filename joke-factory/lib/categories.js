@@ -1,6 +1,6 @@
 const CATEGORIES = Object.freeze([
-  "awful", "bald", "clumsy", "dirty", "dumb", "entitled", "evil", "fat",
-  "greedy", "hairy", "lazy", "loud", "nasty", "old", "other", "poor",
+  "awful", "bald", "clumsy", "dumb", "entitled", "evil", "fat",
+  "greedy", "hairy", "lazy", "loud", "old", "other", "poor",
   "scary", "short", "skinny", "tall", "ugly",
 ]);
 

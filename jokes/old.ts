@@ -70,7 +70,6 @@ export default [
   "Yo momma's so old, that when God said «,Let there be light », she had to flip the switch!",
   "Yo mama is so old that when God said « Let there be light » she was there to flick the switch.",
   "Yo momma's so fat and old, when Moses wanted to part the Red Sea, he told her to do a cannon ball.",
-  "Yo momma's so smelly, an old blind geezer walking by asked her «,Yo, how much for the shrimp platter »?",
   "Yo momma's so fat and old when God said «,Let there be light », he asked your mother to move out of the way.",
   "Yo momma's so old, they had to take her tampon to the natural history museum to find out what period it came from.",
   "Yo mama so old her Social Security number is 1.",

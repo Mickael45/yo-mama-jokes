@@ -3,11 +3,9 @@
 
 import fatMamaJokes from "@/jokes/fat";
 import scaryMamaJokes from "@/jokes/scary";
-import nastyMamaJokes from "@/jokes/nasty";
 import uglyMamaJokes from "@/jokes/ugly";
 import dumbMamaJokes from "@/jokes/dumb";
 import awfulMamaJokes from "@/jokes/awful";
-import dirtyMamaJokes from "@/jokes/dirty";
 import tallMamaJokes from "@/jokes/tall";
 import shortMamaJokes from "@/jokes/short";
 import hairyMamaJokes from "@/jokes/hairy";
@@ -25,11 +23,9 @@ import otherMamaJokes from "@/jokes/other";
 import {
   FAT_MAMA_JOKE_CATEGORY,
   SCARY_MAMA_JOKE_CATEGORY,
-  NASTY_MAMA_JOKE_CATEGORY,
   UGLY_MAMA_JOKE_CATEGORY,
   DUMB_MAMA_JOKE_CATEGORY,
   AWFUL_MAMA_JOKE_CATEGORY,
-  DIRTY_MAMA_JOKE_CATEGORY,
   TALL_MAMA_JOKE_CATEGORY,
   SHORT_MAMA_JOKE_CATEGORY,
   HAIRY_MAMA_JOKE_CATEGORY,
@@ -50,11 +46,9 @@ import type { Category } from "@/types";
 export const categories: { name: string; slug: Category }[] = [
   { name: "Fat", slug: FAT_MAMA_JOKE_CATEGORY },
   { name: "Scary", slug: SCARY_MAMA_JOKE_CATEGORY },
-  { name: "Nasty", slug: NASTY_MAMA_JOKE_CATEGORY },
   { name: "Ugly", slug: UGLY_MAMA_JOKE_CATEGORY },
   { name: "Dumb", slug: DUMB_MAMA_JOKE_CATEGORY },
   { name: "Awful", slug: AWFUL_MAMA_JOKE_CATEGORY },
-  { name: "Dirty", slug: DIRTY_MAMA_JOKE_CATEGORY },
   { name: "Tall", slug: TALL_MAMA_JOKE_CATEGORY },
   { name: "Short", slug: SHORT_MAMA_JOKE_CATEGORY },
   { name: "Hairy", slug: HAIRY_MAMA_JOKE_CATEGORY },
@@ -74,11 +68,9 @@ export const categories: { name: string; slug: Category }[] = [
 export const jokesByCategory: Record<Category, string[]> = {
   [FAT_MAMA_JOKE_CATEGORY]: fatMamaJokes,
   [SCARY_MAMA_JOKE_CATEGORY]: scaryMamaJokes,
-  [NASTY_MAMA_JOKE_CATEGORY]: nastyMamaJokes,
   [UGLY_MAMA_JOKE_CATEGORY]: uglyMamaJokes,
   [DUMB_MAMA_JOKE_CATEGORY]: dumbMamaJokes,
   [AWFUL_MAMA_JOKE_CATEGORY]: awfulMamaJokes,
-  [DIRTY_MAMA_JOKE_CATEGORY]: dirtyMamaJokes,
   [TALL_MAMA_JOKE_CATEGORY]: tallMamaJokes,
   [SHORT_MAMA_JOKE_CATEGORY]: shortMamaJokes,
   [HAIRY_MAMA_JOKE_CATEGORY]: hairyMamaJokes,
@@ -121,16 +113,6 @@ export const categoryMeta: Record<Category, CategoryPageData> = {
       description: "Enter the realm of Scary Yo Mama Jokes!  If you like your humor with a touch of the macabre and spooky, you've come to the right place.  Explore our collection of dark and funny jokes, but be warned – they might just send a chill down your spine (from laughter)!",
     },
   },
-  [NASTY_MAMA_JOKE_CATEGORY]: {
-    metadata: {
-      title: "Nasty Yo Mama Jokes -  Rude & Hilarious | Yo Mama Jokes Central",
-      description: "Warning: Nasty Yo Mama Jokes inside!  For those who like their humor extra spicy and over-the-top. Browse our collection of truly outrageous insults - if you dare!",
-    },
-    page: {
-      title: "Nasty Yo Mama Jokes",
-      description: "Brace yourself for Nasty Yo Mama Jokes!  This category is not for the faint of heart.  If you enjoy humor that pushes the boundaries and isn't afraid to be a little (or a lot) rude, explore our collection of truly nasty and hilarious insults.",
-    },
-  },
   [UGLY_MAMA_JOKE_CATEGORY]: {
     metadata: {
       title: "Ugly Yo Mama Jokes - Hilariously Insulting | Yo Mama Jokes Central",
@@ -159,16 +141,6 @@ export const categoryMeta: Record<Category, CategoryPageData> = {
     page: {
       title: "Awful Yo Mama Jokes",
       description: "Delight in the Awful Yo Mama Jokes!  This category celebrates jokes that are intentionally terrible, cringe-worthy, and yet, somehow, still funny.  Explore our collection of truly awful (but hilariously bad) insults!",
-    },
-  },
-  [DIRTY_MAMA_JOKE_CATEGORY]: {
-    metadata: {
-      title: "Dirty Yo Mama Jokes - Filthy & Hilarious | Yo Mama Jokes Central",
-      description: "Dirty Yo Mama Jokes!  Explore our collection of gross-out, grimy, and hilariously filthy insults about the world's least-washed mama. Browse and share the funk!",
-    },
-    page: {
-      title: "Dirty Yo Mama Jokes",
-      description: "Dive into Dirty Yo Mama Jokes!  This category is all about grime, funk, and questionable hygiene — over-the-top insults about a mama who makes mud look clean. Gross-out fun for the whole comedy crowd!",
     },
   },
   [TALL_MAMA_JOKE_CATEGORY]: {

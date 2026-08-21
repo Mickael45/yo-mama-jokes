@@ -1,7 +1,7 @@
 # Yo Mama Jokes Central
 
 > Yo Mama Jokes Central (https://yomamajokescentral.com) is a free website
-> featuring hundreds of Yo Mama jokes organized into 21 themed categories,
+> featuring hundreds of Yo Mama jokes organized into 19 themed categories,
 > plus a rotating hand-picked set of 5 featured jokes. A "Yo Mama joke"
 > is a short insult-comedy one-liner that humorously exaggerates a trait of
 > someone's mother.
@@ -15,11 +15,9 @@
 
 - [Fat Yo Mama Jokes](https://yomamajokescentral.com/jokes/fat-yo-mama-jokes)
 - [Scary Yo Mama Jokes](https://yomamajokescentral.com/jokes/scary-yo-mama-jokes)
-- [Nasty Yo Mama Jokes](https://yomamajokescentral.com/jokes/nasty-yo-mama-jokes)
 - [Ugly Yo Mama Jokes](https://yomamajokescentral.com/jokes/ugly-yo-mama-jokes)
 - [Dumb Yo Mama Jokes](https://yomamajokescentral.com/jokes/dumb-yo-mama-jokes)
 - [Awful Yo Mama Jokes](https://yomamajokescentral.com/jokes/awful-yo-mama-jokes)
-- [Dirty Yo Mama Jokes](https://yomamajokescentral.com/jokes/dirty-yo-mama-jokes)
 - [Tall Yo Mama Jokes](https://yomamajokescentral.com/jokes/tall-yo-mama-jokes)
 - [Short Yo Mama Jokes](https://yomamajokescentral.com/jokes/short-yo-mama-jokes)
 - [Hairy Yo Mama Jokes](https://yomamajokescentral.com/jokes/hairy-yo-mama-jokes)

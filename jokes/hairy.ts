@@ -9,7 +9,6 @@ export default [
   "Yo mama is so hairy that Jane Goodall follows her around.",
   "Yo mama is so hairy that Bigfoot wants to take HER picture!",
   "Yo mama is so hairy that she got a trim and lost 20 pounds.",
-  "Yo mama's chest is so hairy, her breasts look like coconuts.",
   "Yo mamma is so hairy when you were born you had carpet burn.",
   "Yo mama's so hairy, you were born with third-degree rug burn.",
   "Yo mama has so much hair on her upper lip that she braids it.",
@@ -47,7 +46,6 @@ export default [
   "Yo mama's so hairy, she got mistaken for a bear on a camping trip.",
   "Yo mama's so hairy, her shampoo comes in gallon drums.",
   "Yo mama is so hairy, she could start her own wildlife preserve!",
-
   "Yo mama's hair is so thick, it's a full-time job for three lumberjacks to maintain!",
   "Yo mamma's so hairy, she's got a unibrow that connects to her knee!",
   "Yo mama's hair is so dense, she uses a metal detector to find her earrings",

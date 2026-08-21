@@ -20,7 +20,7 @@ test("path missing from manifest resolves undefined so the sitemap omits lastmod
 
 test("jokeUrl maps a jokes/ source file to its page path", () => {
   assert.equal(jokeUrl("bald.ts"), "/jokes/bald-yo-mama-jokes");
-  assert.equal(jokeUrl("dirty.ts"), "/jokes/dirty-yo-mama-jokes");
+  assert.equal(jokeUrl("clumsy.ts"), "/jokes/clumsy-yo-mama-jokes");
 });
 
 test("pageUrl maps a src/pages astro file to its path, skipping non-pages", () => {

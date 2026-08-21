@@ -40,11 +40,19 @@ const lastUpdated = new Date(content.updated + "T00:00:00Z").toLocaleDateString(
   { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" },
 );
 
+// When the page carries an authored answer section, its <h2> already asks
+// "What are X?" and answers it with `directAnswer` — repeating that question
+// here duplicated the lede verbatim in both the FAQ and the FAQPage JSON-LD.
+// Only fall back to the lede-based item when a category has no authored prose.
 const faqItems: FaqItem[] = [
-  {
-    question: `What are ${pageTitle.toLowerCase()}?`,
-    answer: pageDescription,
-  },
+  ...(showContent
+    ? []
+    : [
+        {
+          question: `What are ${pageTitle.toLowerCase()}?`,
+          answer: pageDescription,
+        },
+      ]),
   {
     question: `How many ${pageTitle.toLowerCase()} are there?`,
     answer: `We currently have ${jokes.length} hand-picked ${pageTitle.toLowerCase()} in this collection, and we add new ones regularly.`,

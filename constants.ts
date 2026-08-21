@@ -1,10 +1,8 @@
 export const FAT_MAMA_JOKE_CATEGORY = 'fat-yo-mama-jokes';
 export const SCARY_MAMA_JOKE_CATEGORY = 'scary-yo-mama-jokes';
-export const NASTY_MAMA_JOKE_CATEGORY = 'nasty-yo-mama-jokes';
 export const UGLY_MAMA_JOKE_CATEGORY = 'ugly-yo-mama-jokes';
 export const DUMB_MAMA_JOKE_CATEGORY = 'dumb-yo-mama-jokes';
 export const AWFUL_MAMA_JOKE_CATEGORY = 'awful-yo-mama-jokes';
-export const DIRTY_MAMA_JOKE_CATEGORY = 'dirty-yo-mama-jokes';
 export const TALL_MAMA_JOKE_CATEGORY = 'tall-yo-mama-jokes';
 export const SHORT_MAMA_JOKE_CATEGORY = 'short-yo-mama-jokes';
 export const HAIRY_MAMA_JOKE_CATEGORY = 'hairy-yo-mama-jokes';
