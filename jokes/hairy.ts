@@ -53,4 +53,5 @@ export default [
   "Yo mama's hair is so thick, they need a crane to lift it when she gets a perm!",
   "Your mom is so furry, she tried to pay for groceries with a handful of cedar chips.",  "Ya mama so hairy, her passport photo is just a high-definition close-up of a kiwi fruit.",
   "Yo momma so hairy, naturalists discovered three new species of tree frog nesting in her left armpit.",
+  "Yo mama's so hairy, her passport photo is currently being used as exhibit A in a Bigfoot documentary.",
 ];
