@@ -24,4 +24,5 @@ export default [
   "Ya mama so tall, she stepped on a Lego in 1998 and the pain signal is still traveling up her nervous system to reach her brain.",
   "Your mother is so tall, she didn't need a parachute to go skydiving; she just stepped out of the plane and waited for her feet to touch the ground.",
   "Yer ma's so tall, she went for a swim in the ocean and caused a tsunami warning on three different continents.",
+  "Yo mama's so tall, when she tripped over a curb she didn't fall down, she just entered a stable low Earth orbit.",
 ];
