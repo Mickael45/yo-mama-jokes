@@ -6,7 +6,6 @@
     "dev": "astro dev",
     "build": "astro build",
     "test": "node --test 'scripts/*.test.mjs'",
-    "lastmod": "node scripts/gen-lastmod.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
