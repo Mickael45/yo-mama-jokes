@@ -2,7 +2,6 @@ import { defineConfig, fontProviders } from "astro/config";
 import { fileURLToPath } from "node:url";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import { lastmodForUrl } from "./scripts/lastmod.mjs";
 import pwa from "./scripts/pwa.mjs";
 
 const root = fileURLToPath(new URL("./", import.meta.url));
@@ -37,14 +36,7 @@ export default defineConfig({
     },
   ],
   integrations: [
-    sitemap({
-      serialize(item) {
-        const lastmod = lastmodForUrl(item.url);
-        if (lastmod) item.lastmod = lastmod;
-        else delete item.lastmod; // omit rather than emit a flat/untrustworthy date
-        return item;
-      },
-    }),
+    sitemap(),
     // Generates sw.js (full-offline precache) on build. See scripts/pwa.mjs.
     pwa(),
   ],
