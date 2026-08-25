@@ -152,4 +152,5 @@ export default [
   "Ya mama so ugly, she walked into a modern art gallery and won first prize for 'Bold Depiction of Chaos'.",
   "Ya mama so ugly, she walked into a modern art gallery and the curator tried to hang her on the wall.",
   "Yer ma's so ugly, when she walks into the forest, the trees start shedding their leaves early just to cover her up.",
+  "Your mom is so ugly, when she tried to use FaceID, her phone redirected her to a CAPTCHA page just to prove she was human.",
 ];
