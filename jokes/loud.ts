@@ -15,4 +15,5 @@ export default [
   "Yo mama so loud, when she sighs, wind turbines in three neighboring states set new generation records.",
   "Your mother is so loud, she disproved the vacuum of space; NASA heard her clear her throat from Mars.",
   "Yer ma's so loud, when she whispers a secret in New York, the NSA registers a noise complaint in a secure bunker in Utah.",
+  "Yo mama's so loud, when she yawns, local bats suffer from severe echolocation interference and crash into parked cars.",
 ];
