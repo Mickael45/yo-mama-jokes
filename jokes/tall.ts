@@ -25,4 +25,5 @@ export default [
   "Your mother is so tall, she didn't need a parachute to go skydiving; she just stepped out of the plane and waited for her feet to touch the ground.",
   "Yer ma's so tall, she went for a swim in the ocean and caused a tsunami warning on three different continents.",
   "Yo mama's so tall, when she tripped over a curb she didn't fall down, she just entered a stable low Earth orbit.",
+  "Your mother is so tall, she could stand in the Mariana Trench and still get a sunburn on her shoulders.",
 ];
