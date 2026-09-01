@@ -14,4 +14,5 @@ export default [
   "Your mom is so scary, she makes zombies reapply for health insurance",  "Your mom is so terrifying, Bloody Mary looked in the mirror and whispered her name three times just to escape.",
   "Ya mama so creepy, her sleep paralysis demon wakes up in a cold sweat dreaming about her.",
   "Yo momma so scary, when she got possessed, the demon had to call an exorcist to get her out of him.",
+  "Yo mama's so spooky, her own shadow refuses to follow her unless it's allowed to hold a flashlight.",
 ];
