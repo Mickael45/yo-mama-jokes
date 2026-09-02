@@ -15,4 +15,5 @@ export default [
   "Ya mama so creepy, her sleep paralysis demon wakes up in a cold sweat dreaming about her.",
   "Yo momma so scary, when she got possessed, the demon had to call an exorcist to get her out of him.",
   "Yo mama's so spooky, her own shadow refuses to follow her unless it's allowed to hold a flashlight.",
+  "Yo mama so scary, the Grim Reaper leaves his scythe on the porch and calls her 'Ma'am'.",
 ];
