@@ -15,7 +15,7 @@
  *   TELEGRAM_CHAT_ID         — the only chat allowed to curate
  */
 
-const REPO_OWNER = "Mickael45";
+const REPO_OWNER = "ml-bcd-labs";
 const REPO_NAME = "yo-mama-jokes";
 
 // Categories are single lowercase words matching jokes/<category>.ts filenames.
