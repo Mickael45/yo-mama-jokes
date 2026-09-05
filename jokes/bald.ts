@@ -34,4 +34,5 @@ export default [
   "Yer ma's so bald, she has to use a plunger just to get her winter beanie off.",
   "Yo mama's so bald, she stepped out into the sun and accidentally generated 1.21 gigawatts of clean, renewable energy.",
   "Your mom is so bald, when she stands in front of a mirror, her reflection has to wear sunglasses.",
+  "Yo mama so bald, she had to draw a dotted line on her forehead just to know where her face ended and her scalp began.",
 ];
