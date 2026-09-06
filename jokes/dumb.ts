@@ -201,4 +201,5 @@ export default [
   "Your mom is so oblivious, she put lipstick on her forehead because she wanted to make up her mind.",
   "Your mother is so intellectually gentle, she blew on her ice cream to cool it down.",
   "Your mother is so dumb she stared at a cup of instant noodles for an hour because the instructions said 'stand for three minutes'.",
+  "Ya mama so dumb, she thought a quarterback was change she got at a drive-thru.",
 ];
